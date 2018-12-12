@@ -1,0 +1,98 @@
+System sendAnswer 
+Dispatch answer     : answer(REQUEST,DATA)
+Dispatch arequest   : arequest(REQUEST,DATA)
+Dispatch autoMsg    : autoMsg(X)
+
+Context ctxSendAnswer  ip[ host="localhost" port=8028 ]  //-g cyan
+
+QActor caller context ctxSendAnswer{    
+	Plan init normal[  
+ 		println("caller STARTS")
+ 	]
+ 	switchTo firstRequest
+ 	
+ 	Plan firstRequest  [  
+ 		println("firstRequest send request 1");
+ 		forward called1 -m arequest : arequest( r1,d(1) )
+  	]     
+    transition stopAfter 30000
+    	whenMsg  answer -> handleAnswer
+    
+  	State handleAnswer [ 
+  		onMsg answer : answer(R,D) -> println(answer1_at_caller(R,D))
+  	] 
+  	switchTo secondRequest
+  	
+  	State secondRequest[
+  		println("firstRequest send request 2");
+  		forward called1 -m arequest : arequest( r2,d(2) )
+  	]
+    transition stopAfter 30000
+    	whenMsg answer : answer(R,D) do println(answer2_at_caller(R,D))
+  
+  }
+/*
+ * 
+ */ 
+QActor called1 context ctxSendAnswer{    
+ 	Plan init normal[  
+ 		println("called1 STARTS")
+ 	]    
+ 	switchTo waitRequest
+ 	
+ 	Plan waitRequest[
+ 		println("called1 waiting ...")
+ 	]
+    transition stopAfter 5000  
+    	whenMsg arequest -> handleRequest
+ 	
+ 	Plan handleRequest[     
+ 		printCurrentMessage;
+ 		storeCurrentMessageForReply;
+ 		//javaOp "storeCurrentMessageForReply()";
+ 		onMsg  arequest : arequest( r1,DD ) -> 
+ 					replyToCaller -m answer : answer( called1(r1),D );
+ 		onMsg  arequest : arequest( r2,D ) -> 
+ 					selfMsg autoMsg : autoMsg( arequest( r2,D ) )		
+ 	]
+  	transition  whenTime 500 -> waitRequest
+  		whenMsg autoMsg -> handleSecondRequest
+  	
+ 	Plan handleSecondRequest[
+ 		println("called1 handleSecondRequest ");
+ 		onMsg  autoMsg : autoMsg( M ) -> 
+ 				forward called2 -m arequest : M
+ 	]
+    transition stopAfter 5000
+    	whenMsg answer -> sendAnswerToCaller
+    	
+    Plan sendAnswerToCaller[
+  		println("called1 send the answer from called2 to its original caller ");
+  		printCurrentMessage;
+ 		onMsg  answer : answer( R,D ) -> 
+ 					replyToCaller -m answer : answer( called1(R), D )    	
+    ]
+    transition stopAfter 3000
+}
+
+/*
+ * 
+ */ 
+QActor called2 context ctxSendAnswer{    
+ 	Plan init normal[  
+ 		println("called2 waiting ...")
+ 	] 
+    transition stopAfter 5000
+    	whenMsg arequest  -> handleRequest
+ 	
+ 	Plan handleRequest[
+ 		printCurrentMessage;
+ 		onMsg arequest : arequest( R,D )-> 
+    		replyToCaller -m answer : answer( called2(R),D )
+ 	] 
+ 	switchTo init
+} 
+ 
+/*
+ * OUTPUT
+  */

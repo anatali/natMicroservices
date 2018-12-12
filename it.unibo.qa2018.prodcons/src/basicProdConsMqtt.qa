@@ -1,0 +1,84 @@
+/* 
+ * basicProdConsMqtt.qa
+ */
+System basicProdConsMqtt       
+Dispatch info    : info(X)
+Dispatch autoMsg : autoMsg(X)
+
+Event infoev    : infoev(X)
+
+//pubSubServer  "tcp://m2m.eclipse.org:1883"    
+pubSubServer  "tcp://test.mosquitto.org:1883"  
+
+Context  ctxBasicProdConsMqtt ip [ host="localhost"  port=8019 ]         
+
+QActor producermqtt context ctxBasicProdConsMqtt  {    
+	Rules{
+			item(1). 
+			item(2). 
+	}   
+ 	State init initial [      
+  		connectAsSubscriber "unibo/qasys"; //"unibo/mqtt/prodCons" ;
+ 		delay 1000 //give the time to the consumer to connect ...     
+  	] 
+  	switchTo doWork
+ 	
+ 	State doWork [      
+ 	   		[ !? item(X)] println( producerSending( item(X))  )  ;
+	  		[ !? item(X)] addRule produced( item(X) );
+	  		[ ?? item(X)] selfMsg autoMsg : autoMsg( item(X) ) ;
+	  		delay 500 
+ 	] 
+ 	transition stopAfter 6000
+ 		whenMsg autoMsg -> handleAutoMsg
+ 	finally repeatPlan    
+ 	
+ 	Plan handleAutoMsg  [
+ 		printCurrentMessage;
+ 		onMsg autoMsg : autoMsg(M) -> //via MQTT even if consumermqtt is local
+ 			publishMsg "unibo/qasys" for "consumermqtt" -m info : info( M );
+ 		onMsg autoMsg : autoMsg(M) ->  
+ 			publishEvent "unibo/qasys" -e infoev : infoev( M )  		 
+ 	]
+ 	transition whenTime 20 -> doWork
+ 		whenMsg autoMsg -> handleAutoMsg 
+ } 
+        
+ QActor consumermqtt context ctxBasicProdConsMqtt  {   
+  	State init normal  [  
+   		connectAsSubscriber "unibo/qasys" 
+   	]  
+   	switchTo dowork 
+   	
+   	State dowork    [  
+   		println( consumermqtt(waiting) )
+  	]  
+	transition whenTime 6000  -> handleTout
+ 	  		   whenMsg  info  -> handleMsg 	
+	finally repeatPlan
+  	
+  	State handleMsg resumeLastPlan [
+  		 printCurrentMessage  ;
+  		 onMsg info : info(X) -> addRule consumed( X );
+  		 onMsg info : info(X) -> println( consumermqttReceiving(X) )
+  	] 
+  	State handleTout [ println( consumerTout   ) ]  	  
+ } 
+ 
+ /*
+  * Another consumer 
+  */
+ QActor consumer2mqtt context ctxBasicProdConsMqtt   {   
+ 	State init normal  [  
+// 		connectAsSubscriber "unibo/qasys";  //WARNING: not in the same node
+     	println( cccccccccconsumer2mqtt(starts) )
+  	]  
+  	switchTo doWork
+  	
+ 	State doWork   [  
+     	println( cccccccccconsumer2mqtt(waiting) )
+  	]  
+	transition stopAfter 6000  
+ 	  	whenEvent  infoev : infoev(X) do println( ccccccccconsumer2mqtt(info(X))) 	
+	finally repeatPlan
+ }

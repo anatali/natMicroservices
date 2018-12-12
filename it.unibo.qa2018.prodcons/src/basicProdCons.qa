@@ -1,0 +1,60 @@
+/* 
+ * basicProdCons.qa
+ */
+System basicProdCons       
+Dispatch info    : info(X)
+Dispatch autoMsg : autoMsg(X)
+
+Context  ctxBasicProdCons ip [ host="localhost"  port=8019 ]         
+QActor producer context ctxBasicProdCons{   
+	Rules{
+			item(1). 
+			item(2). 
+	}   
+ 	State init initial [          
+	   		[ !? item(X)] println( producerSending( item(X))  )  ;
+	  		[ !? item(X)] addRule produced( item(X) );
+	  		[ ?? item(X)] selfMsg autoMsg : autoMsg( item(X) ) ;
+	  		delay 500 
+ 	] 
+ 	transition stopAfter 6000
+ 		whenMsg autoMsg -> handleAutoMsg
+ 	finally repeatPlan    
+ 	
+ 	Plan handleAutoMsg  [
+ 		printCurrentMessage;
+ 		onMsg autoMsg : autoMsg(M) -> forward consumer -m info : info( M )  
+ 	]
+ 	transition whenTime 20 -> init
+ 		whenMsg autoMsg -> handleAutoMsg 
+   }      
+ QActor consumer context ctxBasicProdCons{   
+  	State init normal  [  println( consumer(waiting) ) ] 
+	transition whenTime 6000 -> handleTout
+ 	  		   whenMsg  info  -> handleMsg 	
+	finally repeatPlan
+  	State handleMsg resumeLastPlan [
+  		 printCurrentMessage  ;
+  		 onMsg info : info(X) -> addRule consumed( X );
+  		 onMsg info : info(X) -> println( consumerReceiving(X) )
+  	] 
+  	State handleTout [ println( consumerTout   ) ]  	  
+ } 
+ /*
+ OUTPUT
+ ----------------------------------------
+producerSending(item(1))
+consumer(waiting)
+--------------------------------------------------------------------------------------------
+consumer_ctrl currentMessage=msg(info,dispatch,producer_ctrl,consumer,info(item(1)),1)
+--------------------------------------------------------------------------------------------
+consumerReceiving(item(1))
+consumer(waiting)
+producerSending(item(2))
+--------------------------------------------------------------------------------------------
+consumer_ctrl currentMessage=msg(info,dispatch,producer_ctrl,consumer,info(item(2)),2)
+--------------------------------------------------------------------------------------------
+consumerReceiving(item(2))
+consumer(waiting)
+consumerTout
+*/
