@@ -1,8 +1,4 @@
 /ReadMe.html
-nodeCode/node_modules/
-nodeCode/robot/node_modules/
-nodeCode/server/node_modules/
-Soffritti/server/node_modules
 .lck/ 
 docker/
 /.metadata/
