@@ -1,0 +1,6 @@
+plan(1,init, sentence(true,move(print("caller STARTS")),'','' ))
+plan(1,firstRequest, sentence(true,move(print("firstRequest send request 1")),'','' ))
+plan(2,firstRequest, sentence(true,forward(called1, arequest,arequest( r1,d( 1))),'','' ))
+plan(1,handleAnswer, sentence(true,msgswitch(answer, answer( R,D) , move(print(answer1_at_caller( R,D)))),'','' ))
+plan(1,secondRequest, sentence(true,move(print("firstRequest send request 2")),'','' ))
+plan(2,secondRequest, sentence(true,forward(called1, arequest,arequest( r2,d( 2))),'','' ))
