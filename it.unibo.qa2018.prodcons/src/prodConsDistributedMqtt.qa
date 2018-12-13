@@ -1,63 +1,102 @@
 /* 
  * prodConsDistributed.qa
  */
-System prodConsDistributed     
-Dispatch info : info(X)
+System prodConsDistributedMqtt     
+Dispatch info    : info(X)
 Dispatch autoMsg : autoMsg(X)
 
-Event infoev    : infoev(X) 
+Event trace    : trace(X)  
 
 //pubSubServer  "tcp://m2m.eclipse.org:1883"    
 pubSubServer  "tcp://test.mosquitto.org:1883"    
 
 
 Context  ctxProdDistrMqtt  ip [ host="localhost"  port=8079 ]     
-Context  ctxConsDistrMqtt  ip [ host="localhost"  port=8089 ]   -g green
-Context  ctxCons2DistrMqtt ip [ host="localhost"  port=8099 ]   -g yellow
+Context  ctxConsDistrMqtt  ip [ host="localhost"  port=8089 ]    
+Context  ctxCons2DistrMqtt ip [ host="localhost"  port=8099 ]  -g yellow
 
 QActor producerdistrmqtt context ctxProdDistrMqtt -pubsub{    
 Rules{
 	item(1). 
 	item(2).
+	item(3).
 } 
- 	State init initial [  println( producerdistrmqtt( starts) ) ] 	
+ 	State init initial [  
+ 		println( producerdistrmqtt( starts) )
+ 	] 	
+ 	switchTo cleanTheQaTopic
+ 	State cleanTheQaTopic[
+ 		//clearTopic "unibo/qasys"
+ 		javaOp "clearQaTopic()" 		
+ 	]
   	switchTo doWork
  	
  	State doWork  [           
-	   		[ !? item(X) ] println( producer(sends(X))  )  ;
-	  		[ ?? item(X)] selfMsg autoMsg : autoMsg( item(X) ) 
+  		delay 2000;
+	   	[ !? item(X) ] println( producer(sends(X))  )  ;
+	   	[ !? item(X) ] emit trace : trace( log( producerdistrmqtt(item(X)) ) ) ;
+	  	[ ?? item(X) ] selfMsg autoMsg : autoMsg( item(X) ) 
  	] 	
- 	transition stopAfter 10000
+ 	transition stopAfter 60000
  		whenMsg autoMsg -> handleAutoMsg
  	finally repeatPlan    
 
  	Plan handleAutoMsg  [
- 		printCurrentMessage;
- 		delay 1000;
- 		onMsg autoMsg : autoMsg(M) -> forward consumerdistrmqtt -m info : info( M ) ;
- 		onMsg autoMsg : autoMsg(M) ->  emit infoev : infoev( M )  		 
- 	]
- 	transition whenTime 20 -> doWork    
+ 		onMsg autoMsg : autoMsg(M) -> forward consumerdistrmqtt -m info : info( M ) 
+  	]
+ 	transition whenTime 200 -> doWork    
  		whenMsg autoMsg -> handleAutoMsg 
    }      
  	
     
  QActor consumerdistrmqtt context ctxConsDistrMqtt -pubsub{   
-  	State init initial  [  println( consumerdistrmqtt(waiting) ) ]
+  	State init initial  [  
+  		println( consumerdistrmqtt(waiting) )
+  	]
   	switchTo doWork
   	
-  	State doWork   [  println( consumerdistrmqtt(waiting) ) ]
-	transition stopAfter 60000  
-		whenMsg info : info(X) do println( consumerHandles(X) ) 	
+  	State doWork   [  
+//  		println( consumerdistrmqtt(waiting) )
+  	]
+	transition whenTime 30000 -> handleTout	 
+		whenMsg  info  -> handleMsg 	 
 	  	finally repeatPlan
+  	
+  	State handleMsg resumeLastPlan [
+  		 printCurrentMessage  ;
+		 onMsg info : info(X) -> emit trace : trace( log( consumerdistrmqtt(item(X)) ) ) ;
+  		 onMsg info : info(X) -> println( consumerdistrmqttReceiving(X) )
+  	] 
+    State handleTout [ 
+    	println( consumerdistr(tout)  )
+    ]  	
   }
  
   QActor consumer2distrmqtt context ctxCons2DistrMqtt -pubsub{   
-  	State init initial  [  println( consumer2distrmqtt(waiting) ) ]
+  	State init initial  [  
+  		println( consumer2distrmqtt(starts) )
+  	]
   	switchTo doWork
   	
-  	State doWork   [  println( consumer2distrmqtt(waiting) ) ]
-	transition stopAfter 60000  
-		whenEvent  infoev : infoev(X) do println( ccccccccconsumer2mqtt(info(X)))
+  	State doWork   [  
+//  		println( consumer2distrmqtt(waiting) )
+  	]
+	transition whenTime 4000  -> showTrace
+		whenEvent  trace -> handleTraceevent
 	  	finally repeatPlan
+ 	
+ 	State handleTraceevent resumeLastPlan[
+ 		onEvent trace : trace(X) -> println( ccccccccconsumer2mqtt_trace(X) );
+ 		onEvent trace : trace(X) -> addRule trace(X) 
+ 	]
+ 	
+ 	State showTrace[ 
+ 		println("---------------------------------------");
+ 		[?? trace(M) ] println( M ) else{
+  			javaOp "clearQaTopic()" ;
+ 			delay 5000;
+ 			endQActor "consumer2distrmqtt END"  
+ 		} 
+ 	]
+ 	finally repeatPlan
   }

@@ -5,7 +5,7 @@ System basicProdConsMqtt
 Dispatch info    : info(X)
 Dispatch autoMsg : autoMsg(X)
 
-Event infoev    : infoev(X)
+Event infoev    : infoev(X)  
 
 //pubSubServer  "tcp://m2m.eclipse.org:1883"    
 pubSubServer  "tcp://test.mosquitto.org:1883"  
