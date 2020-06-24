@@ -1,3 +1,0 @@
-plan(1,init, sentence(true,move(print("called2 waiting ...")),'','' ))
-plan(1,handleRequest, sentence(true,printCurrentMessage(''),'','' ))
-plan(2,handleRequest, sentence(true,msgswitch(arequest, arequest( R,D) , replyToCaller(answer,answer( called2( R),D))),'','' ))
