@@ -1,0 +1,28 @@
+java -jar build/libs/lsb-part1-0.0.1-SNAPSHOT.jar
+
+SERVER_PORT=8000 java -jar build/libs/lsb-part1-0.0.1-SNAPSHOT.jar
+java -jar build/libs/lsb2-0.0.1-SNAPSHOT.jar --trace
+-------------------------------
+Pivotal Web Services PWS
+https://api.run.pivotal.io
+antonio.natali@unibo.it
+nAT25650@
+Org: natbodisi
+Space: development
+
+cf push lsb-part1 -p build/libs/lsb-part1-0.0.1-SNAPSHOT.jar
+
+curl http://lsb-part1.cfapps.io?name=Bob
+When you push an app that is already running, PWS stops all existing instances of that app
+
+
+
+---------------------------------------------
+Banner (select standard)
+http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
+http://patorjk.com/software/taag/#p=display&f=Standard&t=Lsb2Unibo
+---------------------------------------------
+INSTALLATO HTTpie
+http --json http://localhost:9000/
+http --json -v POST localhost:9000/api/images id=10 name=foo
+---------------------------------------

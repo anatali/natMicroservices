@@ -1,10 +1,16 @@
 package it.unibo.webspring.intro;
 //See https://curl.haxx.se/docs/manual.html  
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,14 +26,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
  
-@RestController 	//annotates all the methods with @ResponseBody that embeds the return value in the body of HTTP answer
+@RestController 	
+//annotates all the methods with @ResponseBody that embeds the return value in the body of HTTP answer
 public class MachineInterfaceController { 
+	private static String UPLOAD_ROOT = "src/main/resources";
     @Value("${machine.logo}")
     String appName;
+    private final ResourceLoader resourceLoader;
     
     Set<String> robotMoves = new HashSet<String>(); 
     
-    public MachineInterfaceController() {
+    public MachineInterfaceController(ResourceLoader resourceLoader) {
+    	this.resourceLoader = resourceLoader;
         robotMoves.addAll( Arrays.asList(new String[] {"w","s","h","r","l","z","x"}) );        	
     }
 
@@ -35,8 +45,23 @@ public class MachineInterfaceController {
   
   @GetMapping("/info") 
   public String getInfo(Model model) {	   
-	   model.addAttribute("arg", "info");
-	   return "todo: some file content ...";
+	   String outS = "wait a moment ...";
+	   return outS;
+//	   String filename = "aplication.properties";
+//	   Resource r = resourceLoader.getResource("file:" + UPLOAD_ROOT + "/" +  filename);
+//	   try {
+//		Scanner myReader = new Scanner(r.getFile());
+//		while (myReader.hasNextLine()) {
+//			outS += myReader.nextLine();
+//		}
+//		myReader.close();
+// 	    model.addAttribute("arg", outS);
+//		return "todo: some file content ..." + r;
+//	} catch (FileNotFoundException e) {
+//		return "FileNotFoundException ..." + e.getMessage();
+//	} catch (IOException e) {
+//		return "IOException ..." + e.getMessage();
+//	}
   }
 
  /* 

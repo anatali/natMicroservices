@@ -7,6 +7,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
 	id 'eclipse'  //ADDED
+	id 'org.jetbrains.kotlin.jvm' version '1.3.71'		//ADDED for qak
 }
 
 group = 'it.unibo'
@@ -15,6 +16,7 @@ sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
+    flatDir {   dirs '../unibolibs'	 }
 }
 
 dependencies {
@@ -38,6 +40,38 @@ TESTING
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+/*
+KOTLIN (for qak jar)
+*/	
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compile group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core-common', version: '1.1.0'
+    compile group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: '1.1.0'
+    
+/*
+Qak support
+*/
+	//MQTT 
+		// https://mvnrepository.com/artifact/org.eclipse.paho/org.eclipse.paho.client.mqttv3
+	    compile group: 'org.eclipse.paho', name: 'org.eclipse.paho.client.mqttv3', version: '1.2.1'
+	//JSON
+	    // https://mvnrepository.com/artifact/org.json/json
+	    compile group: 'org.json', name: 'json', version: '20160810'
+	//COAP
+		// https://mvnrepository.com/artifact/org.eclipse.californium/californium-core
+		compile group: 'org.eclipse.californium', name: 'californium-core', version: '2.0.0-M12'
+		// https://mvnrepository.com/artifact/org.eclipse.californium/californium-proxy
+		compile group: 'org.eclipse.californium', name: 'californium-proxy', version: '2.0.0-M12'
+	
+	
+/*
+CUSTOM
+*/
+    compile name: 'uniboInterfaces'
+    compile name: '2p301'
+    compile name: 'it.unibo.qakactor-2.4'
+    compile name: 'unibonoawtsupports'
+    compile name: 'it.unibo.qak.prj0-1.0'
+	
 	 
 /*
 ADDED FOR THE HTTP CLIENT

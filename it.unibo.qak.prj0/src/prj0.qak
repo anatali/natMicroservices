@@ -1,0 +1,39 @@
+System prj0
+//mqttBroker "localhost" : 1883
+ 
+Dispatch msg1 : msg1(ARG)
+Event alarm   : alarm( KIND )  
+
+Context ctxprj0 ip [host="localhost" port=8095]
+
+QActor qa0 context ctxprj0{
+	State s0 initial { 	 
+		println("qa0 STARTS")
+ 		forward qa0 -m msg1 : msg1( hello_from_myself )
+	}
+	Transition t0 whenEvent alarm -> handleAlarm
+ 				  whenMsg msg1 -> handleMsg
+ 	
+	State handleAlarm{
+		printCurrentMessage  
+	}
+	Transition t0 whenEvent alarm -> handleAlarm
+				  whenMsg msg1 -> handleMsg
+	
+	State handleMsg{
+		printCurrentMessage
+		emit alarm : alarm(fire)
+	}
+	Transition t0 whenEvent alarm -> handleAlarm
+				  whenMsg msg1 -> handleMsg 
+	
+}
+
+QActor qa1 context ctxprj0{ 
+	State s0 initial { 	 
+		println("qa1 STARTS")
+		emit alarm : alarm(fire)
+ 		forward qa0 -m msg1 : msg1( hello_from_qa1 )
+	}
+ 	
+}

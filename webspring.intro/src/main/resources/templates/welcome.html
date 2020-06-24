@@ -1,60 +1,59 @@
 <html xmlns:th="http://www.thymeleaf.org"> 
-<head><title>SpringBoot intro</title>
-<script type="text/javascript">
-    var ip = location.host;;
-    //alert(ip);
-    
-function httpGet(theUrl)
-{
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
-    return xmlHttp.responseText;
-}
-/*
-$.get(
-    "index.html",
-    {paramOne : 1, paramX : 'abc'},
-    function(data) {
-       alert('page content: ' + data);
-    }
-);    
-*/
-</script>
+<head><title>SpringBootIntro</title>
+
 </head>
+
 <body>
-<h1>Welcome</h1>
-<p>Welcome to SpringBoot intro.</p><p>
+<h1>SpringBootIntro</h1>
+<p>
+<ul>
+<li><a href="./">Welcome!</a>. I am the Human Interface GUI defined in 
+<a href="./welcome">src/main/resources/templates/welcome.hmtl</a>.<br/><br/>
+</li>
 
-</p><p>
-I am the Human Interface GUI defined in 
-<a href="./welcome.html" target="code">src/main/resources/templates/welcome.hmtl</a>.
-</p><p>
-The <a href="../../main/java/HumanInterfaceController.java"  target="code">src/main/java/HumanInterfaceController.java</a>
+<li>The <a href="humanInterfaceController">
+src/main/java/HumanInterfaceController.java</a>
 injects into me the address of the server running application:<br/> 
- <pre>ipaddress= <span th:text="${address}"  id="serveraddr">0</span>
-port=<span th:text="${port}"  id="serverport">0</span>
- </pre>
- </br>
- which is in turn defined in 
+
+<pre>ipaddress=<span th:text="${address}"  id="serveraddr">0</span>
+port=<span th:text="${port}" id="serverport">0</span></pre>
+</li>
+
+<li>which is in turn defined in 
  
- <a href="../../resources/application.properties"  target="code">src/main/resources/application.properties</a>
- </p>
- <script>
+ <a href="./properties">src/main/resources/application.properties</a>
+ <br/> 
+</li>
 
-      
-let xhr = new XMLHttpRequest();
-let ipaddr = document.querySelector("#serveraddr").innerHTML
-let port   = document.querySelector("#serverport").innerHTML
-//alert(port);
-//xhr.open('GET', "https://ipinfo.io/json", true);
-xhr.open('GET', "http://"+ipaddr+":"+port+"/info", true);
-//xhr.open('GET', "http://192.168.1.22:8080/info", true);		//WARNING: CORS policy
 
-xhr.send();
-
-xhr.onreadystatechange = processRequest;
-
+</ul>
+ 
+  </p>
+ 
+ <form class="form-inline"><button id="w" class="btn btn-default" type="submit">w</button></form>
+ 
+ <form action="/w">
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" value="John"><br><br>
+  <input type="submit" value="Submit">
+</form>
+ 
+ <h3>Info area</h3> 
+ <hr/>
+ <pre><span th:text="${info}" id="info">0</span></pre>
+ <hr/>
+ 
+ <h3>Robot area</h3> 
+ <hr/>
+ <pre><span th:text="${robot}" id="robot">0</span></pre>
+ <hr/>
+ 
+ 
+ 
+ <!--
+//WARNING: CORS policy. 
+//See https://medium.com/@dtkatz/3-ways-to-fix-the-cors-error-and-how-access-control-allow-origin-works-d97d55946d9
+//Remember https://ipinfo.io/json: xhr.open('GET', "https://ipinfo.io/json", true);
 /*
 0	UNSENT	The open method hasn't been called yet
 1	OPENED	The send method has been called
@@ -67,17 +66,37 @@ and each change in its value results in the readystatechange event getting fired
 For every HTTP request that we make, our readyState property hits each of these five values. 
 This means our readystatechange event gets fired five times.
 */
-function processRequest(e) {
+
+ <script>
+let xhr = new XMLHttpRequest();
+let ipaddr = document.querySelector("#serveraddr").innerHTML
+let port   = document.querySelector("#serverport").innerHTML
+xhr.open('GET', "http://"+ipaddr+":"+port+"/info", true);
+xhr.send();
+xhr.onreadystatechange = processRequestAnswerAsText;
+
+function processRequestAnswerAsText(e) {
 	console.log("done " + e + " readyState=" + xhr.readyState + " status=" + xhr.status);
     if (xhr.readyState == 4 && xhr.status == 200) {
-        //let response = JSON.parse(xhr.responseText);
         let response =  xhr.responseText;
         console.log( response);
-        //document.querySelector("#ipText").innerHTML = response.ip;
         document.querySelector("#info").innerHTML = response ;
     }
-}      
+}  
 
+function processRequestAnswerInJson(e) {
+	console.log("done " + e + " readyState=" + xhr.readyState + " status=" + xhr.status);
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        let response = JSON.parse(xhr.responseText);       
+        console.log( response);
+        document.querySelector("#info").innerHTML = response.ip;
+    }
+}      
+</script>
+ -->
+<!--
+ANOTHER WAY TO CALL
+<script>
 /*
     fetch("https://ipinfo.io/json")
     //fetch("http://localhost:8080/info")
@@ -93,9 +112,29 @@ function processRequest(e) {
         console.log("Error: " + error);
       });
 */
-  </script>
+</script>
 
-<h3>Info area</h3>  
-  <pre id="info"> </pre>
+<script type="text/javascript">
+    var ip = location.host;;
+    //alert(ip);
+/*    
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+$.get(
+    "index.html",
+    {paramOne : 1, paramX : 'abc'},
+    function(data) {
+       alert('page content: ' + data);
+    }
+);    
+*/
+</script>
+-->
 </body>
 </html>
