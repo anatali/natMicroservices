@@ -1,0 +1,39 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.1.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+	id 'eclipse' //ADDED
+}
+
+group = 'it.unibo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	
+ 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	testImplementation 'org.springframework.security:spring-security-test'  
+
+ 	compile 'org.springframework.integration:spring-integration-jmx'
+	//compile 'org.springframework.boot:spring-boot-starter-remote-shell:1.5.22.RELEASE'
+	//compile(       "org.springframework.boot:spring-boot-starter-remote-shell" )  //DEPRECTAED
+	//implementation 'org.springframework.boot:spring-boot-starter-security'  //ADDED
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-remote-shell
+//compile group: 'org.springframework.boot', name: 'spring-boot-starter-remote-shell', version: '1.5.22.RELEASE'
+	}
+	 
+}
+
+test {
+	useJUnitPlatform()
+}
