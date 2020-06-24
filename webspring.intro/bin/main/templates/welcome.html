@@ -1,0 +1,101 @@
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head><title>SpringBoot intro</title>
+<script type="text/javascript">
+    var ip = location.host;;
+    //alert(ip);
+    
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+/*
+$.get(
+    "index.html",
+    {paramOne : 1, paramX : 'abc'},
+    function(data) {
+       alert('page content: ' + data);
+    }
+);    
+*/
+</script>
+</head>
+<body>
+<h1>Welcome</h1>
+<p>Welcome to SpringBoot intro.</p><p>
+
+</p><p>
+I am the Human Interface GUI defined in 
+<a href="./welcome.html" target="code">src/main/resources/templates/welcome.hmtl</a>.
+</p><p>
+The <a href="../../main/java/HumanInterfaceController.java"  target="code">src/main/java/HumanInterfaceController.java</a>
+injects into me the address of the server running application:<br/> 
+ <pre>ipaddress= <span th:text="${address}"  id="serveraddr">0</span>
+port=<span th:text="${port}"  id="serverport">0</span>
+ </pre>
+ </br>
+ which is in turn defined in 
+ 
+ <a href="../../resources/application.properties"  target="code">src/main/resources/application.properties</a>
+ </p>
+ <script>
+
+      
+let xhr = new XMLHttpRequest();
+let ipaddr = document.querySelector("#serveraddr").innerHTML
+let port   = document.querySelector("#serverport").innerHTML
+//alert(port);
+//xhr.open('GET', "https://ipinfo.io/json", true);
+xhr.open('GET', "http://"+ipaddr+":"+port+"/info", true);
+//xhr.open('GET', "http://192.168.1.22:8080/info", true);		//WARNING: CORS policy
+
+xhr.send();
+
+xhr.onreadystatechange = processRequest;
+
+/*
+0	UNSENT	The open method hasn't been called yet
+1	OPENED	The send method has been called
+2	HEADERS_RECEIVED	The send method has been called and the HTTP request has returned the status and headers
+3	LOADING	The HTTP request response is being downloaded
+4	DONE	Everything has completed
+The readyState property chronicles the path our HTTP request takes, 
+and each change in its value results in the readystatechange event getting fired. 
+
+For every HTTP request that we make, our readyState property hits each of these five values. 
+This means our readystatechange event gets fired five times.
+*/
+function processRequest(e) {
+	console.log("done " + e + " readyState=" + xhr.readyState + " status=" + xhr.status);
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        //let response = JSON.parse(xhr.responseText);
+        let response =  xhr.responseText;
+        console.log( response);
+        //document.querySelector("#ipText").innerHTML = response.ip;
+        document.querySelector("#info").innerHTML = response ;
+    }
+}      
+
+/*
+    fetch("https://ipinfo.io/json")
+    //fetch("http://localhost:8080/info")
+      .then(function (response) {
+        //console.log("response: " + response.json().ip);
+        return response.json();
+      })
+      .then(function (myJson) {
+        console.log("response: " + myJson.ip);
+        document.querySelector("#ipText").innerHTML = myJson.ip;
+      })
+      .catch(function (error) {
+        console.log("Error: " + error);
+      });
+*/
+  </script>
+
+<h3>Info area</h3>  
+  <pre id="info"> </pre>
+</body>
+</html>
