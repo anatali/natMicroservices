@@ -21,10 +21,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import it.unibo.kactor.ActorBasic;
+import it.unibo.kactor.ApplMessage;
+import it.unibo.kactor.MsgUtil;
+import it.unibo.kactor.QakContext;
+import it.unibo.kactor.sysUtil;
 
  
 @Controller 
@@ -105,18 +112,31 @@ public class HumanInterfaceController {
 	}
   }
   
-  @GetMapping( path = "/w") 		 
+  @GetMapping( path = "/w") 			//Shortcut for @RequestMapping(method = RequestMethod.GET) 
   public String robotMoveGet(Model model) {
 	  System.out.println("GET w");
 	  model.addAttribute("robot", "move=w");
       return entry(model);
   } 
-  @PostMapping( path = "/w") 		 
-  public String robotMove(Model model) {
+  
+  //curl --request POST http://localhost:8080/w
+   
+  @PostMapping( path = "/w") 			//specialized version of @RequestMapping
+  //@RequestMapping(value = "/w", method = RequestMethod.POST)
+  public String robotMove(Model model) { 
 	  System.out.println("POST w");
 	  model.addAttribute("robot", "move=w");
+ 	  //MsgUtil.INSTANCE.sendMsg("msg1","msg1(1)","qa0", null, null);
+	  emit("alarm", "alarm(fire)");
       return entry(model);
   } 
+  
+  private void emit( String evId, String msg ) {
+	  ApplMessage m = MsgUtil.buildEvent("spring", evId, msg); 
+	  ActorBasic a = sysUtil.INSTANCE.getActor("qa0"); 
+	  if( a != null ) a.getActor().send(m, null);
+	  System.out.println("emitted: " + evId);
+  }
   /*   
   @GetMapping("/model")
   @ResponseBody

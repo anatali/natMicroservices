@@ -78,7 +78,8 @@ public class MachineInterfaceController {
 	  model.addAttribute("arg", appName);
       return String.format("MachineInterfaceController applmodel = " + applicationModelRep );      
   }     
-	
+
+/*  
   //curl -d move=w localhost:8080/w									//OK	data urlencoded
   //curl -d move=w -H 'Content-type:text/plain' localhost:8080/w	//OK
   //curl -X POST -H 'Content-type:text/plain' localhost:8080/w		//KO
@@ -126,7 +127,7 @@ public class MachineInterfaceController {
 			return "Sorry: the move " + moveName + " is unknown ";		 
 		}		
 	}	
-    
+ */   
 
     @ExceptionHandler 
     public ResponseEntity<String> handle(Exception ex) {

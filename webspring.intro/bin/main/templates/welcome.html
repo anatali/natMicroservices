@@ -26,18 +26,51 @@ port=<span th:text="${port}" id="serverport">0</span></pre>
 </li>
 
 
-</ul>
+</ul> 
  
   </p>
  
+ <form class="form-inline" method="POST"><button id="w" class="btn btn-default" type="submit">w</button></form>
  
+ <form action="/w" method="POST">
+   <button>ww</button>
+</form>
  
- 
+ <form action="/w" method="POST">
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" value="w"><br><br>
+  <input type="submit" value="Submit">
+  <button>www</button>
+</form>
+
+<!--
+the data is appended to the body of the HTTP request
+-->
+<form action="/w" method="POST">
+  <div>
+    <label for="say">What greeting do you want to say?</label>
+    <input name="say" id="say" value="Hi">
+  </div>
+  <div>
+    <label for="to">Who do you want to say it to?</label>
+    <input name="to" id="to" value="Mom">
+  </div>
+  <div>
+    <button>Send my greetings</button>
+  </div>
+</form>
  
  <h3>Info area</h3> 
  <hr/>
  <pre><span th:text="${info}" id="info">0</span></pre>
  <hr/>
+ 
+ <h3>Robot area</h3> 
+ <hr/>
+ <pre><span th:text="${robot}" id="robot">0</span></pre>
+ <hr/>
+ 
+ 
  
  <!--
 //WARNING: CORS policy. 
