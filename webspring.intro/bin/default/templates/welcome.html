@@ -1,5 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head><title>SpringBootIntro</title>
+    <link href="/main.css" rel="stylesheet">
 
 </head>
 
@@ -7,7 +8,7 @@
 <h1>SpringBootIntro</h1>
 <p>
 <ul>
-<li><a href="./">Welcome!</a>. I am the Human Interface GUI defined in 
+<li>I am the Human Interface GUI defined in 
 <a href="./welcome">src/main/resources/templates/welcome.hmtl</a>.<br/><br/>
 </li>
 
@@ -26,27 +27,82 @@ port=<span th:text="${port}" id="serverport">0</span></pre>
 </li>
 
 
-</ul>
+</ul> 
  
-  </p>
+</p>
+<h2>Activate internal nanoservice</h2> 
+<form action="/runqak" method="POST"> <button>runqak</button></form>
+
+<h2>Buttons</h2> 
+   
+ 	<table style="width:50%">
+	<tbody>	
+	<tr>
+  	<td><form action="/w" method="POST"> <button>w</button></form></td>
+   	<td><form action="/s" method="POST"> <button>r</button></form></td>
+ 	</tr>
+	<tr>
+   	<td><form action="/r" method="POST"> <button>r</button></form></td>
+   	<td><form action="/l" method="POST"> <button>l</button></form></td>
+ 	</tr>
+	<tr>
+    	<td><form action="/x" method="POST"> <button>x</button></form></td>
+  		<td><form action="/z" method="POST"> <button>z</button></form></td>
+ 	</tr>
+	<tr>
+  	<td><form action="/p" method="POST"> <button>p</button></form></td>
+  	<td><form action="/h" method="POST"> <button>h</button></form></td>
+ 	</tr>
+</table>
  
- <form class="form-inline"><button id="w" class="btn btn-default" type="submit">w</button></form>
+  
  
- <form action="/w">
-  <label for="fname">First name:</label><br>
-  <input type="text" id="fname" value="John"><br><br>
-  <input type="submit" value="Submit">
+ <h2>Commands</h2>
+ <!--
+------------------------------------------
+the data is appended to the body of the HTTP request
+------------------------------------------
+-->
+<form action="/move" method="POST">
+  <div>
+    <label for="say">MOVE</label>
+    <input name="say" id="say" value="r">
+    <label for="to">DESTINATION</label>
+    <input name="to" id="to" value="qa0">
+    <button>Send</button>
+  </div>
 </form>
  
- <h3>Info area</h3> 
+<h2>View area (<a href="./">Clean</a>)</h2>
+  	<table style="width:90%">
+	<tbody>	
+	<tr>
+	<td style="width:70%">
+<h3>Info area </h3> 
+ <!--
+ ------------------------------------------
+ INFORMATION AREA
+ ------------------------------------------
+ -->
  <hr/>
  <pre><span th:text="${info}" id="info">0</span></pre>
- <hr/>
  
- <h3>Robot area</h3> 
+	</td>
+	<td>
+<h3>Robot area</h3> 
+ <!--
+ ------------------------------------------
+ ROBOT AREA
+ ------------------------------------------
+ -->
  <hr/>
  <pre><span th:text="${robot}" id="robot">0</span></pre>
- <hr/>
+ 
+ 	</td>
+ 	</tr>
+ 	</table>
+  
+ 
  
  
  

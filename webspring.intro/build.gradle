@@ -71,6 +71,7 @@ CUSTOM
     compile name: 'it.unibo.qakactor-2.4'
     compile name: 'unibonoawtsupports'
     compile name: 'it.unibo.qak.prj0-1.0'
+    compile name: 'qakcomm'
 	
 	 
 /*

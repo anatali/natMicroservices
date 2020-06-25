@@ -16,7 +16,7 @@ public class Application implements ApplicationListener<ApplicationReadyEvent>{
 public static String myipAddr = "";
 public static String myport   = "0";
 
-private static boolean activated = false;
+//private static boolean activated = false;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -35,10 +35,10 @@ private static boolean activated = false;
 	          myipAddr = ip;
 	          myport   = "8080"; 
 	          System.out.println("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" );
-	          if( ! activated ) {
-	        	  MainCtxprj0Kt.main();
-	        	  activated = true;
-	          }
+//	          if( ! activated ) {
+//	        	  MainCtxprj0Kt.main();
+//	        	  activated = true;
+//	          }
 	      } catch ( Exception e) {
 	          e.printStackTrace();
 	      }
