@@ -12,15 +12,17 @@ QActor qa0 context ctxprj0{
  		forward qa0 -m msg1 : msg1( hello_from_myself )
 	}
 	Transition t0 whenEvent alarm -> handleAlarm
- 				  whenMsg msg1 -> handleMsg
+ 				  whenMsg    msg1 -> handleMsg
  	
 	State handleAlarm{
+		updateResource [# "handlealarm" #]
 		printCurrentMessage  
 	}
 	Transition t0 whenEvent alarm -> handleAlarm
 				  whenMsg msg1 -> handleMsg
 	
 	State handleMsg{
+		updateResource [# "handleMsg" #]
 		printCurrentMessage
 		emit alarm : alarm(fire)
 	}
@@ -28,7 +30,7 @@ QActor qa0 context ctxprj0{
 				  whenMsg msg1 -> handleMsg 
 	
 }
-
+ 
 QActor qa1 context ctxprj0{ 
 	State s0 initial { 	 
 		println("qa1 STARTS")
