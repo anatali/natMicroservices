@@ -7,12 +7,12 @@ enum class ConnectionType {
     TCP, MQTT, COAP, HTTP
 }
 
-abstract class connQakBase(val hostIP : String,   val port : String,   val destName : String) {
+abstract class connQakBase(val hostIP : String,   val port : String,   val destName : String,  val ctxdest : String) {
 lateinit var currQakConn  : connQakBase
 	
 	companion object{
 	fun create(connType: ConnectionType,   hostIP : String,   port : String,
-			   destName : String) : connQakBase{
+			   destName : String, ctxdest : String) : connQakBase{
 		  showSystemInfo()
 		  when( connType ){
 				 ConnectionType.MQTT -> 
@@ -20,7 +20,7 @@ lateinit var currQakConn  : connQakBase
 				 ConnectionType.TCP ->
 				 	{return connQakTcp(hostIP, port, destName)}  
 				 ConnectionType.COAP ->
-				 	{return connQakCoap(hostIP, port, destName)}  
+				 	{return connQakCoap(hostIP, port, destName, ctxdest)}  
   				 ConnectionType.HTTP ->  
  				 	{return connQakHttp(hostIP, port, destName)} 
 //   				 else -> //println("WARNING: protocol unknown")

@@ -15,9 +15,9 @@ object coapObserver {
     private val client = CoapClient()
 	
 	private val ipaddr      = "${sysConnKb.hostAddr}:${sysConnKb.port}"		//5683 default
-	private val context     = sysConnKb.ctxqadest			//"ctxbasicrobot"
- 	private val destactor   = sysConnKb.qakdestination 		//"basicrobot"
-	private val msgId       = "msg1"
+	private val context     = sysConnKb.ctxqadest			 
+ 	private val destactor   = sysConnKb.qakdestination 		 
+	private val msgId       = "cmd"
 	private val tt          = "               coapObserver | "
 	fun init(){
        val uriStr = "coap://$ipaddr/$context/$destactor"

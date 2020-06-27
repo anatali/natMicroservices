@@ -6,14 +6,14 @@ import it.unibo.kactor.MsgUtil
 import it.unibo.kactor.ApplMessage
  
 
-class connQakCoap( hostIP : String,  port : String,  destName : String ) :
-										           connQakBase(hostIP, port, destName){
+class connQakCoap( hostIP : String,  port : String, destName : String,  ctxdest : String ) :
+										           connQakBase(hostIP, port, destName, ctxdest){
 
 lateinit var client   : CoapClient
 	
 	override fun createConnection(  ){
  			println("connQakCoap | createConnection hostIP=${hostIP} port=${port}")
-			val url = "coap://$hostIP:$port/${sysConnKb.ctxqadest}/$destName" 
+			val url = "coap://$hostIP:$port/${ctxdest}/$destName" 
 			client = CoapClient( url )
 			client.setTimeout( 1000L )
  			//initialCmd: to make console more reactive at the first user cmd

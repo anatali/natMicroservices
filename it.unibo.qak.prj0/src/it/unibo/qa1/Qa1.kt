@@ -21,7 +21,7 @@ class Qa1 ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, scope 
 					action { //it:State
 						println("qa1 STARTS")
 						emit("alarm", "alarm(fire)" ) 
-						forward("msg1", "msg1(hello_from_qa1)" ,"qa0" ) 
+						forward("cmd", "cmd(h)" ,"qa0" ) 
 					}
 				}	 
 			}

@@ -1,63 +1,52 @@
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head><title>SpringBootIntro</title>
     <link href="/main.css" rel="stylesheet">
-
 </head>
 
 <body>
-<h1>SpringBootIntro</h1>
+<h1>SpringBoot using QAk (local and remote)</h1>
 <p>
 <ul>
-<li>I am the Human Interface GUI defined in 
-<a href="./welcome">src/main/resources/templates/welcome.hmtl</a>.<br/><br/>
+<li>I am the Human GUI defined in 
+<a href="./welcome">src/main/resources/templates/welcome.hmtl</a>
+of project <tt><span th:text="${project}">?</span></tt>.<br/><br/>
 </li>
 
 <li>The <a href="humanInterfaceController">
 src/main/java/HumanInterfaceController.java</a>
-injects into me the address of the server running application:<br/> 
-
-<pre>ipaddress=<span th:text="${address}"  id="serveraddr">0</span>
-port=<span th:text="${port}" id="serverport">0</span></pre>
-</li>
-
-<li>which is in turn defined in 
+injects into me the address of the server running application:
+defined in 
  
  <a href="./properties">src/main/resources/application.properties</a>
- <br/> 
+
+<pre>ipaddress=<span th:text="${address}"  id="serveraddr">0</span> port=<span th:text="${port}" id="serverport">0</span></pre>
 </li>
+ 
 
 
 </ul> 
  
-</p>
-<h2>Activate internal nanoservice</h2> 
-<form action="/runqak" method="POST"> <button>runqak</button></form>
+ 
 
-<h2>Buttons</h2> 
-   
- 	<table style="width:50%">
-	<tbody>	
-	<tr>
-  	<td><form action="/w" method="POST"> <button>w</button></form></td>
-   	<td><form action="/s" method="POST"> <button>r</button></form></td>
+<form action="/runqak" method="POST"> <button><b>Activate internal nanoservice</b> </button></form>
+
+<h3>Commands to Qak nanoservice</h3>   
+ 	<table style="width:80%">
+ 	<tr>
+  	<td><center><form action="/w" method="POST"> <button>w</button></form></center></td>
+   	<td><center><form action="/s" method="POST"> <button>s</button></form></center></td>
+    <td><center><form action="/r" method="POST"> <button>r</button></form></center></td>
+   	<td><center><form action="/l" method="POST"> <button>l</button></form></center></td>
+    <td><center><form action="/x" method="POST"> <button>x</button></form></center></td>
+  	<td><center><form action="/z" method="POST"> <button>z</button></form></center></td>
+   	<td><center><form action="/p" method="POST"> <button>p</button></form></center></td>
+  	<td><center><form action="/h" method="POST"> <button>h</button></form></center></td>
+  	<td>destination:qa0 <br/>protocol:TCP</td>
  	</tr>
-	<tr>
-   	<td><form action="/r" method="POST"> <button>r</button></form></td>
-   	<td><form action="/l" method="POST"> <button>l</button></form></td>
- 	</tr>
-	<tr>
-    	<td><form action="/x" method="POST"> <button>x</button></form></td>
-  		<td><form action="/z" method="POST"> <button>z</button></form></td>
- 	</tr>
-	<tr>
-  	<td><form action="/p" method="POST"> <button>p</button></form></td>
-  	<td><form action="/h" method="POST"> <button>h</button></form></td>
- 	</tr>
-</table>
+</table> 
+</p>
+<p>   
  
-  
- 
- <h2>Commands</h2>
  <!--
 ------------------------------------------
 the data is appended to the body of the HTTP request
@@ -66,10 +55,10 @@ the data is appended to the body of the HTTP request
 <form action="/move" method="POST">
   <div>
     <label for="say">MOVE</label>
-    <input name="say" id="say" value="r">
-    <label for="to">DESTINATION</label>
-    <input name="to" id="to" value="qa0">
-    <button>Send</button>
+    	(<span th:text="${movename}">0</span>)<input name="say" id="say" > 
+    <label for="dest">DESTINATION</label>
+    	(<span th:text="${destname}">0</span>)<input name="dest" id="dest" >
+    <button>Send (CoAP)</button>
   </div>
 </form>
  
@@ -86,9 +75,9 @@ the data is appended to the body of the HTTP request
  -->
  <hr/>
  <pre><span th:text="${info}" id="info">0</span></pre>
- 
-	</td>
-	<td>
+</td>
+
+<td>
 <h3>Robot area</h3> 
  <!--
  ------------------------------------------

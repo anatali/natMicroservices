@@ -8,8 +8,8 @@ import it.unibo.kactor.MsgUtil
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken
 import it.unibo.kactor.ApplMessage
 
-class connQakMqtt(hostIP : String,  port : String,  destName : String ) :
-										         connQakBase(hostIP, port, destName), MqttCallback{
+class connQakMqtt(hostIP : String,  port : String,  destName : String,  ctxdest : String="" ) :
+										         connQakBase(hostIP, port, destName, ctxdest), MqttCallback{
  	lateinit var client  : MqttClient
  	val clientid         = "clientmqtt"
 	val answerTopic      = "unibo/qak/$clientid"

@@ -11,7 +11,7 @@ import org.springframework.core.env.Environment;
 import it.unibo.ctxprj0.MainCtxprj0Kt;
 
 @SpringBootApplication
-public class Application implements ApplicationListener<ApplicationReadyEvent>{
+public class ApplicationWithQak implements ApplicationListener<ApplicationReadyEvent>{
 	
 public static String myipAddr = "";
 public static String myport   = "0";
@@ -19,7 +19,7 @@ public static String myport   = "0";
 //private static boolean activated = false;
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(ApplicationWithQak.class, args);
 	}
 	
     @Autowired

@@ -15,8 +15,8 @@ import it.unibo.kactor.ApplMessage
  * The interaction is with an instance of httpserver/server.kt
  */
 
-class connQakHttp(hostIP : String,  port : String,  destName : String ) :
-										           connQakBase(hostIP, port, destName){
+class connQakHttp(hostIP : String,  port : String,  destName : String,  ctxdest : String="" ) :
+										           connQakBase(hostIP, port, destName, ctxdest){
 lateinit var client   : CloseableHttpClient  
 lateinit var hostAddr : String 
 	 

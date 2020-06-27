@@ -1,24 +1,10 @@
 package it.unibo.springboot.qak;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
-//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.boot.context.event.ApplicationReadyEvent;
-//import org.springframework.core.env.Environment;
-import org.springframework.core.io.ResourceLoader;
-//import org.springframework.http.HttpHeaders;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.http.MediaType;
-//import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import connQak.connQakCoap;
 import connQak.sysConnKb;
 import it.unibo.ctxprj0.MainCtxprj0Kt;
@@ -31,97 +17,148 @@ import it.unibo.supports.FactoryProtocol;
 
  
 @Controller 
-public class CommandController { 
-    private final ResourceLoader resourceLoader;
-	private static String RESOURCE_ROOT = "src/main/resources";
-	private static String JAVA_ROOT     = "src/main/java";
+public class CommandController   { 
+	@Value("${project}") String projectName;
 
-	private IConnInteraction conn       = null;
-	private FactoryProtocol fp			= null;
- 	private connQakCoap coapSupport         = null;
-	  
-	
-	String applicationModelRep="waiting";
-	
-	@Value("${human.logo}")
-    String appName;
-    
-    Set<String> robotMoves = new HashSet<String>(); 
-    
-    public CommandController(ResourceLoader resourceLoader) {
-    	this.resourceLoader = resourceLoader;
-        robotMoves.addAll( Arrays.asList(new String[] {"w","s","h","r","l","z","x"}) );        	
-        fp = new FactoryProtocol(null,"TCP","spring"); 	 
-        coapSupport  = new connQakCoap(
-        		sysConnKb.INSTANCE.getHostAddr(),sysConnKb.INSTANCE.getPort(),sysConnKb.INSTANCE.getQakdestination());
-        coapSupport.createConnection();
-    }
-    
-    public String entry(Model model) {
-        //addIpInfoInModel(model);
-        return "welcome";
-    } 
-
+	private IConnInteraction connTcp    = null;
+ 	private FactoryProtocol fp			= null;
+  	private connQakCoap coapSupport     = null;
+  	private connQakCoap robotcoapSupport= null;
+    private boolean internalNanoservce  = false;                
   
-  
+	public CommandController( ) {   
+	  fp = new FactoryProtocol(null,"TCP","spring"); 	 
+	}
+	
   //curl --request POST http://localhost:8080/w
    
   //@RequestMapping(value = "/w", method = RequestMethod.POST)
-  @PostMapping( path = "/w") 			//specialized version of @RequestMapping
-  public String robotCmd(Model model) { 
-	  System.out.println("POST w");
-	  model.addAttribute("robot", "move=w");
- 	  //MsgUtil.INSTANCE.sendMsg("msg1","msg1(1)","qa0", null, null);
-	  //emit("alarm", "alarm(fire)");
-      return entry(model);
-  } 
+  //@PostMappingspecialized version of @RequestMapping
+  @PostMapping( path = "/w")  public String robotmd_wW(Model model) {  return doMove(model,"w"); } 
+  @PostMapping( path = "/s")  public String robotCmd_s(Model model) {  return doMove(model,"s"); } 
+  @PostMapping( path = "/h")  public String robotCmd_h(Model model) {  return doMove(model,"h"); } 
+  @PostMapping( path = "/r")  public String robotCmd_r(Model model) {  return doMove(model,"r"); } 
+  @PostMapping( path = "/l")  public String robotCmd_l(Model model) {  return doMove(model,"l"); } 
+  @PostMapping( path = "/x")  public String robotCmd_x(Model model) {  return doMove(model,"x"); } 
+  @PostMapping( path = "/z")  public String robotCmd_z(Model model) {  return doMove(model,"z"); } 
+  @PostMapping( path = "/p")  public String robotCmd_p(Model model) {  return doMove(model,"p"); } 
+  
+  private String doMove( Model model, String move) {
+	  System.out.println("POST | doMove:"+move);
+	  model.addAttribute("robot", "move(Tcp)="+move );	
+	  String destName =  internalNanoservce ? sysConnKb.INSTANCE.getQakdestination() : sysConnKb.INSTANCE.getRobotname();
+	  if( ! forwardTcp("cmd", "cmd("+move+")", destName) ) {
+		  model.addAttribute("robot", "forwardTcp failure" );
+		  model.addAttribute("info", "perhaps internal nano service not active" );
+	  };
+	  return getAnswer(model);
+  }
   
   /*
    *  @RequestBody annotation maps the HttpRequest body to a transfer or domain object, 
    *  enabling automatic deserialization of the inbound HttpRequest body onto a Java object.
-   */
-  
+   */  
   @PostMapping( path = "/move") 			//specialized version of @RequestMapping
   public String robotMove(
-		  //@RequestBody String move
-		   @RequestParam(name="say", required=false, defaultValue="h") String moveName, 
+	//@RequestParam binds the value of the query string param name into the moveName parameter of the  method		  
+		   @RequestParam(name="say",  required=false, defaultValue="h") String moveName, 
+		   @RequestParam(name="dest", required=false, defaultValue="h") String destName, 
 		   Model model 
-			//binds the value of the query string parameter name into the moveName parameter of the  method		  
 	) { 
-	  System.out.println("POST move=" + moveName);
-	  model.addAttribute("robot", "move="+moveName);
-	  sendUsingCoap();
-//	  if( ! forwardTcp("msg1", "msg1("+moveName+")") ) {
-//		  model.addAttribute("robot", "forwardTcp failure" );
-//	  };
-      return entry(model);
+	  System.out.println("POST | move=" + moveName);
+	  model.addAttribute("robot", "move(Coap)="+moveName);
+	  model.addAttribute("destname", destName);
+	  model.addAttribute("movename", moveName);
+	  sendUsingCoap(moveName, destName);
+	  return getAnswer(model);
   } 
   
   @PostMapping( path = "/runqak") 			//specialized version of @RequestMapping
   public String runqak(Model model) { 
-	  System.out.println("POST runqak");
+	  if( internalNanoservce ) {
+		  model.addAttribute("info", "qak nanoservice already started" );
+		  return getAnswer(model);
+	  }
 	  model.addAttribute("robot", "move=runqak");
 	  new Thread() {
 		  public void run() {
-			  MainCtxprj0Kt.main();				  
+			  MainCtxprj0Kt.main();			
 		  } 
 	  }.start();
-	  attemptQakConnection("localhost",8095);
-      return entry(model);
+	  internalNanoservce = true;	  
+	  attemptQakConnections();
+	  model.addAttribute("info", "qak nanoservice started" );
+  	  return getAnswer(model);
   } 
   
-  private void attemptQakConnection(String host, int port) {
-	  while( conn == null ) {
-	  try {
-		  System.out.println("attemptQakConnection " + host + ":" + port);
-		  Thread.sleep(500); //give the time to start ....
-		  conn = fp.createClientProtocolSupport(host,port);
-	  } catch (Exception e) {
-		  	e.printStackTrace();
-	  }		  
+  /*
+   * --------------------------------------------------------
+   * UTILITIES  
+   * --------------------------------------------------------
+   */  
+  private String getAnswer(Model model) {
+	  addInfoInModel(model);
+ 	  return "welcome";	  
+  }
+  
+  private void addInfoInModel(Model model) {
+      model.addAttribute("project", projectName);
+      model.addAttribute("address", ApplicationWithQak.myipAddr);
+      model.addAttribute("port", ApplicationWithQak.myport);	  
+  }
+ 
+  private void  sendUsingCoap(String move, String destName){
+	  if( destName.equals(sysConnKb.INSTANCE.getRobotname())) {
+		  if( robotcoapSupport == null ) {
+			  robotcoapSupport  = new connQakCoap( 
+			       sysConnKb.INSTANCE.getRobothostAddr(),sysConnKb.INSTANCE.getRobotport(),
+			       sysConnKb.INSTANCE.getRobotname(),sysConnKb.INSTANCE.getCtxrobot());	
+			  robotcoapSupport.createConnection();
+		  }
+		  ApplMessage m = MsgUtil.buildDispatch("aliencoap", "cmd", "cmd("+move+")",destName); 
+		  robotcoapSupport.forward(m);
+	  }else {
+ 		ApplMessage m = MsgUtil.buildDispatch("aliencoap", "cmd", "cmd("+move+")",destName); 
+		if(coapSupport != null) coapSupport.forward(m);
 	  }
   }
   
+  private boolean forwardTcp( String msgId, String msg, String destName ) {
+	ApplMessage m = MsgUtil.buildDispatch("alienTcp", msgId, msg,destName); 
+ 	try {
+ 		if( connTcp != null ) { connTcp.sendALine(m.toString());			};
+	} catch (Exception e) {
+ 		//e.printStackTrace();
+	}
+	return (connTcp!=null);
+  }  
+  
+  private void attemptQakConnections( ) {
+	  if( internalNanoservce	) {
+		  System.out.println("attemptQakConnection " + sysConnKb.INSTANCE.getHostAddr() + ":" + sysConnKb.INSTANCE.getPort());
+		  coapSupport  = new connQakCoap( 
+				  sysConnKb.INSTANCE.getHostAddr(),sysConnKb.INSTANCE.getPort(),
+				  sysConnKb.INSTANCE.getQakdestination(),sysConnKb.INSTANCE.getCtxrobot());
+		  coapSupport.createConnection();
+		  while( connTcp == null ) {
+			  try {
+				  Thread.sleep(500); //give the time to start ....
+				  int port = Integer.parseInt(sysConnKb.INSTANCE.getPort());
+				  connTcp = fp.createClientProtocolSupport(sysConnKb.INSTANCE.getHostAddr(),port);
+			  } catch (Exception e) {
+				  	e.printStackTrace();
+			  }		  
+			  }		  
+	  }
+  }
+  
+  
+   
+  /*
+   * --------------------------------------------------------
+   * DIRECT INSERTION IN ACTIR QUEUE: better avod
+    * --------------------------------------------------------
+  */
   private void emit( String evId, String msg ) {
 	  ApplMessage m = MsgUtil.buildEvent("spring", evId, msg); 
 	  ActorBasic a = sysUtil.getActor("qa0"); 
@@ -134,24 +171,6 @@ public class CommandController {
 	  System.out.println("forward: " + msgId + " to:" + a); 
 	  if( a != null ) a.getActor().send(m, null);
    }   
-  
-  private void  sendUsingCoap(){
-	    //connQakCoap support = new connQakCoap("localhost","8095","qa0");
-	    //support.createConnection();
-		ApplMessage m = MsgUtil.buildDispatch("aliencoap", "msg1", "msg1(x)","qa0"); 
-		if(coapSupport != null) coapSupport.forward(m);
-  }
-  
-  private boolean forwardTcp( String msgId, String msg ) {
-	  ApplMessage m = MsgUtil.buildDispatch("spring", msgId, msg,"qa0"); 
- 	try {
- 		if( conn != null ) { conn.sendALine(m.toString());			};
-	} catch (Exception e) {
- 		//e.printStackTrace();
-	}
-	return (conn!=null);
-  }  
-  
   
 }
 

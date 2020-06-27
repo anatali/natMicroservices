@@ -5,17 +5,18 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.delay
 
 fun sendUsingCoap(){
-	val conn = connQakCoap("localhost","8095","qa0")
+	//val conn = connQakCoap("localhost","8095","qa0")
+	val conn = connQakCoap(sysConnKb.robothostAddr,sysConnKb.robotport,sysConnKb.robotname,sysConnKb.ctxrobot)
 	conn.createConnection()
-	val m = MsgUtil.buildDispatch("aliencoap", "msg1", "msg1(x)","qa0"); 
+	val m = MsgUtil.buildDispatch("aliencoap", "cmd", "cmd(l)",sysConnKb.robotname); 
 	conn.forward(m)
 }
 
 fun sendUsingTcp(){
-	//val conn = connQakTcp(hostAddr,port,qakdestination)
-	val conn = connQakTcp("localhost","8095","qa0")
+ 	//val conn = connQakTcp("localhost","8095","qa0")
+	val conn = connQakTcp(sysConnKb.robothostAddr,sysConnKb.robotport,sysConnKb.robotname )
 	conn.createConnection()
-	val m = MsgUtil.buildDispatch("alientcp", "msg1", "msg1(z)","qa0"); 
+	val m = MsgUtil.buildDispatch("alientcp", "cmd", "cmd(r)",sysConnKb.robotname); 
 	conn.forward(m)
 	 
 }

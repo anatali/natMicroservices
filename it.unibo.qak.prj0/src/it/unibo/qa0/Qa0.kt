@@ -20,10 +20,10 @@ class Qa0 ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, scope 
 				state("s0") { //this:State
 					action { //it:State
 						println("qa0 STARTS")
-						forward("msg1", "msg1(hello_from_myself)" ,"qa0" ) 
+						forward("cmd", "cmd(hello_from_myself)" ,"qa0" ) 
 					}
 					 transition(edgeName="t00",targetState="handleAlarm",cond=whenEvent("alarm"))
-					transition(edgeName="t01",targetState="handleMsg",cond=whenDispatch("msg1"))
+					transition(edgeName="t01",targetState="handleMsg",cond=whenDispatch("cmd"))
 				}	 
 				state("handleAlarm") { //this:State
 					action { //it:State
@@ -32,7 +32,7 @@ class Qa0 ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, scope 
 						println("$name in ${currentState.stateName} | $currentMsg")
 					}
 					 transition(edgeName="t02",targetState="handleAlarm",cond=whenEvent("alarm"))
-					transition(edgeName="t03",targetState="handleMsg",cond=whenDispatch("msg1"))
+					transition(edgeName="t03",targetState="handleMsg",cond=whenDispatch("cmd"))
 				}	 
 				state("handleMsg") { //this:State
 					action { //it:State
@@ -42,7 +42,7 @@ class Qa0 ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, scope 
 						emit("alarm", "alarm(fire)" ) 
 					}
 					 transition(edgeName="t04",targetState="handleAlarm",cond=whenEvent("alarm"))
-					transition(edgeName="t05",targetState="handleMsg",cond=whenDispatch("msg1"))
+					transition(edgeName="t05",targetState="handleMsg",cond=whenDispatch("cmd"))
 				}	 
 			}
 		}
