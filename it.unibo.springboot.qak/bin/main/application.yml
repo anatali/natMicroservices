@@ -2,3 +2,8 @@ info:
    contact:
        email: aaa@bbb
        phone: 1234567
+       
+
+---
+spring.profiles: docker
+server.port: 8080
