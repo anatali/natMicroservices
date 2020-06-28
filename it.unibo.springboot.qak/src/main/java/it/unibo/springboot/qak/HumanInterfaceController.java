@@ -8,10 +8,7 @@ package it.unibo.springboot.qak;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -66,7 +63,7 @@ public class HumanInterfaceController  {
   }
   @GetMapping("/humanInterfaceController") 
   public String getHumanInterfaceController(Model model) {	   
-	   String filename = "it/unibo/webspring/intro/HumanInterfaceController.java";
+	   String filename = "it/unibo/springboot/qak/HumanInterfaceController.java";
  	   String outS = readFromFile(JAVA_ROOT, filename);
 	   model.addAttribute("info", outS);
 	   addInfoInModel( model );
@@ -88,6 +85,8 @@ public class HumanInterfaceController  {
   private String readFromFile( String root, String filename ) {
 	  String outS = "";
 	  Resource r = resourceLoader.getResource("file:" + root + "/" +  filename);
+	  System.out.println("resourceLoader="+ resourceLoader + " r="+r.exists());
+	  if(!  r.exists()) { return "Sorry, not able to find:" + filename; }
 	   try {
 		Scanner myReader = new Scanner(r.getFile());
 		while (myReader.hasNextLine()) {
