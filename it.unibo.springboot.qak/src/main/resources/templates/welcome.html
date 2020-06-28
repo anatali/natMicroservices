@@ -41,7 +41,7 @@ defined in
   	<td><center><form action="/z" method="POST"> <button>z</button></form></center></td>
    	<td><center><form action="/p" method="POST"> <button>p</button></form></center></td>
   	<td><center><form action="/h" method="POST"> <button>h</button></form></center></td>
-  	<td>destination:qa0 <br/>protocol:TCP</td>
+  	<td>destination: internal qa0 <br/>protocol:TCP</td>
  	</tr>
 </table> 
 </p>
@@ -55,9 +55,9 @@ the data is appended to the body of the HTTP request
 <form action="/move" method="POST">
   <div>
     <label for="say">MOVE</label>
-    	(<span th:text="${movename}">0</span>)<input name="say" id="say" > 
+    	(<span th:text="${movenameinput}">0</span>)<input name="say" id="say" > 
     <label for="dest">DESTINATION</label>
-    	(<span th:text="${destname}">0</span>)<input name="dest" id="dest" >
+    	(<span th:text="${destnameinput}">0</span>)<input name="dest" id="dest" >
     <button>Send (CoAP)</button>
   </div>
 </form>
@@ -85,8 +85,9 @@ the data is appended to the body of the HTTP request
  ------------------------------------------
  -->
  <hr/>
- <pre><span th:text="${robot}" id="robot">0</span></pre>
- 
+ <pre><span th:text="${robot}" id="robot">0</span>
+ <span th:text="${movename}" id="movename">0</span>
+ </pre> 
  	</td>
  	</tr>
  	</table>

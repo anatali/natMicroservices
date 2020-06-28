@@ -19,22 +19,30 @@ class Qa0 ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, scope 
 		return { //this:ActionBasciFsm
 				state("s0") { //this:State
 					action { //it:State
-						println("prj0 STARTS")
-						emit("alarm", "alarm(fire)" ) 
-						forward("msg1", "msg1(hello)" ,"qa0" ) 
+						println("qa0 STARTS")
+						forward("cmd", "cmd(hello_from_myself)" ,"qa0" ) 
 					}
 					 transition(edgeName="t00",targetState="handleAlarm",cond=whenEvent("alarm"))
-					transition(edgeName="t01",targetState="handleMsg",cond=whenDispatch("msg1"))
+					transition(edgeName="t01",targetState="handleMsg",cond=whenDispatch("cmd"))
 				}	 
 				state("handleAlarm") { //this:State
 					action { //it:State
+						updateResourceRep( "handlealarm"  
+						)
 						println("$name in ${currentState.stateName} | $currentMsg")
 					}
+					 transition(edgeName="t02",targetState="handleAlarm",cond=whenEvent("alarm"))
+					transition(edgeName="t03",targetState="handleMsg",cond=whenDispatch("cmd"))
 				}	 
 				state("handleMsg") { //this:State
 					action { //it:State
+						updateResourceRep( "handleMsg"  
+						)
 						println("$name in ${currentState.stateName} | $currentMsg")
+						emit("alarm", "alarm(fire)" ) 
 					}
+					 transition(edgeName="t04",targetState="handleAlarm",cond=whenEvent("alarm"))
+					transition(edgeName="t05",targetState="handleMsg",cond=whenDispatch("cmd"))
 				}	 
 			}
 		}

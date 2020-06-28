@@ -1,5 +1,7 @@
 /*
-USAGE: gradlew build -x test eclipse 
+USAGE: 
+	gradlew build -x test eclipse 
+	gradlew build -x test distTar
 */
 
 plugins {

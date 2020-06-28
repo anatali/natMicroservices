@@ -24,10 +24,25 @@ public class CommandController   {
  	private FactoryProtocol fp			= null;
   	private connQakCoap coapSupport     = null;
   	private connQakCoap robotcoapSupport= null;
-    private boolean internalNanoservce  = false;                
-  
+    private boolean internalNanoservce  = false;      
+    
+    private String robotName   = "";
+    private String robotHost   = "";
+    private String robotPort   = "";
+    private String robotCtx    = "";
+
+    private String applName    = sysConnKb.getQakdestination();
+    private String applHost    = sysConnKb.getApplhostAddr();
+    private String applPort    = sysConnKb.getApplport();
+    private String applCtx     = sysConnKb.getCtxqadest();
+
 	public CommandController( ) {   
-	  fp = new FactoryProtocol(null,"TCP","spring"); 	 
+	  fp = new FactoryProtocol(null,"TCP","spring"); 
+	  sysConnKb.configure();
+	  robotName    = sysConnKb.getRobotname();
+	  robotHost    = sysConnKb.getRobothostAddr();
+	  robotPort    = sysConnKb.getRobotport();
+	  robotCtx     = sysConnKb.getCtxrobot();
 	}
 	
   //curl --request POST http://localhost:8080/w
@@ -46,8 +61,10 @@ public class CommandController   {
   private String doMove( Model model, String move) {
 	  System.out.println("POST | doMove:"+move);
 	  model.addAttribute("robot", "move(Tcp)="+move );	
-	  String destName =  internalNanoservce ? sysConnKb.INSTANCE.getQakdestination() : sysConnKb.INSTANCE.getRobotname();
-	  if( ! forwardTcp("cmd", "cmd("+move+")", destName) ) {
+	  String destName = "";
+	  if( internalNanoservce ) destName = sysConnKb.getQakdestination();
+	  else destName = robotName;
+ 	  if( ! forwardTcp("cmd", "cmd("+move+")", destName) ) {
 		  model.addAttribute("robot", "forwardTcp failure" );
 		  model.addAttribute("info", "perhaps internal nano service not active" );
 	  };
@@ -62,13 +79,14 @@ public class CommandController   {
   public String robotMove(
 	//@RequestParam binds the value of the query string param name into the moveName parameter of the  method		  
 		   @RequestParam(name="say",  required=false, defaultValue="h") String moveName, 
-		   @RequestParam(name="dest", required=false, defaultValue="h") String destName, 
+		   @RequestParam(name="dest", required=false, defaultValue="basicrobot") String destName, 
 		   Model model 
 	) { 
 	  System.out.println("POST | move=" + moveName);
-	  model.addAttribute("robot", "move(Coap)="+moveName);
-	  model.addAttribute("destname", destName);
-	  model.addAttribute("movename", moveName);
+	  model.addAttribute("robot", robotName);
+	  model.addAttribute("destnameinput", destName);
+	  model.addAttribute("movenameinput", moveName);
+	  model.addAttribute("movename", "move(Coap)="+moveName);
 	  sendUsingCoap(moveName, destName);
 	  return getAnswer(model);
   } 
@@ -108,11 +126,11 @@ public class CommandController   {
   }
  
   private void  sendUsingCoap(String move, String destName){
-	  if( destName.equals(sysConnKb.INSTANCE.getRobotname())) {
+//      System.out.println( "		--- sendUsingCoap | robotHost="+robotHost+" robotPort="+robotPort+" robotName="+robotName
+//    		  			+" robotCtx="+robotCtx+" destName="+destName );
+	  if( destName.equals( robotName  )) {
 		  if( robotcoapSupport == null ) {
-			  robotcoapSupport  = new connQakCoap( 
-			       sysConnKb.INSTANCE.getRobothostAddr(),sysConnKb.INSTANCE.getRobotport(),
-			       sysConnKb.INSTANCE.getRobotname(),sysConnKb.INSTANCE.getCtxrobot());	
+			  robotcoapSupport  = new connQakCoap(robotHost,robotPort,robotName,robotCtx );	
 			  robotcoapSupport.createConnection();
 		  }
 		  ApplMessage m = MsgUtil.buildDispatch("aliencoap", "cmd", "cmd("+move+")",destName); 
@@ -135,16 +153,14 @@ public class CommandController   {
   
   private void attemptQakConnections( ) {
 	  if( internalNanoservce	) {
-		  System.out.println("attemptQakConnection " + sysConnKb.INSTANCE.getHostAddr() + ":" + sysConnKb.INSTANCE.getPort());
-		  coapSupport  = new connQakCoap( 
-				  sysConnKb.INSTANCE.getHostAddr(),sysConnKb.INSTANCE.getPort(),
-				  sysConnKb.INSTANCE.getQakdestination(),sysConnKb.INSTANCE.getCtxrobot());
+		  System.out.println("attemptQakConnection " + applHost + ":" + applPort);
+		  coapSupport  = new connQakCoap( applHost,applPort,applName,applCtx );
 		  coapSupport.createConnection();
 		  while( connTcp == null ) {
 			  try {
 				  Thread.sleep(500); //give the time to start ....
-				  int port = Integer.parseInt(sysConnKb.INSTANCE.getPort());
-				  connTcp = fp.createClientProtocolSupport(sysConnKb.INSTANCE.getHostAddr(),port);
+				  int port = Integer.parseInt(sysConnKb.getPort());
+				  connTcp = fp.createClientProtocolSupport(sysConnKb.getHostAddr(),port);
 			  } catch (Exception e) {
 				  	e.printStackTrace();
 			  }		  

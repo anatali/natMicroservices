@@ -8,6 +8,8 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.env.Environment;
+
+import connQak.sysConnKb;
 import it.unibo.ctxprj0.MainCtxprj0Kt;
 
 @SpringBootApplication

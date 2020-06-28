@@ -16,10 +16,13 @@ CMD ["bash","it.unibo.springboot.qak"]
 # ENTRYPOINT ["echo","docker exec -ti it.unibo.springboot.qak-boot-1.0.0/bin/it.unibo.springboot.qak /bash"]
 
 ## docker build -t springbootqak .
+## docker run -it --name sbqak  -p8080:8080   springbootqak  /bin/bash  
+
+
 ### docker run -it --name sbqak  -p8080:8080  -e "SPRING_PROFILES_ACTIVE=docker" springbootqak
  
 
-## docker run -it --name sbqak  -p8080:8080   springbootqak  /bin/bash
+
 
 ## docker run  --name sbqak  -p8080:8080   springbootqak  
 

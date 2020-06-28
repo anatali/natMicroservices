@@ -3,3 +3,4 @@
 %====================================================================================
 context(ctxprj0, "localhost",  "TCP", "8095").
  qactor( qa0, ctxprj0, "it.unibo.qa0.Qa0").
+  qactor( qa1, ctxprj0, "it.unibo.qa1.Qa1").
