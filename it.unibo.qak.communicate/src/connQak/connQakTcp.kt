@@ -11,12 +11,17 @@ class connQakTcp( hostIP : String,  port : String,  destName : String ) :
 	
 	override fun createConnection( ){ //hostIP: String, port: String  
 		val fp    = FactoryProtocol(null,"TCP","connQakTcp")
-	    conn      = fp.createClientProtocolSupport(hostIP, port.toInt() )    
+		println("FactoryProtocol hostIP= $hostIP port=$port")
+	    conn      = fp.createClientProtocolSupport(hostIP, port.toInt() )
+		println("createConnection: $conn")
+	}
+	 
+	override fun forward( msg: ApplMessage ){
+ 		conn.sendALine( msg.toString()  )
+		println("closeConnection: $conn")
+		//conn.closeConnection()			
 	}
 	
-	override fun forward( msg: ApplMessage ){
- 		conn.sendALine( msg.toString()  )				
-	}
 	
 	override fun request( msg: ApplMessage ){
  		conn.sendALine( msg.toString()  )
