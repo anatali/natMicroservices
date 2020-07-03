@@ -14,7 +14,7 @@ fun sendUsingCoap(){
 fun sendUsingTcp(){
 	//val conn = connQakTcp(hostAddr,port,qakdestination)
 	//val conn = connQakTcp("localhost","8095","qa0")
-	val conn = connQakTcp("192.168.1.5","7001","basicrobot")
+	val conn = connQakTcp("192.168.1.22","7002","basicrobot")
 	conn.createConnection()
 	val m = MsgUtil.buildDispatch("alientcp", "cmd", "cmd(r)","basicrobot");
 	println("sending: $m")
