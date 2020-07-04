@@ -39,22 +39,22 @@
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/unibolibs/uniboInterfaces.jar">
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/unibolibs/uniboInterfaces.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/unibolibs/2p301.jar">
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/unibolibs/2p301.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/unibolibs/it.unibo.qakactor-2.4.jar">
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/unibolibs/it.unibo.qakactor-2.4.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/unibolibs/unibonoawtsupports.jar">
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/unibolibs/unibonoawtsupports.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>

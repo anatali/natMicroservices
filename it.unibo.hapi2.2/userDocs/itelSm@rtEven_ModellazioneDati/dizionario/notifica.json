@@ -1,0 +1,29 @@
+[ 
+   { 
+      "id":11,
+      "nome":"Notifica bassa priorità",
+      "regole":{ 
+         "numTentativi":1,
+         "timeout":1200000
+      },
+      "priorita":"LOW_PRIORITY"
+   },
+   { 
+      "id":21,
+      "nome":"Notifica Standard",
+      "regole":{ 
+         "numTentativi":3,
+         "timeout":600000
+      },
+      "priorita":"NORMAL_PRIORITY"
+   },
+   { 
+      "id":31,
+      "nome":"Notifica alta priorità",
+      "regole":{ 
+         "numTentativi":10,
+         "timeout":300000
+      },
+      "priorita":"HIGH_PRIORITY"
+   }
+]

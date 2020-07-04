@@ -1,0 +1,11 @@
+{
+
+   "idAllarme":101,
+   "idPaziente":701, 
+   "idProgrammazione":241,
+   "idGeneratoreAllarme":171, 
+   "tipoGeneratoreAllarme":"MEASUREMENT",
+   "dataAllarme":"2020-04-15 10:50:27",
+   "descrizione":"Diastolica 138 mmHg fuori intervallo configurato (40 - 120)"
+
+}

@@ -1,0 +1,15 @@
+{ 
+   "codeSystem":" codice sistema di riferimento all’interno del CDA",
+   "code":" codice componente di riferimento all’interno del CDA ",
+   "status":"stato della risposta ",
+   "responseDescription":"descrizione dell’errore verificatosi",
+   "errorCode":"codice errore"
+}
+
+{ 
+   "codeSystem":"2.16.840.1.113883.2.9.3.12.4.42.6",
+   "code":2,
+   "status":"ERROR",
+   "responseDescription":"Errore durante la verifica dell'orario per l'assunzione con id: 11",
+   "errorCode":5
+}

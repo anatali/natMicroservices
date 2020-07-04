@@ -1,0 +1,26 @@
+{
+
+   "idProgrammazione":121,
+
+   "idPaziente":701,
+
+   "dataMisurazione":"2020-04-15 14:49:07",
+   "idParametroVitale":"31",
+   "parametriMisurabili":[
+
+{
+
+   "id":31,
+         "valore":"120"
+
+},
+{
+
+   "id":41,
+   "valore":"80"
+
+}
+
+   ]
+
+}

@@ -1,0 +1,13 @@
+[ 
+   { 
+      "idQuestionario":101,
+      "idPaziente":701,
+      "descrizione":"Questionario per aderenza terapeutica",
+      "dataInizioValidita":"2019-09-15",
+      "dataFineValidita":"2019-10-15",
+      "templateDomande":{ 
+         "id":711
+      }," 
+      "tipoQuestionario":"GIORNALIERO",
+   }
+]

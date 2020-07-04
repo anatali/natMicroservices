@@ -1,0 +1,56 @@
+[ 
+   { 
+      "id":11,
+      "nome":"Prima di colazione",
+      "descrizione":"prima di colazione",
+      "orarioSuggerito":"07:00"
+   },
+   { 
+      "id":21,
+      "nome":"Dopo colazione",
+      "descrizione":"dopo colazione",
+      "orarioSuggerito":"09:00"
+   },
+   { 
+      "id":31,
+      "nome":"Mattina",
+      "descrizione":"mattina",
+      "orarioSuggerito":"10:00"
+   },
+   { 
+      "id":41,
+      "nome":"Prima di pranzo",
+      "descrizione":"prima di pranzo",
+      "orarioSuggerito":"11:00"
+   },
+   { 
+      "id":51,
+      "nome":"Mezzogiorno",
+      "descrizione":"dopo mangiato",
+      "orarioSuggerito":"12:00"
+   },
+   { 
+      "id":61,
+      "nome":"Dopo pranzo",
+      "descrizione":"dopo pranzo",
+      "orarioSuggerito":"13:00"
+   },
+   { 
+      "id":71,
+      "nome":"Pomeriggio",
+      "descrizione":"pomeriggio",
+      "orarioSuggerito":"16:00"
+   },
+   { 
+      "id":81,
+      "nome":"Prima di cena",
+      "descrizione":"prima di cena",
+      "orarioSuggerito":"19:00"
+   },
+   { 
+      "id":91,
+      "nome":"Dopo cena",
+      "descrizione":"dopo cena",
+      "orarioSuggerito":"21:00"
+   }
+]

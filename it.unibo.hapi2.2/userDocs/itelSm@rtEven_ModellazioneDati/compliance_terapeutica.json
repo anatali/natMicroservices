@@ -1,0 +1,23 @@
+[ 
+   { 
+      "idAssunzione":101,
+      "idPaziente":701,
+      "farmaco":{ 
+         "id":11
+      },
+      "fascia":{ 
+         "id":61
+      },
+      "orarioAssunzione":"15:00",
+      "orarioPromemoria":"15:00",
+      "giornoSettimana":"TUESDAY",
+      "notifica":{ 
+         "id":21
+      },
+      "quantita":"1 inalazione",
+      "note":"nota assunzione",
+      "dataInizioProgrammazione":"2019-04-15",
+      "dataFineProgrammazione":"2019-10-15",
+      "tipoAssunzione":"PROGRAMMATA"
+   }
+]

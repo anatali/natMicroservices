@@ -1,0 +1,9 @@
+{
+
+   "idProgrammazione":101,
+   "idPaziente":701, 
+   "dataAssunzione":"2020-04-15 10:50:27",
+   "esito":"CONFIRMED",
+   "ritardo":900000
+
+}

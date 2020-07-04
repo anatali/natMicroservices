@@ -1,0 +1,54 @@
+{ 
+   "id":711,
+   "nome":"Aderenza Terapeutica",
+   "descrizione":"Template di domande utilizzato per verificare l’aderenza terapeutica",
+   "domande":[ 
+      { 
+         "id":951,
+         "testo":"Qualche volta dimentica di prendere la pillola?",
+         "tipoRisposta":"BINARY"
+      },
+      { 
+         "id":961,
+         "testo":"Nelle ultime 2 settimane, ci sono stati giorni in cui non ha preso le medicine?",
+         "tipoRisposta":"BINARY"
+      },
+      { 
+         "id":971,
+         "testo":"Ha mai ridotto o smesso di prendere le medicine senza dirlo al suo medico, perchè si sentiva male quando le prendeva ?",
+         "tipoRisposta":"BINARY"
+      },
+      { 
+         "id":981,
+         "testo":"Quando viaggia o esce di casa, a volte si dimentica di portare con se i farmaci?",
+         "tipoRisposta":"BINARY"
+      },
+      { 
+         "id":991,
+         "testo":"Ha preso ieri le sue medicine?",
+         "tipoRisposta":"BINARY"
+      },
+      { 
+         "id":1001,
+         "testo":"Quando sente che la sua malattia è sotto controllo, a volte smette di prendere le sue medicine?",
+         "tipoRisposta":"BINARY"
+      },
+      { 
+         "id":1011,
+         "testo":"L’assunzione quotidiana dei farmaci è un vero proprio disagio per alcune. Si sente mai infastidito o sente di avere delle difficoltà ad attenersi al piano di trattamento della sua malattia?",
+         "tipoRisposta":"BINARY"
+      },
+      { 
+         "id":1021,
+         "testo":"Le capita di avere difficoltà a ricordarsi di prendere tutti i suoi farmaci per la sua malattia?",
+         "tipoRisposta":"MULTIPLE",
+         "opzioniRisposta":[ 
+            "Mai/Molto raramente",
+            "Raramente",
+            "A volte",
+            "Spesso",
+            "Sempre"
+         ]
+      }
+   ]
+}

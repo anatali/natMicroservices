@@ -1,0 +1,25 @@
+{
+
+   "idQuestionario":141,
+
+   "idPaziente":701,
+
+   "dataRisposte":"2020-04-15 11:21:34",
+   "risposte":[
+
+{
+
+   "idDomanda":71,
+         "valore":"SI"
+
+},
+{
+
+   "idDomanda":81,
+   "valore":"Mi sento bene"
+
+}
+
+   ]
+
+}

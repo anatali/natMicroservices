@@ -1,0 +1,209 @@
+[ 
+   { 
+      "id":11,
+      "nome":"Ossigenazione Sanguigna",
+      "descrizione":"rilevazione dell’ossigenazione del sangue",
+      "inserimentoManuale":"no",
+      "parametriMisurabili":[ 
+         { 
+            "id":11,
+            "nome":"SpO2",
+            "descrizione":"percentuale di ossigenazione del sangue",
+            "unitaMisura":"%",
+            "tipoValore":"INTEGER",
+            "tipoInserimento":"GUIDED",
+            "valoreMinimo":"0",
+            "valoreMassimo":"100",
+            "coloreParametro":"#A0E6FF"
+         }
+      ]
+   },
+   { 
+      "id":21,
+      "nome":"Frequenza Cardiaca",
+      "descrizione":"rilevazione della frequenza cardiaca",
+      "inserimentoManuale":"no",
+      "parametriMisurabili":[ 
+         { 
+            "id":21,
+            "nome":"Bpm",
+            "descrizione":"numero di battiti",
+            "unitaMisura":"bpm",
+            "tipoValore":"INTEGER",
+            "tipoInserimento":"CLASSIC",
+            "valoreMinimo":"20",
+            "valoreMassimo":"220",
+            "coloreParametro":"#EB0000"
+         }
+      ]
+   },
+   { 
+      "id":31,
+      "nome":"Pressione Arteriosa",
+      "descrizione":"rilevazione pressione arteriosa",
+      "inserimentoManuale":"no",
+      "parametriMisurabili":[ 
+         { 
+            "id":31,
+            "nome":"Sistolica",
+            "descrizione":"pressione sistolica",
+            "unitaMisura":"mmHg",
+            "tipoValore":"INTEGER",
+            "tipoInserimento":"GUIDED",
+            "valoreMinimo":"60",
+            "valoreMassimo":"220",
+            "coloreParametro":"#FB0082"
+         },
+         { 
+            "id":41,
+            "nome":"Diastolica",
+            "descrizione":"pressione diastolica",
+            "unitaMisura":"mmHg",
+            "tipoValore":"INTEGER",
+            "tipoInserimento":"GUIDED",
+            "valoreMinimo":"40",
+            "valoreMassimo":"160",
+            "coloreParametro":"#FF94B4"
+         }
+      ]
+   },
+   { 
+      "id":41,
+      "nome":"Spirometria",
+      "descrizione":"rilevazione della funzione respiratoria",
+      "inserimentoManuale":"no",
+      "parametriMisurabili":[ 
+         { 
+            "id":51,
+            "nome":"FEV1",
+            "descrizione":"volume espiratorio forzato",
+            "unitaMisura":"m/L",
+            "tipoValore":"TWO_POSITION_DECIMAL",
+            "tipoInserimento":"CLASSIC",
+            "valoreMinimo":"",
+            "valoreMassimo":"",
+            "coloreParametro":"#211BCD"
+         },
+         { 
+            "id":61,
+            "nome":"PEF",
+            "descrizione":"flusso di picco espiratorio",
+            "unitaMisura":"L/S",
+            "tipoValore":"TWO_POSITION_DECIMAL",
+            "tipoInserimento":"CLASSIC",
+            "valoreMinimo":"",
+            "valoreMassimo":"",
+            "coloreParametro":"#8F00FF"
+         },
+         { 
+            "id":71,
+            "nome":"FVC",
+            "descrizione":"capacità vitale forzata",
+            "unitaMisura":"m/L",
+            "tipoValore":"TWO_POSITION_DECIMAL",
+            "tipoInserimento":"CLASSIC",
+            "valoreMinimo":"",
+            "valoreMassimo":"",
+            "coloreParametro":"#0F2FFF"
+         }
+      ]
+   },
+   { 
+      "id":51,
+      "nome":"Peso",
+      "descrizione":"rilevazione del peso",
+      "inserimentoManuale":"no",
+      "parametriMisurabili":[ 
+         { 
+            "id":81,
+            "nome":"Chilogrammi",
+            "descrizione":"peso corporeo",
+            "unitaMisura":"kg",
+            "tipoValore":"TWO_POSITION_DECIMAL",
+            "tipoInserimento":"GUIDED",
+            "valoreMinimo":"0",
+            "valoreMassimo":"200",
+            "coloreParametro":"#11C223"
+         }
+      ]
+   },
+   { 
+      "id":61,
+      "nome":"Glicemia",
+      "descrizione":"rilevazione della glicemia",
+      "inserimentoManuale":"no",
+      "parametriMisurabili":[ 
+         { 
+            "id":91,
+            "nome":"Glucosio",
+            "descrizione":"concentrazione del glucosio nel sangue",
+            "unitaMisura":"mg/dL",
+            "tipoValore":"INTEGER",
+            "tipoInserimento":"CLASSIC",
+            "valoreMinimo":"",
+            "valoreMassimo":"",
+            "coloreParametro":"#E4B5FF"
+         }
+      ]
+   },
+   { 
+      "id":71,
+      "nome":"Camminata",
+      "descrizione":"rilevazione del numero passi",
+      "inserimentoManuale":"no",
+      "parametriMisurabili":[ 
+         { 
+            "id":101,
+            "nome":"Passi",
+            "descrizione":"passi effettuati",
+            "unitaMisura":"n°",
+            "tipoValore":"INTEGER",
+            "tipoInserimento":"CLASSIC",
+            "valoreMinimo":"",
+            "valoreMassimo":"",
+            "coloreParametro":"#FFE019"
+         }
+      ]
+   },
+   { 
+      "id":81,
+      "nome":"Pressione Arteriosa & Frequenza Cardiaca",
+      "descrizione":"rilevazione pressione arteriosa e frequenza cardiaca",
+      "inserimentoManuale":"si",
+      "parametriMisurabili":[ 
+         { 
+            "id":111,
+            "nome":"Sistolica",
+            "descrizione":"pressione sistolica composta",
+            "unitaMisura":"mmHg",
+            "tipoValore":"INTEGER",
+            "tipoInserimento":"GUIDED",
+            "valoreMinimo":"60",
+            "valoreMassimo":"220",
+            "coloreParametro":"#FB0082"
+         },
+         { 
+            "id":121,
+            "nome":"Diastolica",
+            "descrizione":"pressione diastolica composta",
+            "unitaMisura":"mmHg",
+            "tipoValore":"INTEGER",
+            "tipoInserimento":"GUIDED",
+            "valoreMinimo":"40",
+            "valoreMassimo":"160",
+            "coloreParametro":"#FF94B4"
+         },
+         { 
+            "id":131,
+            "nome":"Bpm",
+            "descrizione":"numero di battiti/pulsazioni composto",
+            "unitaMisura":"bpm",
+            "tipoValore":"INTEGER",
+            "tipoInserimento":"CLASSIC",
+            "valoreMinimo":"20",
+            "valoreMassimo":"220",
+            "coloreParametro":"#EB0000"
+         }
+      ]
+   }
+]

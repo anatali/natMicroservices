@@ -1,0 +1,31 @@
+[ 
+   { 
+      "idMisurazione":601,
+      "idPaziente":701,
+      "parametroVitale":{ 
+         "id":11,
+         "parametriMisurabili":[ 
+            { 
+               "id":11,
+               "soglia":{ 
+                  "valoreMinimo":"90",
+                  "valoreMassimo":"100"
+               }
+            }
+         ]
+      },
+      "fascia":{ 
+         "id":51
+      },
+      "orarioMisurazione":"12:00",
+      "orarioPromemoria":"12:00",
+      "giornoSettimana":"TUESDAY",
+      "notifica":{ 
+         "id":21
+      },
+      "note":"note misurazione",
+      "dataInizioProgrammazione":"2019-04-15",
+      "dataFineProgrammazione":"2019-10-15",
+      "tipoMisurazione":"PROGRAMMATA"
+   }
+]

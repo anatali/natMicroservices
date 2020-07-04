@@ -1,0 +1,21 @@
+[ 
+   { 
+      "idAttivita":101,
+      "idPaziente":701,
+      "attivita":"PHOTO",
+      "fascia":{ 
+         "id":61
+      },
+      "orarioAttivita":"15:00",
+      "orarioPromemoria":"15:00",
+      "giornoSettimana":"TUESDAY",
+      "notifica":{ 
+         "id":21
+      },
+      "descrizioneAttivita":"Inviare una foto del piede",
+      "note":"Si richiede l’invio della foto del piede destro",
+      "dataInizioProgrammazione":"2019-04-15",
+      "dataFineProgrammazione":"2019-10-15",
+      "tipoAttivita":"PROGRAMMATA"
+   }
+]
