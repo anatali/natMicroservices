@@ -47,6 +47,8 @@ package ca.uhn.hl7v2.examples;
               e.printStackTrace();
               return;
           }
+          
+          System.out.println(hapiMsg);
   
           /*
 87           * This message was an ADT^A01 is an HL7 data type consisting of several components1, so we
