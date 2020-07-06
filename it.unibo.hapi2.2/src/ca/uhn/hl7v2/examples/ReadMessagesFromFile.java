@@ -45,7 +45,6 @@ public class ReadMessagesFromFile {
           * family name, given name, etc. 
            */
         XPN[] patientName = m.getPID().getPatientName();
-//
 //       // Prints "SMITH"
         String familyName = patientName[0].getFamilyName().getValue();
         System.out.println(familyName);

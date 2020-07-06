@@ -1,0 +1,40 @@
+https://localhost:8443/api/#/Messages
+
+https://localhost:8443/webadmin/Index.action
+https://localhost:8443/api/users/_login
+
+
+----------------------------------------
+mccommand -a https://localhost:8443 -u admin -p nat25650
+----------------------------------------
+
+https://learning.postman.com/docs/postman/sending-api-requests/authorization/
+java -Djavax.net.debug=all -Djavax.net.ssl.trustStore=trustStore ...
+https://betaingegneria.it/howto/webservices/mirth/#Documentazione_sulle_API_java_e_javascript_per_Mirth
+
+//FROM userguide
+keytool -importkeystore -srckeystore myservercert.p12 -srcstoretype PKCS12 -
+srcstorepass mystorepass -srckeypass mykeypass -srcalias myalias -destkeystore keystore.
+jks -deststoretype JCEKS -deststorepass 81uWxplDtB -destkeypass 81uWxplDtB -destalias
+mirthconnect
+//---------------------------------------------------------------------------------------
+curl -X POST "https://localhost:8443/api/users/_login" -H "accept: application/xml" -H "Content-Type: application/x-www-form-urlencoded" -d "username=admin&password=nat25650"
+https://localhost:8443/api/users/_login?username=admin&password=nat25650
+https://localhost:8443/api/#/users/_login?username=admin&password=nat25650
+
+curl --location --request POST 'https://localhost:8443/api/users/_login?admin' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'username: admin' \
+--header 'password: nat25650' \
+--header 'Cookie: JSESSIONID=node01mk65ysrum6c0990xxrgaqobd2.node0' \
+--data-raw ''
+
+You first need to invoke the /users/_login endpoint. 
+You'll get a JSESSIONID token that you need to pass on all subsequent requests. 
+Finally, make sure to invoke the logout endpoint when you've finished.
+
+
+http://www.mirthcorp.com/community/wiki/display/mirth/Examples+and+Tutorials
+http://irwinj.blogspot.com/2008/12/getting-started-with-mirth-part-1.html
+http://irwinj.blogspot.com/2008/12/getting-started-with-mirth-part-1_18.html
+ 

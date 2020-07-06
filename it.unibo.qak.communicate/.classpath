@@ -39,22 +39,27 @@
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/unibolibs/uniboInterfaces.jar">
+	<classpathentry sourcepath="C:/Users/anatali/.gradle/caches/modules-2/files-2.1/commons-httpclient/commons-httpclient/3.1/c6d6ea83d0cf16d3ed9c1b7e600fa0f60b9d3159/commons-httpclient-3.1-sources.jar" kind="lib" path="C:/Users/anatali/.gradle/caches/modules-2/files-2.1/commons-httpclient/commons-httpclient/3.1/964cd74171f427720480efdec40a7c7f6e58426a/commons-httpclient-3.1.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/unibolibs/2p301.jar">
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/unibolibs/uniboInterfaces.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/unibolibs/it.unibo.qakactor-2.4.jar">
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/unibolibs/2p301.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/unibolibs/unibonoawtsupports.jar">
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/unibolibs/it.unibo.qakactor-2.4.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/unibolibs/unibonoawtsupports.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>

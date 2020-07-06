@@ -48,6 +48,9 @@ dependencies {
 //MONGO
 	// https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver
 	//compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.8.2'
+//HTTP
+	// https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient
+	compile group: 'commons-httpclient', name: 'commons-httpclient', version: '3.1'
 
 //CUSTOM
     compile name: 'uniboInterfaces'
