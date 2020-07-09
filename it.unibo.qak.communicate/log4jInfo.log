@@ -1,0 +1,6 @@
+2020-07-08 12:14:40 INFO  HttpMethodDirector:439 - I/O exception (javax.net.ssl.SSLException) caught when processing request: Unrecognized SSL message, plaintext connection?
+2020-07-08 12:14:40 INFO  HttpMethodDirector:445 - Retrying request
+2020-07-08 12:14:40 INFO  HttpMethodDirector:439 - I/O exception (javax.net.ssl.SSLException) caught when processing request: Unrecognized SSL message, plaintext connection?
+2020-07-08 12:14:40 INFO  HttpMethodDirector:445 - Retrying request
+2020-07-08 12:14:40 INFO  HttpMethodDirector:439 - I/O exception (javax.net.ssl.SSLException) caught when processing request: Unrecognized SSL message, plaintext connection?
+2020-07-08 12:14:40 INFO  HttpMethodDirector:445 - Retrying request

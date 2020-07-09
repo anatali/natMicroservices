@@ -5,7 +5,7 @@ import org.apache.commons.httpclient.methods.*;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 import java.io.*;
 
-public class HttpClientTutorial {
+public class HttpApplClient {
 
 	private String hl7251 =
 "MSH|^~\\&|Test EHR Application|X68||NIST Test Iz Reg|201207010822||VXU^V04^VXU_V04|NIST-IZ-001.00|P|2.5.1|||AL|ER\r\n" + 
@@ -26,7 +26,7 @@ public class HttpClientTutorial {
 //   private static String url = "https://localhost:8443/api/#/users/_login?username=admin&password=nat25650"; //PAGE
 //   private static String url = "https://localhost:8443/api/users/_login?username=admin&password=nat25650";
 //   private static String url = "https://localhost:8443/api/users/_login?username=admin&password=nat25650";
-     private static String url = "https://localhost:8443/api/channels";
+     private static String url = "http://localhost:8050";
 
   public static void main(String[] args) {
     // Create an instance of HttpClient.
