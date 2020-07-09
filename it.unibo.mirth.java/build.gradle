@@ -3,7 +3,7 @@
 build_ctxvirtualdemo.gradle
 GENERATED ONLY ONCE
 USAGE:	 
-  	gradle   eclipse		//to set the dependency on the library
+  	gradle   build eclipse		//to set the dependency on the library
 	gradle   distZip
 	gradle   tasks --all
 	gradle   cleanDistDir	//to clean the src directory
@@ -13,7 +13,7 @@ plugins {
     id 'java'
     id 'eclipse'
     //id 'application'
-    id 'org.jetbrains.kotlin.jvm' version '1.3.71'
+    //id 'org.jetbrains.kotlin.jvm' version '1.3.71'
 }
 
 version '1.0'
@@ -23,58 +23,24 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
     jcenter()
-    flatDir {   dirs '../unibolibs'	 }
+    flatDir {   dirs './lib'	 }
 }
 
 dependencies {
-//LOG4j	
-	compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25' 
-
 //HTTP
 	// https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient
 	compile group: 'commons-httpclient', name: 'commons-httpclient', version: '3.1'
 
-/*
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-//COROUTINE
-    compile group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core-common', version: '1.1.0'
-    compile group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: '1.1.0'
-//MQTT
-// https://mvnrepository.com/artifact/org.eclipse.paho/org.eclipse.paho.client.mqttv3
-    compile group: 'org.eclipse.paho', name: 'org.eclipse.paho.client.mqttv3', version: '1.2.1'
-//JSON
-    // https://mvnrepository.com/artifact/org.json/json
-    compile group: 'org.json', name: 'json', version: '20160810'
-//COAP
-	// https://mvnrepository.com/artifact/org.eclipse.californium/californium-core
-	compile group: 'org.eclipse.californium', name: 'californium-core', version: '2.0.0-M12'
-	// https://mvnrepository.com/artifact/org.eclipse.californium/californium-proxy
-	compile group: 'org.eclipse.californium', name: 'californium-proxy', version: '2.0.0-M12'
-//MONGO
-	// https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver
-	//compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.8.2'
-
 //CUSTOM
-    compile name: 'uniboInterfaces'
-    compile name: '2p301'
-    compile name: 'it.unibo.qakactor-2.4'
+	compile name: 'hapi-base-2.2'
+	compile name: 'hapi-structures-v26-2.2'
+	compile name: 'log4j-1.2.17'
+	compile name: 'slf4j-api-1.6.6'
+	compile name: 'slf4j-log4j12-1.6.6'
+}
  
-    //For p2p two-way connections (TCP, UDP, BTH, Serial ...)
-    compile name: 'unibonoawtsupports'
-
- }
-
-compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-}
-compileTestKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-
-*/
-}
 sourceSets {
-    main.java.srcDirs += 'src '
+    main.java.srcDirs += 'src'
     //test.java.srcDirs += 'test'		//test is specific
 }
 /*

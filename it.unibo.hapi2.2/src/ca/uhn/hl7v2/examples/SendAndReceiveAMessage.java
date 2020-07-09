@@ -111,7 +111,9 @@ import java.util.Map;
        Message response = initiator.sendAndReceive(adt);
  
        String responseString = p.encode(response);
+       System.out.println("=================================================================="  );
        System.out.println("Received response:\n" + responseString);
+       System.out.println("=================================================================="  );
  
        /*
 152        * MSH|^~\&|||||20070218200627.515-0500||ACK|54|P|2.2 MSA|AA|12345
@@ -153,7 +155,9 @@ import java.util.Map;
     public static class MyConnectionListener implements ConnectionListener {
  
        public void connectionReceived(Connection theC) {
+          System.out.println("=================================================================="  );
           System.out.println("New connection received: " + theC.getRemoteAddress().toString());
+          System.out.println("=================================================================="  );
        }
  
        public void connectionDiscarded(Connection theC) {
