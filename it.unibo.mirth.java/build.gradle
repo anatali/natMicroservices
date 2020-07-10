@@ -31,6 +31,13 @@ dependencies {
 	// https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient
 	compile group: 'commons-httpclient', name: 'commons-httpclient', version: '3.1'
 
+// https://mvnrepository.com/artifact/org.w3c/dom
+	compile group: 'org.w3c', name: 'dom', version: '2.3.0-jaxb-1.0.6'
+
+// https://mvnrepository.com/artifact/javax.xml.parsers/jaxp-api
+	compile group: 'javax.xml.parsers', name: 'jaxp-api', version: '1.4.5'
+
+
 //CUSTOM
 	compile name: 'hapi-base-2.2'
 	compile name: 'hapi-structures-v26-2.2'
