@@ -188,13 +188,35 @@ div.imagedesc{
     
 <body>
 <div id="body">
-<h1>Mirth | experiments<font size="5"></font> </h1>
+<h1>Mirth | experiments (in natMicroservices)<font size="5"></font> </h1>
 <ul>
+<li><a href="../../../natmaterial/health/userDocs/HealthReferences.html" target="web"> 
+DISI - HealthReferences.html</a> (on <tt>natmaterial .... health/userDocs/</tt>) </li>
+
+<li><a href="../../../natmaterial/health/userDocs/HealthReferences.html" target="web">DISI - HealthReferences.html </a></li>
  <li><a href="./MirthIntro.html" target="web"> 
 DISI - MirthIntro.html</a> (on <tt>natMicroservices .... it.unibo.mirth.java/userDocs/MirthExperiments.html/</tt>) </li>
 <li><a href="../../it.unibo.hapi2.2/userDocs/HapiUsage.html" target="web"> 
 DISI - HapiUsage.html</a> (on <tt>natMicroservices .... it.unibo.hapi2.2/userDocs/</tt>) </li>
 </ul>
+
+
+<h2>Tools </h2>
+<table style="width:98%">
+<tbody>	
+ 
+
+<tr><td>Using Mirth-API
+</td>
+<td style="width:25%"><a href="../src/it/unibo/mirth/java/MirthApiUsage.java" target="code">MirthApiUsage.java</a></td>
+</tr>
+
+<tr><td>
+</td>
+<td></td>
+</tr>
+ </tbody>
+</table>
 
 <h2>Channel TCP</h2>
 
@@ -208,7 +230,24 @@ DISI - HapiUsage.html</a> (on <tt>natMicroservices .... it.unibo.hapi2.2/userDoc
 logger.info(connectorMessage.getRawData())
 </pre>
 A TCP sender: <a href="../src/it/unibo/mirth/java/TCPClientMirth.java" target="code">TCPClientMirth.java</a>.
+<br/><br/>
+</td>
+</tr>
+
+<tr>
+<td style="width:25%" ><a href="../uniboChannels/channelTcp1.xml" target="code">channelTcp1</a>
+</td>
+<td>A TCP listener con data=<k>raw</k> on port=<tt>7002</tt>, Destination=<tt>Channel Writer</tt>, Transformer:
+<pre>
+var input = connectorMessage.getRawData();
+logger.info( input );
+var R1  = <k>Packages.</k>it.unibo.mirth.java.MirthJava0.getText(input);  <kc>//RESPONSE</kc>
+responseMap.put("R1", R1);
+</pre>
+A user-defined Java library: <a href="../src/it/unibo/mirth/java/MirthJava0.java" target="code">MirthJava0.java</a>
+<br/><br/>
 <k>Problem</k>: not able to receive an answer sent by the TCP listener.
+<br/><br/>
 </td>
 </tr>
 

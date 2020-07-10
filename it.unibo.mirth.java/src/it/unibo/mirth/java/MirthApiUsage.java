@@ -138,10 +138,7 @@ public class MirthApiUsage {
 	public  void log(final String msg) {
 		System.out.println(msg);
 	}
- 
-	
-	
-	
+ 	
 	public void sendMsg(String msg, String channelId) throws Exception {
 		String res = doPost(BASIC_URI + "/api/channels/"+ channelId + "/messages", "text/plain", msg);		
 		String msgNumber = res.replace("<long>", "").replace("</long>", "");
