@@ -37,6 +37,10 @@ dependencies {
 // https://mvnrepository.com/artifact/javax.xml.parsers/jaxp-api
 	compile group: 'javax.xml.parsers', name: 'jaxp-api', version: '1.4.5'
 
+//HAPI FHIR
+	// https://mvnrepository.com/artifact/ca.uhn.hapi.fhir/hapi-fhir-base
+	compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-base', version: '5.0.2'
+
 
 //CUSTOM
 	compile name: 'hapi-base-2.2'
