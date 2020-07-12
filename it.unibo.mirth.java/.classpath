@@ -22,6 +22,11 @@
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/anatali/.gradle/caches/modules-2/files-2.1/ca.uhn.hapi.fhir/hapi-fhir-structures-dstu3/5.0.2/6f138e5d31ea284a4838810f31048bb674487b33/hapi-fhir-structures-dstu3-5.0.2.jar" sourcepath="C:/Users/anatali/.gradle/caches/modules-2/files-2.1/ca.uhn.hapi.fhir/hapi-fhir-structures-dstu3/5.0.2/a9cb5daec6f87f6413a5f1aa46fc7efec18bc2e8/hapi-fhir-structures-dstu3-5.0.2-sources.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/anatali/.gradle/caches/modules-2/files-2.1/ca.uhn.hapi.fhir/hapi-fhir-structures-r4/5.0.2/c9480702137591f8833ac6d27b9192da8c8fbdaa/hapi-fhir-structures-r4-5.0.2.jar" sourcepath="C:/Users/anatali/.gradle/caches/modules-2/files-2.1/ca.uhn.hapi.fhir/hapi-fhir-structures-r4/5.0.2/ca7e697d4366201c0754c1d355f5a29b2c2951e7/hapi-fhir-structures-r4-5.0.2-sources.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
@@ -37,6 +42,11 @@
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/anatali/.gradle/caches/modules-2/files-2.1/ca.uhn.hapi.fhir/org.hl7.fhir.dstu3/5.0.0/5aa3b2832d32de21d6ec22e870bdb5a64a9ca440/org.hl7.fhir.dstu3-5.0.0.jar" sourcepath="C:/Users/anatali/.gradle/caches/modules-2/files-2.1/ca.uhn.hapi.fhir/org.hl7.fhir.dstu3/5.0.0/1d39c406bba0092796713fa8c4ef1a9626b5e25e/org.hl7.fhir.dstu3-5.0.0-sources.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/anatali/.gradle/caches/modules-2/files-2.1/ca.uhn.hapi.fhir/org.hl7.fhir.utilities/5.0.12/23c61f56bf26a545bc4876fc7e2877a8b091022/org.hl7.fhir.utilities-5.0.12.jar" sourcepath="C:/Users/anatali/.gradle/caches/modules-2/files-2.1/ca.uhn.hapi.fhir/org.hl7.fhir.utilities/5.0.12/e10770c3339e26ed76e3c23ac11610a3b25160a0/org.hl7.fhir.utilities-5.0.12-sources.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
@@ -47,27 +57,27 @@
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/it.unibo.mirth.java/lib/hapi-base-2.2.jar">
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/it.unibo.mirth.java/lib/hapi-base-2.2.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/it.unibo.mirth.java/lib/hapi-structures-v26-2.2.jar">
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/it.unibo.mirth.java/lib/hapi-structures-v26-2.2.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/it.unibo.mirth.java/lib/log4j-1.2.17.jar">
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/it.unibo.mirth.java/lib/log4j-1.2.17.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/it.unibo.mirth.java/lib/slf4j-api-1.6.6.jar">
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/it.unibo.mirth.java/lib/slf4j-api-1.6.6.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/it.unibo.mirth.java/lib/slf4j-log4j12-1.6.6.jar">
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/it.unibo.mirth.java/lib/slf4j-log4j12-1.6.6.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>

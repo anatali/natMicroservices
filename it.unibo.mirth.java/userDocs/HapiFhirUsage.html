@@ -218,6 +218,12 @@ Example: access health data in various HL7 formats (and others) in a uniform way
 -->
 
 <h2>The HapiFhir world</h2>
+<k>Fast Healthcare Interoperability Resources</k> (<a href="https://fhir.org/" target="web"><em>FHIR</em></a>, pronounced "fire") 
+ is a standard describing data formats and elements (known as "resources") 
+ and an application programming interface (API) for exchanging electronic health records 
+ (<a href="https://www.hl7.org/implement/standards/product_brief.cfm?product_id=269" target="web"><em>EHR</em></a>). 
+ The standard was created by the Health Level Seven International (HL7) health-care standards organization.<br/><br/>
+<br/>
 
 <table style="width:98%">
 <tbody>	
@@ -247,12 +253,16 @@ compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-client', version: '5.0.2'
  
 </td>
 <td>   
-<a href="https://hapifhir.io/" target="web">homepage for the HAPI-FHIR library</a><br/>
+<a href="https://hapifhir.io/hapi-fhir/docs/" target="web">homepage for the HAPI-FHIR library</a><br/>
+<a href="https://hapifhir.io/hapi-fhir/docs/introduction/versions.html" target="web">FHIR and HAPI FHIR Versions</a><br/>
 <a href="https://hapi.fhir.org/" target="web">HAPI public FHIR server UHN_HAPI Server (R4 FHIR)</a><br/>
-  <a href="https://hapifhir.io/hapi-fhir/docs" target="web">HAPI - FHIR Table of Contents</a><br/>
+  <a href="https://hapifhir.io/hapi-fhir/docs" target="web"><ks>HAPI - FHIR Table of Contents</ks></a><br/>
   <ul>
   <li><a href="https://hapifhir.io/hapi-fhir/docs/model/parsers.html" target="web">Parsers and Serializers</a></li>
-  <li><a href="https://hapifhir.io/hapi-fhir/docs/client/" target="web">Client Introduction</a></li>
+  <li><a href="https://hapifhir.io/hapi-fhir/docs/client/" target="web">Client Introduction</a>&nbsp;&nbsp;
+  <a href="https://github.com/FirelyTeam/fhirstarters/tree/master/java/hapi-fhirstarters-client-skeleton/" target="web"><k>HAPI FHIR - Client Starter</k></a>
+  &nbsp;&nbsp; check:<a href="http://hapi.fhir.org/baseR4/Patient/example" target="web">http://hapi.fhir.org/baseR4/Patient/example</a>
+  <br/></li>
   <li><a href="https://hapifhir.io/hapi-fhir/docs/server_plain/" target="web">HAPI FHIR Server Introduction</a></li>
   <li><a href="https://hapifhir.io/hapi-fhir/docs/server_jpa/" target="web">JPA Server Introduction</a></li>
   <li><a href="https://hapifhir.io/hapi-fhir/docs/appendix/javadocs.html" target="web">HAPI - FHIR Javadocs</a></li>
@@ -291,36 +301,23 @@ compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-client', version: '5.0.2'
 <h3>Note</h3>
 
 <ol>
-<li></li>
-<li></li>
+<li>Gli esempi che usano il server di prova <k>https://hapi.fhir.org/baseR4</k> funzionano. Si veda
+<a href="../src/it/unibo/usepublicserver/TestOperations.java" target="code">TestOperations.java</a></li>
+<li>Gli stessi esempi sul canale MIRTH <a href="../channels/Example - FHIR Listener (3.9.0).xml" target="code">
+Example - FHIR Listener (3.9.0).xml</a> vanno fatti.
+</li>
 <li></li>
 <li></li>
 </ol>
 
-<h2>HL7 version 3</h2>
- <a href="https://www.hl7.org/implement/standards/product_brief.cfm?product_id=186" target="web">HL7 Version 3 Product Suite</a>.<br/>
- 
- The Version 3 Normative Edition represents a new approach to clinical information exchange based on a <em>model driven methodology</em> 
- that produces messages and electronic documents expressed in <tt>XML syntax</tt>. <br/><br/>
- The V3 specification is built around <em>subject domains</em> that provide 
- storyboard descriptions, trigger events, interaction designs, domain object models derived from the 
-  <a href="https://www.hl7.org/implement/standards/product_brief.cfm?product_id=77" target="web">HL7 Version 3: Reference Information Model (<em>RIM</em>)</a>, 
- hierarchical message descriptors (HMDs) and a prose description of each element. <br/><br/>
- Implementation of these domains further depends upon a non-normative V3 Guide and normative specifications for: 
- data types; the XML technical specifications (ITS) or message wire format; message and control "wrappers", and transport protocols.
  
  
- <h2>FHIR</h2>
- <k>Fast Healthcare Interoperability Resources</k> (<a href="https://fhir.org/" target="web"><em>FHIR</em></a>, pronounced "fire") 
- is a standard describing data formats and elements (known as "resources") 
- and an application programming interface (API) for exchanging electronic health records 
- (<a href="https://www.hl7.org/implement/standards/product_brief.cfm?product_id=269" target="web"><em>EHR</em></a>). 
- The standard was created by the Health Level Seven International (HL7) health-care standards organization.<br/><br/>
-<a href="https://www.mirthcorp.com/community/wiki/pages/viewpage.action?pageId=38798954" target="web">FHIR Connector Extension (3.9)</a> 
-<br/>
+ <h2>FHIR and MIRTH</h2>
+ <a href="https://www.mirthcorp.com/community/wiki/pages/viewpage.action?pageId=38798954" target="web">FHIR Connector Extension (3.9)</a> 
+ <br/>
   <a href="https://www.youtube.com/watch?v=WkBaRwVzkl4" target="web">Install Mirth FHIR Extension</a>  
   <br/>
- <a href="http://www.mirthcorp.com/community/wiki/display/mirth/Example+Channel" target="web">Example Channel</a> 
+ <a href="hhttp://www.mirthcorp.com/community/wiki/pages/viewpage.action?pageId=38798957" target="web">Example Channel R4</a> 
 <br/>
  <a href="https://techno-soft.com/fhir-setup-on-mirth-connect.html/#:~:text=Find%20the%20FHIR%20zip%20file,FHIR%20Listener%20extension%20is%20installed" target="web">
 TechnoSoft: FHIR Setup on Mirth Connect / NextGen Connect</a> 
@@ -335,6 +332,19 @@ TechnoSoft: FHIR Setup on Mirth Connect / NextGen Connect</a>
 
 <a href="https://www.youtube.com/watch?v=INWxXJThIZE" target="web">Applicadia Clinical Reporting Demonstration - Video</a>
 
+<h2>HL7 version 3</h2>
+ <a href="https://www.hl7.org/implement/standards/product_brief.cfm?product_id=186" target="web">HL7 Version 3 Product Suite</a>.<br/>
+ 
+ The Version 3 Normative Edition represents a new approach to clinical information exchange based on a <em>model driven methodology</em> 
+ that produces messages and electronic documents expressed in <tt>XML syntax</tt>. <br/><br/>
+ The V3 specification is built around <em>subject domains</em> that provide 
+ storyboard descriptions, trigger events, interaction designs, domain object models derived from the 
+  <a href="https://www.hl7.org/implement/standards/product_brief.cfm?product_id=77" target="web">HL7 Version 3: Reference Information Model (<em>RIM</em>)</a>, 
+ hierarchical message descriptors (HMDs) and a prose description of each element. <br/><br/>
+ Implementation of these domains further depends upon a non-normative V3 Guide and normative specifications for: 
+ data types; the XML technical specifications (ITS) or message wire format; message and control "wrappers", and transport protocols.
+
+ 
  <h2>RIM</h2>
  RIMBAA, now: <a href=" https://wiki.hl7.org/Application_Implementation_and_Design" target="web">Application Implementation and Design HL7 "User Group" </a>
   <br/>

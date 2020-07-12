@@ -5,13 +5,17 @@ import org.apache.commons.httpclient.methods.*;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.hl7.fhir.instance.model.api.IBaseBundle;
 import org.hl7.fhir.instance.model.api.IBaseResource;
-import org.hl7.fhir.r4.model.*;
+import org.hl7.fhir.instance.model.api.IIdType;
+//import org.hl7.fhir.r4.model.*;
+import ca.uhn.fhir.model.dstu2.resource.*;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import ca.uhn.fhir.context.FhirContext;
+
+import ca.uhn.fhir.rest.api.MethodOutcome;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
 import ca.uhn.fhir.util.BundleUtil;
 
@@ -19,7 +23,25 @@ import ca.uhn.fhir.util.BundleUtil;
 public class HttpFhirClientMirth {
 //  private static String url = "http://localhost:9001/r4";
   private HttpClient client = new HttpClient();
+  //FhirContext is an expensive (thread-safe) object
+//  private FhirContext ctx = FhirContext.forR4();
   
+  private FhirContext ctx = FhirContext.forDstu2();
+  private String serverBase = "http://localhost:9001/r4"; //"http://fhirtest.uhn.ca/baseDstu2";
+
+  //From https://hapifhir.io/hapi-fhir/docs/client/generic_client.html  
+  public void search() {
+//	  String serverBase = "http://fhirtest.uhn.ca/baseDstu2";
+	  IGenericClient client = ctx.newRestfulGenericClient(serverBase);
+	  System.out.println("client "+ client);
+	  Bundle results = client
+			   .search()
+			   .forResource(Patient.class)
+			   .where(Patient.FAMILY.matches().value("duck"))
+			   .returnBundle(Bundle.class)
+			   .execute();	
+	  System.out.println("Found " + results.getEntry().size() + " patients named 'duck'");
+  }
   public void readData() {
 	    // Create a method instance.
 	    GetMethod method  = new GetMethod("http://localhost:9001/r4");
@@ -32,8 +54,37 @@ public class HttpFhirClientMirth {
   }
   
   
+  //From https://hapifhir.io/hapi-fhir/docs/client/generic_client.html  
   public void createPatient() {
-	  PostMethod method = new PostMethod("http://localhost:9001/r4/Patient");
+//	  PostMethod method = new PostMethod("http://localhost:9001/r4/Patient");
+	try {
+		  Patient patient = new Patient();
+		// ..populate the patient object..
+		patient.addIdentifier().setSystem("urn:system").setValue("12345");
+//		patient.addName().setFamily("Smith").addGiven("John");
+		patient.addName().addFamily("Smith").addGiven("John");
+		
+		String serverBase = "http://fhirtest.uhn.ca/baseDstu2";
+		IGenericClient client = ctx.newRestfulGenericClient(serverBase);
+		// Invoke the server create method (and send pretty-printed JSON
+		// encoding to the server
+		// instead of the default which is non-pretty printed XML)
+		MethodOutcome outcome = client.create()
+		   .resource(patient)
+		   .prettyPrint()
+		   .encodedJson()
+		   .execute();
+	
+		// The MethodOutcome object will contain information about the
+		// response from the server, including the ID of the created
+		// resource, the OperationOutcome response, etc. (assuming that
+		// any of these things were provided by the server! They may not
+		// always be)
+		IIdType id = outcome.getId();
+		System.out.println("Got ID: " + id.getValue());
+	  }catch( Exception e) {
+		  System.out.println("createPatient ERROR:" + e.getMessage());
+	  }
   }  
   
   public void executeMethod(HttpMethodBase method) {
@@ -65,10 +116,11 @@ public class HttpFhirClientMirth {
 }
   
 /*
- * USING HAPI FHIR  
+ * USING HAPI FHIR   R4
  * From https://hapifhir.io/hapi-fhir/docs/client/examples.html
  */
   public void xxx() {
+/*	  
 	// Create a patient object
 	  Patient patient = new Patient();
 	  patient.addIdentifier()
@@ -119,7 +171,7 @@ public class HttpFhirClientMirth {
 	        .setUrl("Patient")
 	        .setIfNoneExist("identifier=http://acme.org/mrns|12345")
 	        .setMethod(Bundle.HTTPVerb.POST);
-/*
+ 
 	  // Add the observation. This entry is a POST with no header
 	  // (normal create) meaning that it will be created even if
 	  // a similar resource already exists.
@@ -128,9 +180,9 @@ public class HttpFhirClientMirth {
 	     .getRequest()
 	        .setUrl("Observation")
 	        .setMethod(Bundle.HTTPVerb.POST);
-*/
+
 	  // Log the request
-	  FhirContext ctx = FhirContext.forR4();
+//	  FhirContext ctx = FhirContext.forR4();
 	  System.out.println(ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(bundle));
 	  System.out.println("------------------------------------------------------");
 	  System.out.println("PATIENT ID="+patient.getId());
@@ -146,7 +198,7 @@ public class HttpFhirClientMirth {
 	  }catch( Exception e) {
 		  System.out.println("POST ERROR:" + e.getMessage());
 	  }
-	  
+*/	  
   }
   
   public void yyy() {
@@ -206,7 +258,8 @@ public class HttpFhirClientMirth {
 //	  appl.readData();
 //	  appl.createPatient();
 //	  appl.xxx();
-	  appl.yyy();
- 
+//	  appl.yyy();
+	  appl.createPatient();
+//	  appl.search();
   }
 }

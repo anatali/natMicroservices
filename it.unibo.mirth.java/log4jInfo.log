@@ -39,3 +39,27 @@
 2020-07-12 09:23:38 INFO  VersionUtil:72 - HAPI FHIR version 5.0.2 - Rev ecf175a352
 2020-07-12 09:23:38 INFO  FhirContext:180 - Creating new FHIR context for FHIR version [R4]
 2020-07-12 09:23:40 INFO  XmlUtil:75 - FHIR XML procesing will use StAX implementation 'Java Runtime Environment' version '1.8.0_191'
+2020-07-12 18:45:00 INFO  VersionUtil:72 - HAPI FHIR version 5.0.2 - Rev ecf175a352
+2020-07-12 18:45:00 INFO  FhirContext:180 - Creating new FHIR context for FHIR version [DSTU3]
+2020-07-12 18:45:04 INFO  XmlUtil:75 - FHIR XML procesing will use StAX implementation 'Java Runtime Environment' version '1.8.0_181'
+2020-07-12 18:46:37 INFO  VersionUtil:72 - HAPI FHIR version 5.0.2 - Rev ecf175a352
+2020-07-12 18:46:37 INFO  FhirContext:180 - Creating new FHIR context for FHIR version [DSTU3]
+2020-07-12 18:46:41 INFO  XmlUtil:75 - FHIR XML procesing will use StAX implementation 'Java Runtime Environment' version '1.8.0_181'
+2020-07-12 18:47:35 INFO  VersionUtil:72 - HAPI FHIR version 5.0.2 - Rev ecf175a352
+2020-07-12 18:47:35 INFO  FhirContext:180 - Creating new FHIR context for FHIR version [R4]
+2020-07-12 18:47:38 INFO  XmlUtil:75 - FHIR XML procesing will use StAX implementation 'Java Runtime Environment' version '1.8.0_181'
+2020-07-12 18:48:25 INFO  VersionUtil:72 - HAPI FHIR version 5.0.2 - Rev ecf175a352
+2020-07-12 18:48:25 INFO  FhirContext:180 - Creating new FHIR context for FHIR version [R4]
+2020-07-12 18:48:29 INFO  XmlUtil:75 - FHIR XML procesing will use StAX implementation 'Java Runtime Environment' version '1.8.0_181'
+2020-07-12 18:50:59 INFO  VersionUtil:72 - HAPI FHIR version 5.0.2 - Rev ecf175a352
+2020-07-12 18:50:59 INFO  FhirContext:180 - Creating new FHIR context for FHIR version [R4]
+2020-07-12 18:51:03 INFO  XmlUtil:75 - FHIR XML procesing will use StAX implementation 'Java Runtime Environment' version '1.8.0_181'
+2020-07-12 18:52:11 INFO  VersionUtil:72 - HAPI FHIR version 5.0.2 - Rev ecf175a352
+2020-07-12 18:52:11 INFO  FhirContext:180 - Creating new FHIR context for FHIR version [DSTU3]
+2020-07-12 18:52:15 INFO  XmlUtil:75 - FHIR XML procesing will use StAX implementation 'Java Runtime Environment' version '1.8.0_181'
+2020-07-12 18:53:18 INFO  VersionUtil:72 - HAPI FHIR version 5.0.2 - Rev ecf175a352
+2020-07-12 18:53:18 INFO  FhirContext:180 - Creating new FHIR context for FHIR version [R4]
+2020-07-12 18:53:22 INFO  XmlUtil:75 - FHIR XML procesing will use StAX implementation 'Java Runtime Environment' version '1.8.0_181'
+2020-07-12 18:54:05 INFO  VersionUtil:72 - HAPI FHIR version 5.0.2 - Rev ecf175a352
+2020-07-12 18:54:05 INFO  FhirContext:180 - Creating new FHIR context for FHIR version [R4]
+2020-07-12 18:54:09 INFO  XmlUtil:75 - FHIR XML procesing will use StAX implementation 'Java Runtime Environment' version '1.8.0_181'
