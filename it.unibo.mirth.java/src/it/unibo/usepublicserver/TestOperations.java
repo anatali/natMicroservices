@@ -11,7 +11,7 @@ import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.instance.model.api.IIdType;
 
 public class TestOperations {
-private String serverBase = "https://hapi.fhir.org/baseR4";
+private String serverBase = "http://localhost:9001/r4"; //"https://hapi.fhir.org/baseR4";
 private FhirContext ctx = FhirContext.forR4();
 
 	public void read_a_resource() {
@@ -22,7 +22,7 @@ private FhirContext ctx = FhirContext.forR4();
 			// Try changing the ID from 952975 to 999999999999
 //			patient = client.read().resource(Patient.class).withId("952975").execute();
 			patient = client.read().resource(Patient.class).withId("1234567").execute();
-		} catch (ResourceNotFoundException e) {
+		} catch ( Exception e) {	//ResourceNotFoundException
 			System.out.println("Resource not found!");
 			return;
 		}
@@ -57,6 +57,7 @@ private FhirContext ctx = FhirContext.forR4();
 	}
 
 public void create_patient() {
+	try {
 	// Create a patient
 	Patient newPatient = new Patient();
 
@@ -85,14 +86,17 @@ public void create_patient() {
 	// Log the ID that the server assigned
 	IIdType id = outcome.getId();
 	System.out.println("Created patient, got ID: " + id);
+} catch ( Exception e) {	//ResourceNotFoundException
+	System.out.println("create_patient ERROR " + e.getMessage() );
+}
 }
 
 	public static void main(String[] args) {
 		TestOperations appl = new TestOperations();
-  		appl.read_a_resource();						//(1)
- 		appl.search_for_patients_named_test();		//(2)
+     		appl.read_a_resource();						//(1)
+// 		appl.search_for_patients_named_test();		//(2)
 //		step2_search_for_patients_named_test();
-//		step3_create_patient();
+// 		appl.create_patient();		//(4)
 	}
 
 
