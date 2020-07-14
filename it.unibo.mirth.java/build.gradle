@@ -37,6 +37,23 @@ dependencies {
 // https://mvnrepository.com/artifact/javax.xml.parsers/jaxp-api
 	compile group: 'javax.xml.parsers', name: 'jaxp-api', version: '1.4.5'
 
+//HAPI FHIR
+	// https://mvnrepository.com/artifact/ca.uhn.hapi.fhir/hapi-fhir-base
+	//compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-base', version: '5.0.2'
+
+	// https://mvnrepository.com/artifact/ca.uhn.hapi.fhir/org.hl7.fhir.dstu3
+	//compile group: 'ca.uhn.hapi.fhir', name: 'org.hl7.fhir.dstu3', version: '5.0.12'
+	
+	// https://mvnrepository.com/artifact/ca.uhn.hapi.fhir/hapi-fhir-structures-r4
+	//compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-structures-r4', version: '5.0.2'
+
+compile 'ca.uhn.hapi.fhir:hapi-fhir-base:5.0.2'
+compile 'ca.uhn.hapi.fhir:hapi-fhir-structures-dstu2:5.0.2'
+compile 'ca.uhn.hapi.fhir:hapi-fhir-structures-dstu3:5.0.2'
+compile 'ca.uhn.hapi.fhir:hapi-fhir-structures-r4:5.0.2'
+compile group: 'ca.uhn.hapi.fhir', name: 'org.hl7.fhir.r4', version: '5.0.12'
+// https://mvnrepository.com/artifact/ca.uhn.hapi.fhir/hapi-fhir-client
+compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-client', version: '5.0.2'
 
 //CUSTOM
 	compile name: 'hapi-base-2.2'

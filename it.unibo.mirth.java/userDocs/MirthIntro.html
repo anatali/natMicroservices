@@ -197,6 +197,9 @@ DISI - HapiUsage.html</a> (on <tt>natMicroservices .... it.unibo.hapi2.2/userDoc
 DISI - MirthExperiments.html</a> (on <tt>natMicroservices .... it.unibo.mirth.java/userDocs/MirthExperiments.html/</tt>) </li>
    
 </ul>
+<div class="remark">
+the order of the java-entries in the PATH-environment variable was important for Mirth: Mirth takes the first version found in the PATH
+</div>
 
 <h2>Startup</h2>
 
@@ -204,8 +207,9 @@ DISI - MirthExperiments.html</a> (on <tt>natMicroservices .... it.unibo.mirth.ja
 <table style="width:98%">
 <tbody>	
 <tr>
-<td style="width:60%" >
+<td style="width:50%" >
 <h3>What is Mirth Connect</h3> 
+
 Mirth Connect is an open source cross-platform HL7 interface engine that enables bi-directional sending of HL7 messages between systems 
 and applications over multiple transports.
 <div class="remark">
@@ -224,22 +228,29 @@ Un canale e' un insieme di funzioni che generalmente costituiscono una applicazi
 <br/><br/>
 <a href="nextgen-connect-39-user-guide.pdf" target="lab">User guide</a> 
 <br/>
-<a href="https://blog.galenhealthcare.com/2015/05/12/10-tips-and-tricks-to-make-mirth-connect-work-for-you/" target="lab">10 Tips and Tricks (Galen)</a> 
+<a href="https://blog.galenhealthcare.com/2015/05/12/10-tips-and-tricks-to-make-mirth-connect-work-for-you/" target="lab">10 Tips and Tricks (Galen)</a> <br/>
+<a href="http://www.mirthcorp.com/community/wiki/pages/viewpage.action?pageId=38798961" target="web">Mirth FHIR UserGuide</a><br/>
+
+<a href="https://help.datica.com/hc/en-us/articles/115005322583-Mirth-Channel-Overview" target="web"><k>Mirth Channel Overview</k></a><br/>
+
 </td>
 </tr>
 <tr><td>
 From <a href="www.mirthcorp.com" target="lab">www.mirthcorp.com</a> :<br/>
 The Mirth suite of products includes:<br/>
-<k>Mirth Connect</k>, the flagship product that acts as a two way interface for healthcare messaging, <br/>
-<k>Mirth Results</k>, which collects, organizes and aggregates clinical data and can act as an EHR repository, <br/>
-<k>Mirth Match</k>, that provides an enterprise class Entity Identification Service, <br/>
-<k>Mirth Mail</k>, a directed exchange solution based on Nationwide Health Information Network (NwHIN) email paradigm specification, <br/>
-<k>Mirth Care</k>, a suite of components for Patient Centered Medical Homes and Accountable Care Organizations (ACO) , <br/>
-<k>Mirth Appliances</k>, turnkey integrated hardware and software solutions based on Mirth, <br/>
-<k>Mirth Test</k> Drive for the clients to test different vendor applications for interoperability requirements before purchase.
-
+<ks>Mirth Connect</ks>, the flagship product that acts as a two way interface for healthcare messaging, <br/>
+<ks>Mirth Results</ks>, which collects, organizes and aggregates clinical data and can act as an EHR repository, <br/>
+<ks>Mirth Match</ks>, that provides an enterprise class Entity Identification Service, <br/>
+<ks>Mirth Mail</ks>, a directed exchange solution based on Nationwide Health Information Network (NwHIN) email paradigm specification, <br/>
+<ks>Mirth Care</ks>, a suite of components for Patient Centered Medical Homes and Accountable Care Organizations (ACO) , <br/>
+<ks>Mirth Appliances</ks>, turnkey integrated hardware and software solutions based on Mirth, <br/>
+<ks>Mirth Test</ks> Drive for the clients to test different vendor applications for interoperability requirements before purchase.</ks>
+ 
 </td>
-<td> <h3>Use cases</h3>
+<td><img src="./img/mirthServerManager.png" alt="mirthServerManager.png" width="50%" />
+ 
+ <h3>Use cases</h3>
+
 See:<br/>
  <a href="https://d2oc0ihd6a5bt.cloudfront.net/wp-content/uploads/sites/1045/2016/08/ISD-White-Paper-Mirth-Interface-Use-Cases.pdf" target="lab">
 MIRTH CONNECT INTERFACE USE CASES</a><br/>
@@ -549,7 +560,29 @@ fetch('https://localhost:8443/api/channels', {
 <br/><br/>
 <a href="https://www.spheregen.com/parsing-continuity-of-care-ccd-using-mirth-and-mdht/" target="code">Parsing CCD using Mirth and MDHT</a>
 
- <br/><br/>
+<h2>Using FHIR</h2>
+<h3>Setup</h3>
+<a href="http://www.mirthcorp.com/community/wiki/pages/viewpage.action?pageId=38798954" target="code">FHIR Connector Extension (3.9)</a><br/>
+<a href="https://techno-soft.com/fhir-setup-on-mirth-connect.html/#:~:text=Find%20the%20FHIR%20zip%20file,FHIR%20Listener%20extension%20is%20installed." target="web">FHIR Setup on Mirth Connect</a> 
+<a href="http://www.mirthcorp.com/community/wiki/pages/viewpage.action?pageId=38798991">Getting the FHIR Connector (3.9)</a><br/>
+After restarting the server, make sure that you launch the <tt>Mirth Administrator</tt> by clicking the Launch 
+<tt>Mirth Connect Administrator</tt> button and not using a previously downloaded <k>JNLP</k> file.
+ <br/>  <br/> 
+The FHIR Listener connector acts much like an HTTP Listener but also includes an assortment of FHIR-specific settings 
+as well as some helper/utility classes for working with responses.  <br/> 
+There is also an FHIR Sender destination connector and a new FHIR Resource Builder available 
+as both a transformer step type and code template type. 
+<a href="https://github.com/nextgenhealthcare/fhir-example-channels/tree/master/channels">fhir-example-channels GIT</a><br/>
+<h3>Examples</h3>
+<a href="https://nilkamaldp.wordpress.com/fhir-implementation-using-mirth/" target="code">FHIR Implementation Using Mirth</a>
+explains what is reported in 
+<a href="http://www.mirthcorp.com/community/wiki/pages/viewpage.action?pageId=38798957" target="code">Mirth Example Channel (R4)</a>.<br/>
+ See <a href="./MirthExperiments.html#fhir" target="web"> DISI - MirthExperiments.html | fhir</a><br/>
+ 
+See also <a href="https://www.hl7.org/fhir/patient-example.json.html" target="code">FHIR R4 - Patient-example.json</a>.<br/>
+<br/>
+
+<br/><br/>
 <table style="width:98%">
 <tbody>	
 <tr>

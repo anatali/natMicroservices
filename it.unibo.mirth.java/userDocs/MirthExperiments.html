@@ -192,7 +192,6 @@ div.imagedesc{
 <ul>
 <li><a href="../../../natmaterial/health/userDocs/HealthReferences.html" target="web"> 
 DISI - HealthReferences.html</a> (on <tt>natmaterial .... health/userDocs/</tt>) </li>
-
 <li><a href="../../../natmaterial/health/userDocs/HealthReferences.html" target="web">DISI - HealthReferences.html </a></li>
  <li><a href="./MirthIntro.html" target="web"> 
 DISI - MirthIntro.html</a> (on <tt>natMicroservices .... it.unibo.mirth.java/userDocs/MirthExperiments.html/</tt>) </li>
@@ -204,16 +203,15 @@ DISI - HapiUsage.html</a> (on <tt>natMicroservices .... it.unibo.hapi2.2/userDoc
 <h2>Tools </h2>
 <table style="width:98%">
 <tbody>	
- 
-
-<tr><td>Using Mirth-API
+<tr><td style="width:25%">Using Mirth-API
 </td>
-<td style="width:25%"><a href="../src/it/unibo/mirth/java/MirthApiUsage.java" target="code">MirthApiUsage.java</a></td>
+<td ><a href="../src/it/unibo/mirth/java/MirthApiUsage.java" target="code">MirthApiUsage.java</a> (by DISI) </td>
 </tr>
 
-<tr><td>
+<tr><td>SmartHL7</td>
+<td>
+<a href="https://smarthl7.com/" target="web">Free HL7 Tool Viewer Editor Filter Sender Receiver</a> 
 </td>
-<td></td>
 </tr>
  </tbody>
 </table>
@@ -251,9 +249,9 @@ A user-defined Java library: <a href="../src/it/unibo/mirth/java/MirthJava0.java
 </td>
 </tr>
 
-<tr><td>Using Mirth-API
+<tr><td> 
 </td>
-<td><a href="../src/it/unibo/mirth/java/MirthApiUsage.java" target="code">MirthApiUsage.java</a></td>
+<td> </td>
 </tr>
 
 <tr><td>
@@ -262,6 +260,95 @@ A user-defined Java library: <a href="../src/it/unibo/mirth/java/MirthJava0.java
 </tr>
  </tbody>
 </table>
+
+<h2 id="fhir">FHIR</h2>
+
+<h3>Example</h3>
+<a href="https://nilkamaldp.wordpress.com/fhir-implementation-using-mirth/" target="code">FHIR Implementation Using Mirth</a>
+explains what is reported in 
+<a href="http://www.mirthcorp.com/community/wiki/pages/viewpage.action?pageId=38798957" target="code">Mirth Example Channel (R4)</a>.<br/>
+
+<ul>
+<li>This example channel depends on a database to store resource information. It is set up to support PostgreSQL or SQL Server, 
+though you can modify the code templates to support others.</li>
+<li>The example channel also relies on some configuration map properties to store database connection information. 
+If you don't already have configuration map properties set, you can just import this file:
+<pre>
+PostgreSQL:
+ The type of database server (postgres, sqlserver).fhirDBDatabaseType = postgres
+ # The JDBC Driver class to use when connecting to the FHIR database.fhirDBDriver = org.postgresql.Driver
+ # The JDBC connection URL to use when connecting to the FHIR database.fhirDBUrl = jdbc:postgresql://localhost:5432/fhirdb
+ # The username to use when connecting to the FHIR database.fhirDBUsername = postgres
+ # The password to use when connecting to the FHIR database.fhirDBPassword = postgres
+ # The maximum amount of retry attempts when a database connection fails.fhirDBMaxRetries = 3
+</pre>
+Otherwise, you can just add them to the configuration map table.
+</li>
+<li>certain interactions have been selectively enabled for certain resource types</li>
+<li>We use destination set filtering to decide in advance which destination to send a message to. 
+Each destination is named according to one of the possible FHIR interactions, like 'create' or 'update.'</li>
+
+<li>'create' destination: the JavaScript Writer takes a resource posted to the channel and stores it in the database.
+It uses <tt>FhirResponseFactory</tt> to create a <tt>FhirResponse</tt> object. <br/><br/>
+'read' destination: similar code to select resource data from the same database table and return the data in an appropriate 
+<tt>FhirResponse</tt> object. 
+<m><pre>
+try {
+    var fhirVersion = $('fhirVersion');
+    var type = $('fhirType').toLowerCase();
+    var id = $('fhirId');
+    
+    var result = getResource(type, id);
+    
+    if (result.next()) {
+        var version = new String(result.getInt('version'));
+        var data = getResultSetString(result, 'data');
+        var contentType = getResultSetString(result, 'mimetype');
+        var lastModified = getResultSetDate(result, 'last_modified');
+        var deleted = result.getBoolean('deleted');
+
+        if (deleted) {
+            return createOperationOutcome('error', 'processing', $('fhirType') + ' ID ' + id + ' has been deleted.', fhirVersion, 410);
+        } else {
+            var response = FhirResponseFactory.getReadResponse(data, version, lastModified, 200, contentType);
+            responseMap.put('response', response);
+            return response.getMessage();
+        }
+    } else {
+        return createOperationOutcome('error', 'processing', $('fhirType') + ' ID ' + id + ' not found.', fhirVersion, 404);
+    }
+} catch (e) {
+    return createOperationOutcome('error', 'transient', 'Error reading resource.', fhirVersion, 500, e);
+}
+</pre></m>
+
+</li>
+
+<li>request the home page at the URL <ks>http://localhost:9001/r4/</ks>, or the conformance statement at the URL 
+<ks>http://localhost:9001/r4/metadata</ks>. </li>
+
+<li>create a new Patient resource. POST a request to <tt>http://localhost:9001/r4/Patient</tt>.
+<br/>
+If you choose an XML-formatted resource, use  <tt>application/fhir+xml</tt>  for the Content-Type. <br/>
+If you choose JSON, use <tt>application/fhir+json</tt>.
+<h4>Create a patient resource</h4>
+See <a href="../fhir/examples/patient0.json" target="code">patient0.json</a> (general person)
+taken from <a href="https://www.hl7.org/fhir/patient-example.json.html" target="code">FHIR R4 - Patient-example.json</a>
+<br/><br/>
+See also
+<a href="https://hapifhir.io/hapi-fhir/docs/client/examples.html" target="web">HAPI FHIR Client Examples</a>
+and 
+<a href="http://hapi.fhir.org/" target="web">HAPI FHIR Public Server</a>
+<br/><br/>
+In whatever HTTP client you’re using, you should have received a 201 (Created) status code and also a Location header. <br/>
+The <k>Location header</k> contains a URL telling the client where to issue a 'vread' interaction to retrieve the same resource you just created.
+ </li>
+ 
+ <li>copy that URL and issue a new GET request to it</li>
+ 
+ <li>You can also create and read Binary resources</li>
+</ul>
+
 
   <br/><br/>
 <table style="width:98%">
