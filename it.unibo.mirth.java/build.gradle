@@ -61,6 +61,7 @@ compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-client', version: '5.0.2'
 	compile name: 'log4j-1.2.17'
 	compile name: 'slf4j-api-1.6.6'
 	compile name: 'slf4j-log4j12-1.6.6'
+	implementation 'com.google.code.gson:gson:2.8.6'
 }
  
 sourceSets {

@@ -57,27 +57,27 @@
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/it.unibo.mirth.java/lib/hapi-base-2.2.jar">
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/it.unibo.mirth.java/lib/hapi-base-2.2.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/it.unibo.mirth.java/lib/hapi-structures-v26-2.2.jar">
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/it.unibo.mirth.java/lib/hapi-structures-v26-2.2.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/it.unibo.mirth.java/lib/log4j-1.2.17.jar">
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/it.unibo.mirth.java/lib/log4j-1.2.17.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/it.unibo.mirth.java/lib/slf4j-api-1.6.6.jar">
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/it.unibo.mirth.java/lib/slf4j-api-1.6.6.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Progetti/Evolution/it.unibo.mirth.java/lib/slf4j-log4j12-1.6.6.jar">
+	<classpathentry kind="lib" path="C:/Progetti/Evolution/natMicroservices/it.unibo.mirth.java/lib/slf4j-log4j12-1.6.6.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
