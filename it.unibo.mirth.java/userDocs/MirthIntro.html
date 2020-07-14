@@ -193,6 +193,9 @@ div.imagedesc{
  
 <li><a href="../../it.unibo.hapi2.2/userDocs/HapiUsage.html" target="web"> 
 DISI - HapiUsage.html</a> (on <tt>natMicroservices .... it.unibo.hapi2.2/userDocs/</tt>) </li>
+<li><a href="../../../Evolution/it.unibo.mirth.java/userDocs/HapiFhirUsage.html" target="web"> 
+DISI - HapiFhirUsage.html</a> (on <tt>natMicroservices .... it.unibo.mirth.java/userDocs/</tt>) </li>
+
 <li><a href="./MirthExperiments.html" target="web"> 
 DISI - MirthExperiments.html</a> (on <tt>natMicroservices .... it.unibo.mirth.java/userDocs/MirthExperiments.html/</tt>) </li>
    
@@ -565,7 +568,12 @@ The FHIR Listener connector acts much like an HTTP Listener but also includes an
 as well as some helper/utility classes for working with responses.  <br/> 
 There is also an FHIR Sender destination connector and a new FHIR Resource Builder available 
 as both a transformer step type and code template type. 
-<a href="https://github.com/nextgenhealthcare/fhir-example-channels/tree/master/channels">fhir-example-channels GIT</a><br/>
+<a href="https://github.com/nextgenhealthcare/fhir-example-channels/tree/master/channels">fhir-example-channels GIT</a><br/><br/>
+
+ <a href="../../../natmaterial/fhir-example-channels/channels" target="web">fhir-example-channels/channels</a> 
+ (in natmaterial: a repository of sample channels, code template libraries, and transformers that can be used with the 
+FHIR Connector Extension)<br/>
+
 <h3>Examples</h3>
 <a href="https://nilkamaldp.wordpress.com/fhir-implementation-using-mirth/" target="code">FHIR Implementation Using Mirth</a>
 explains what is reported in 
@@ -575,6 +583,61 @@ explains what is reported in
 See also <a href="https://www.hl7.org/fhir/patient-example.json.html" target="code">FHIR R4 - Patient-example.json</a>.<br/>
 <br/>
 
+<h2>Using postgres</h2>
+<pre>
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8010:8080
+</pre>
+
+<pre>
+CREATE SEQUENCE resource_sequence
+  INCREMENT 1
+  START 1;
+ 
+CREATE TABLE resource
+(
+  sequence_id bigint NOT NULL DEFAULT nextval('resource_sequence'::regclass),
+  name character varying(255) NOT NULL,
+  id character varying(255) NOT NULL,
+  version integer NOT NULL,
+  data xml,
+  mimetype character varying(255),
+  last_modified timestamp with time zone DEFAULT now(),
+  deleted boolean,
+  request_method character varying,
+  request_url character varying,
+  CONSTRAINT resource_pkey PRIMARY KEY (sequence_id),
+  CONSTRAINT resource_unq UNIQUE (name, id, version)
+);
+</pre>
+<pre>
+docker pull postgres
+docker run --name mirthpostgresdb -e POSTGRES_PASSWORD=nat25650 postgres //-d postgres
+docker run -it --rm --network some-network postgres psql -h some-postgres -U postgres
+
+docker-compose -f stack.yml
+http://localhost:8010
+
+http://localhost:8010?pgsql=db&username=postgres&db=mirthdb&ns=nat25650
+
+http://localhost:8010/?pgsql=db&username=postgres&db=mirthdb&ns=fhirdb
+
+
+</pre>
 <br/><br/>
 <table style="width:98%">
 <tbody>	

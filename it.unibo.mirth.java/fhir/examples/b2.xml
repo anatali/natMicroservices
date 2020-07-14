@@ -1,0 +1,1040 @@
+<Bundle xmlns="http://hl7.org/fhir">
+	<id value="a9111322-fef3-4635-8ece-dbcf232f9973"></id>
+	<meta>
+		<lastUpdated value="2020-07-14T07:42:00.808+00:00"></lastUpdated>
+	</meta>
+	<type value="searchset"></type>
+	<link>
+		<relation value="self"></relation>
+		<url
+			value="http://hapi.fhir.org/baseR4?_getpages=a9111322-fef3-4635-8ece-dbcf232f9973&amp;_getpagesoffset=20&amp;_count=20&amp;_pretty=true&amp;_bundletype=searchset"></url>
+	</link>
+	<link>
+		<relation value="next"></relation>
+		<url
+			value="http://hapi.fhir.org/baseR4?_getpages=a9111322-fef3-4635-8ece-dbcf232f9973&amp;_getpagesoffset=40&amp;_count=20&amp;_pretty=true&amp;_bundletype=searchset"></url>
+	</link>
+	<link>
+		<relation value="previous"></relation>
+		<url
+			value="http://hapi.fhir.org/baseR4?_getpages=a9111322-fef3-4635-8ece-dbcf232f9973&amp;_getpagesoffset=0&amp;_count=20&amp;_pretty=true&amp;_bundletype=searchset"></url>
+	</link>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/50096"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="50096"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-10-22T12:39:55.922+00:00"></lastUpdated>
+					<source value="#VdVUnvWtydO2IhZH"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							Walter
+							<b>TEST0000000005 </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody>
+								<tr>
+									<td>Identifier</td>
+									<td>0</td>
+								</tr>
+								<tr>
+									<td>Address</td>
+									<td>
+										<span>WIEN0000000005 </span>
+										<span>A </span>
+									</td>
+								</tr>
+								<tr>
+									<td>Date of birth</td>
+									<td>
+										<span>19 November 1954</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</text>
+				<identifier>
+					<use value="usual"></use>
+					<value value="0"></value>
+				</identifier>
+				<name>
+					<use value="official"></use>
+					<family value="TEST0000000005"></family>
+					<given value="Walter"></given>
+				</name>
+				<telecom>
+					<system value="phone"></system>
+				</telecom>
+				<gender value="male"></gender>
+				<birthDate value="1954-11-19">
+					<extension
+						url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+						<valueDateTime value="1954-11-19T00:00:00+01:00"></valueDateTime>
+					</extension>
+				</birthDate>
+				<address>
+					<use value="home"></use>
+					<type value="both"></type>
+					<city value="WIEN0000000005"></city>
+					<state value="A"></state>
+					<postalCode value="0005"></postalCode>
+				</address>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/50088"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="50088"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-10-22T12:39:55.922+00:00"></lastUpdated>
+					<source value="#VdVUnvWtydO2IhZH"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							Michael
+							<b>TEST0000000002 </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody>
+								<tr>
+									<td>Identifier</td>
+									<td>0</td>
+								</tr>
+								<tr>
+									<td>Address</td>
+									<td>
+										<span>WIEN0000000002 </span>
+										<span>A </span>
+									</td>
+								</tr>
+								<tr>
+									<td>Date of birth</td>
+									<td>
+										<span>17 December 1990</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</text>
+				<identifier>
+					<use value="usual"></use>
+					<value value="0"></value>
+				</identifier>
+				<name>
+					<use value="official"></use>
+					<family value="TEST0000000002"></family>
+					<given value="Michael"></given>
+				</name>
+				<telecom>
+					<system value="phone"></system>
+				</telecom>
+				<gender value="male"></gender>
+				<birthDate value="1990-12-17">
+					<extension
+						url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+						<valueDateTime value="1990-12-17T00:00:00+01:00"></valueDateTime>
+					</extension>
+				</birthDate>
+				<address>
+					<use value="home"></use>
+					<type value="both"></type>
+					<city value="WIEN0000000002"></city>
+					<state value="A"></state>
+					<postalCode value="0002"></postalCode>
+				</address>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/50093"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="50093"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-10-22T12:39:55.922+00:00"></lastUpdated>
+					<source value="#VdVUnvWtydO2IhZH"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							Silvia
+							<b>TEST0000000004 </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody>
+								<tr>
+									<td>Identifier</td>
+									<td>0</td>
+								</tr>
+								<tr>
+									<td>Address</td>
+									<td>
+										<span>WIEN0000000004 </span>
+										<span>A </span>
+									</td>
+								</tr>
+								<tr>
+									<td>Date of birth</td>
+									<td>
+										<span>08 August 1957</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</text>
+				<identifier>
+					<use value="usual"></use>
+					<value value="0"></value>
+				</identifier>
+				<name>
+					<use value="official"></use>
+					<family value="TEST0000000004"></family>
+					<given value="Silvia"></given>
+				</name>
+				<telecom>
+					<system value="phone"></system>
+				</telecom>
+				<gender value="female"></gender>
+				<birthDate value="1957-08-08">
+					<extension
+						url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+						<valueDateTime value="1957-08-08T00:00:00+01:00"></valueDateTime>
+					</extension>
+				</birthDate>
+				<address>
+					<use value="home"></use>
+					<type value="both"></type>
+					<city value="WIEN0000000004"></city>
+					<state value="A"></state>
+					<postalCode value="0004"></postalCode>
+				</address>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/50120"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="50120"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-10-22T12:39:55.922+00:00"></lastUpdated>
+					<source value="#VdVUnvWtydO2IhZH"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							Josef
+							<b>TEST0000000010 </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody>
+								<tr>
+									<td>Identifier</td>
+									<td>0</td>
+								</tr>
+								<tr>
+									<td>Address</td>
+									<td>
+										<span>WIEN0000000010 </span>
+										<span>A </span>
+									</td>
+								</tr>
+								<tr>
+									<td>Date of birth</td>
+									<td>
+										<span>25 February 1936</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</text>
+				<identifier>
+					<use value="usual"></use>
+					<value value="0"></value>
+				</identifier>
+				<name>
+					<use value="official"></use>
+					<family value="TEST0000000010"></family>
+					<given value="Josef"></given>
+				</name>
+				<telecom>
+					<system value="phone"></system>
+				</telecom>
+				<gender value="male"></gender>
+				<birthDate value="1936-02-25">
+					<extension
+						url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+						<valueDateTime value="1936-02-25T00:00:00+01:00"></valueDateTime>
+					</extension>
+				</birthDate>
+				<address>
+					<use value="home"></use>
+					<type value="both"></type>
+					<city value="WIEN0000000010"></city>
+					<state value="A"></state>
+					<postalCode value="0010"></postalCode>
+				</address>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/50105"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="50105"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-10-22T12:39:55.922+00:00"></lastUpdated>
+					<source value="#VdVUnvWtydO2IhZH"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							Manola
+							<b>TEST0000000009 </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody>
+								<tr>
+									<td>Identifier</td>
+									<td>0</td>
+								</tr>
+								<tr>
+									<td>Address</td>
+									<td>
+										<span>WIEN0000000009 </span>
+										<span>A </span>
+									</td>
+								</tr>
+								<tr>
+									<td>Date of birth</td>
+									<td>
+										<span>23 November 1950</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</text>
+				<identifier>
+					<use value="usual"></use>
+					<value value="0"></value>
+				</identifier>
+				<name>
+					<use value="official"></use>
+					<family value="TEST0000000009"></family>
+					<given value="Manola"></given>
+				</name>
+				<telecom>
+					<system value="phone"></system>
+				</telecom>
+				<gender value="female"></gender>
+				<birthDate value="1950-11-23">
+					<extension
+						url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+						<valueDateTime value="1950-11-23T00:00:00+01:00"></valueDateTime>
+					</extension>
+				</birthDate>
+				<address>
+					<use value="home"></use>
+					<type value="both"></type>
+					<city value="WIEN0000000009"></city>
+					<state value="A"></state>
+					<postalCode value="0009"></postalCode>
+				</address>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/50085"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="50085"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-10-22T12:39:55.922+00:00"></lastUpdated>
+					<source value="#VdVUnvWtydO2IhZH"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							Susanne
+							<b>TEST0000000001 </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody>
+								<tr>
+									<td>Identifier</td>
+									<td>0</td>
+								</tr>
+								<tr>
+									<td>Address</td>
+									<td>
+										<span>WIEN0000000001 </span>
+										<span>A </span>
+									</td>
+								</tr>
+								<tr>
+									<td>Date of birth</td>
+									<td>
+										<span>11 August 1970</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</text>
+				<identifier>
+					<use value="usual"></use>
+					<value value="0"></value>
+				</identifier>
+				<name>
+					<use value="official"></use>
+					<family value="TEST0000000001"></family>
+					<given value="Susanne"></given>
+				</name>
+				<telecom>
+					<system value="phone"></system>
+					<value value="01/699 87 95"></value>
+				</telecom>
+				<gender value="female"></gender>
+				<birthDate value="1970-08-11">
+					<extension
+						url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+						<valueDateTime value="1970-08-11T00:00:00+01:00"></valueDateTime>
+					</extension>
+				</birthDate>
+				<address>
+					<use value="home"></use>
+					<type value="both"></type>
+					<city value="WIEN0000000001"></city>
+					<state value="A"></state>
+					<postalCode value="0001"></postalCode>
+				</address>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/50503"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="50503"></id>
+				<meta>
+					<versionId value="2"></versionId>
+					<lastUpdated value="2019-10-25T02:07:58.117+00:00"></lastUpdated>
+					<source value="#3BoB9KAOeNvCvJhf"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<p>TestPatient LCF1</p>
+						<p>16 Pier Road</p>
+						<p>STANWARDINE IN THE FIELDS</p>
+						<p>SY4 7IW</p>
+						<p>Date of birth: 1966-06-07</p>
+					</div>
+				</text>
+				<identifier>
+					<use value="official"></use>
+					<type>
+						<coding>
+							<code value="SSN"></code>
+						</coding>
+					</type>
+					<system value="http://hl7.org/fhir/sid/us-ssn"></system>
+					<value value="1"></value>
+				</identifier>
+				<active value="true"></active>
+				<name>
+					<use value="official"></use>
+					<family value="TestPatientV2"></family>
+					<given value="LCF1"></given>
+				</name>
+				<telecom>
+					<system value="phone"></system>
+					<value value="8621 3852 6100"></value>
+					<use value="home"></use>
+				</telecom>
+				<gender value="male"></gender>
+				<birthDate value="1966-06-07"></birthDate>
+				<deceasedBoolean value="false"></deceasedBoolean>
+				<address>
+					<use value="home"></use>
+					<text value="16 Pier Road, STANWARDINE IN THE FIELDS, SY4 7IW"></text>
+					<line value="16 Pier Road"></line>
+					<city value="STANWARDINE IN THE FIELDS"></city>
+					<postalCode value="SY4 7IW"></postalCode>
+				</address>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/52297"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="52297"></id>
+				<meta>
+					<versionId value="3"></versionId>
+					<lastUpdated value="2019-10-30T15:18:16.570+00:00"></lastUpdated>
+					<source value="#gJuxHmgbiAhP5hxq"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							EDTWO
+							<b>TEST </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody>
+								<tr>
+									<td>Identifier</td>
+									<td>E4330</td>
+								</tr>
+								<tr>
+									<td>Address</td>
+									<td>
+										<span>US </span>
+									</td>
+								</tr>
+								<tr>
+									<td>Date of birth</td>
+									<td>
+										<span>01 June 1970</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</text>
+				<identifier>
+					<use value="usual"></use>
+					<type>
+						<coding>
+							<system
+								value="http://terminology.hl7.org/CodeSystem/v2-0203"></system>
+							<code value="MR"></code>
+							<display value="Medical record number"></display>
+						</coding>
+					</type>
+					<system
+						value="https://www.lumc.nl/identifiers/PatientIdentifier"></system>
+					<value value="E4330"></value>
+				</identifier>
+				<identifier>
+					<use value="usual"></use>
+					<type>
+						<coding>
+							<system
+								value="http://terminology.hl7.org/CodeSystem/v2-0203"></system>
+							<code value="MR"></code>
+							<display value="Medical record number"></display>
+						</coding>
+					</type>
+					<system
+						value="https://www.lumc.nl/identifiers/PatientIdentifier"></system>
+					<value value="204074"></value>
+				</identifier>
+				<identifier>
+					<use value="usual"></use>
+					<type>
+						<coding>
+							<system
+								value="http://terminology.hl7.org/CodeSystem/v2-0203"></system>
+							<code value="SB"></code>
+							<display value="Social Beneficiary Identifier"></display>
+						</coding>
+					</type>
+					<system value="http://hl7.org/fhir/sid/us-ssn"></system>
+					<value value="00000-0000"></value>
+				</identifier>
+				<identifier>
+					<use value="usual"></use>
+					<type>
+						<coding>
+							<system
+								value="http://terminology.hl7.org/CodeSystem/v2-0203"></system>
+							<code value="FILL"></code>
+							<display value="Filler Identifier"></display>
+						</coding>
+					</type>
+					<system
+						value="https://www.lumc.nl/identifiers/PatientIdentifier"></system>
+					<value value="25234"></value>
+				</identifier>
+				<active value="true"></active>
+				<name>
+					<use value="usual"></use>
+					<family value="TEST"></family>
+					<given value="EDTWO"></given>
+				</name>
+				<gender value="male"></gender>
+				<birthDate value="1970-06-01"></birthDate>
+				<deceasedBoolean value="false"></deceasedBoolean>
+				<address>
+					<country value="US"></country>
+				</address>
+				<multipleBirthInteger value="0"></multipleBirthInteger>
+				<managingOrganization>
+					<reference value="Organization/185"></reference>
+				</managingOrganization>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/53114"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="53114"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-11-01T11:05:04.570+00:00"></lastUpdated>
+					<source value="#d3steVlz6DenekUK"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							John Q
+							<b>TESTER </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody>
+								<tr>
+									<td>Identifier</td>
+									<td>MRN001</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</text>
+				<identifier>
+					<system value="http://example.com/fictitious-mrns"></system>
+					<value value="MRN001"></value>
+				</identifier>
+				<name>
+					<use value="official"></use>
+					<family value="Tester"></family>
+					<given value="John"></given>
+					<given value="Q"></given>
+				</name>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/55098"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="55098"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-11-06T05:00:58.361+00:00"></lastUpdated>
+					<source value="#E95mzNHiy0Yf5BiK"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							<b>TESTFAMILY </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody></tbody>
+						</table>
+					</div>
+				</text>
+				<name>
+					<family value="testFamily"></family>
+				</name>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/55101"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="55101"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-11-06T05:11:28.912+00:00"></lastUpdated>
+					<source value="#i2cqptbdgN7EU1Az"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							<b>TESTFAMILY </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody></tbody>
+						</table>
+					</div>
+				</text>
+				<name>
+					<family value="testFamily"></family>
+				</name>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/55095"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="55095"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-11-06T04:32:44.090+00:00"></lastUpdated>
+					<source value="#jw9iFGpnCwOkMPQt"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							testGiven
+							<b>TESTFAMILY </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody></tbody>
+						</table>
+					</div>
+				</text>
+				<name>
+					<family value="testFamily"></family>
+					<given value="testGiven"></given>
+				</name>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/55097"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="55097"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-11-06T04:50:27.353+00:00"></lastUpdated>
+					<source value="#TcjqrWMpGLpwi4no"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							<b>TESTFAMILY </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody></tbody>
+						</table>
+					</div>
+				</text>
+				<name>
+					<family value="testFamily"></family>
+				</name>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/55100"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="55100"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-11-06T05:08:56.858+00:00"></lastUpdated>
+					<source value="#VvFGGTXY9LxFLzAF"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							<b>TESTFAMILY </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody></tbody>
+						</table>
+					</div>
+				</text>
+				<name>
+					<family value="testFamily"></family>
+				</name>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/55102"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="55102"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-11-06T05:12:32.800+00:00"></lastUpdated>
+					<source value="#KjF4RhiK1LW1O8Xq"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							<b>TESTFAMILY </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody></tbody>
+						</table>
+					</div>
+				</text>
+				<name>
+					<family value="testFamily"></family>
+				</name>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/55105"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="55105"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-11-06T05:19:03.657+00:00"></lastUpdated>
+					<source value="#PgoyspNCvJv7ZHDI"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							testGiven
+							<b>TESTFAMILY </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody></tbody>
+						</table>
+					</div>
+				</text>
+				<name>
+					<family value="testFamily"></family>
+					<given value="testGiven"></given>
+				</name>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/55104"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="55104"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-11-06T05:18:23.481+00:00"></lastUpdated>
+					<source value="#kPVwi2tWw6YDI4r2"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							testGiven
+							<b>TESTFAMILY </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody></tbody>
+						</table>
+					</div>
+				</text>
+				<name>
+					<family value="testFamily"></family>
+					<given value="testGiven"></given>
+				</name>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/55106"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="55106"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-11-06T05:20:17.812+00:00"></lastUpdated>
+					<source value="#Q6ntVBVjewLUx3yi"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							testGiven
+							<b>TESTFAMILY </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody></tbody>
+						</table>
+					</div>
+				</text>
+				<name>
+					<family value="testFamily"></family>
+					<given value="testGiven"></given>
+				</name>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/55108"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="55108"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-11-06T05:24:56.629+00:00"></lastUpdated>
+					<source value="#fjNRvB06gX1dc72u"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							Caleb
+							<b>CUSHING </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody>
+								<tr>
+									<td>Identifier</td>
+									<td>37b847a5-7e5b-439e-9adf-c325f0c837c8</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</text>
+				<identifier>
+					<type>
+						<coding>
+							<system value="http://hl7.org/fhir/v2/0203"></system>
+							<code value="MR"></code>
+						</coding>
+					</type>
+					<value value="37b847a5-7e5b-439e-9adf-c325f0c837c8"></value>
+				</identifier>
+				<name>
+					<family value="testFamily"></family>
+				</name>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/55110"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="55110"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2019-11-06T05:26:28.282+00:00"></lastUpdated>
+					<source value="#ORjHGpoyev59UAsI"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							Caleb
+							<b>CUSHING </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody>
+								<tr>
+									<td>Identifier</td>
+									<td>37b847a5-7e5b-439e-9adf-c325f0c837c8</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</text>
+				<identifier>
+					<type>
+						<coding>
+							<system value="http://hl7.org/fhir/v2/0203"></system>
+							<code value="MR"></code>
+						</coding>
+					</type>
+					<value value="37b847a5-7e5b-439e-9adf-c325f0c837c8"></value>
+				</identifier>
+				<name>
+					<family value="testFamily"></family>
+					<given value="testGiven"></given>
+				</name>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+</Bundle>

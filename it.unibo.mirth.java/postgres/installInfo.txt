@@ -1,0 +1,13 @@
+Installation Directory: C:\Program Files\PostgreSQL\12
+Server Installation Directory: C:\Program Files\PostgreSQL\12
+Data Directory: C:\Program Files\PostgreSQL\12\data
+Database Port: 5432
+Database Superuser: postgres
+Operating System Account: NT AUTHORITY\NetworkService
+Database Service: postgresql-x64-12
+Command Line Tools Installation Directory: C:\Program Files\PostgreSQL\12
+pgAdmin4 Installation Directory: C:\Program Files\PostgreSQL\12\pgAdmin 4
+Stack Builder Installation Directory: C:\Program Files\PostgreSQL\12
+
+user: postgres
+pswd: solita

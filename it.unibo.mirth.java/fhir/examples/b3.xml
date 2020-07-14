@@ -1,0 +1,162 @@
+<Bundle xmlns="http://hl7.org/fhir">
+	<id value="92ea71ab-ef77-468e-9901-d2469e359da2"></id>
+	<meta>
+		<lastUpdated value="2020-07-14T07:49:14.989+00:00"></lastUpdated>
+	</meta>
+	<type value="searchset"></type>
+	<total value="3"></total>
+	<link>
+		<relation value="self"></relation>
+		<url value="http://hapi.fhir.org/baseR4/Patient?name=JohnBologna"></url>
+	</link>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/1389672"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="1389672"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2020-07-13T15:18:48.157+00:00"></lastUpdated>
+					<source value="#c4ZkbVrjMze3S8XR"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							JohnBologna Q
+							<b>DEVDAYS2015 </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody>
+								<tr>
+									<td>Identifier</td>
+									<td>1234567</td>
+								</tr>
+								<tr>
+									<td>Date of birth</td>
+									<td>
+										<span>18 November 2015</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</text>
+				<identifier>
+					<system value="http://acme.org/mrn"></system>
+					<value value="1234567"></value>
+				</identifier>
+				<name>
+					<family value="DevDays2015"></family>
+					<given value="JohnBologna"></given>
+					<given value="Q"></given>
+				</name>
+				<gender value="male"></gender>
+				<birthDate value="2015-11-18"></birthDate>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/1389688"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="1389688"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2020-07-13T15:25:31.226+00:00"></lastUpdated>
+					<source value="#ncupAQmVSq6rCLPV"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							JohnBologna Q
+							<b>DEVDAYS2015 </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody>
+								<tr>
+									<td>Identifier</td>
+									<td>123456789</td>
+								</tr>
+								<tr>
+									<td>Date of birth</td>
+									<td>
+										<span>18 November 2015</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</text>
+				<identifier>
+					<system value="http://acme.org/mrn"></system>
+					<value value="123456789"></value>
+				</identifier>
+				<name>
+					<family value="DevDays2015"></family>
+					<given value="JohnBologna"></given>
+					<given value="Q"></given>
+				</name>
+				<gender value="male"></gender>
+				<birthDate value="2015-11-18"></birthDate>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/1391823"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="1391823"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2020-07-14T07:36:23.897+00:00"></lastUpdated>
+					<source value="#y0Mbwv7Z1u1PadxE"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							JohnBologna Q
+							<b>DEVDAYS2015 </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody>
+								<tr>
+									<td>Identifier</td>
+									<td>1234567</td>
+								</tr>
+								<tr>
+									<td>Date of birth</td>
+									<td>
+										<span>18 November 2015</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</text>
+				<identifier>
+					<system value="http://acme.org/mrn"></system>
+					<value value="1234567"></value>
+				</identifier>
+				<name>
+					<family value="DevDays2015"></family>
+					<given value="JohnBologna"></given>
+					<given value="Q"></given>
+				</name>
+				<gender value="male"></gender>
+				<birthDate value="2015-11-18"></birthDate>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+</Bundle>

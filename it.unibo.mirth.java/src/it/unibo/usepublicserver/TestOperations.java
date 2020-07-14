@@ -4,24 +4,23 @@ package it.unibo.usepublicserver;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.api.MethodOutcome;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
-import ca.uhn.fhir.rest.server.exceptions.ResourceNotFoundException;
 import org.hl7.fhir.r4.model.DateType;
 import org.hl7.fhir.r4.model.Enumerations;
 import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.instance.model.api.IIdType;
 
 public class TestOperations {
-private String serverBase = "http://localhost:9001/r4"; //"https://hapi.fhir.org/baseR4";
+private String serverBase = "http://localhost:9001/r4"; //"https://hapi.fhir.org/baseR4";  http://localhost:9001/r4
 private FhirContext ctx = FhirContext.forR4();
 
-	public void read_a_resource() {
+	public void read_a_resource(String id) {
  		IGenericClient client = ctx.newRestfulGenericClient(serverBase);
 
 		Patient patient;
 		try {
 			// Try changing the ID from 952975 to 999999999999
 //			patient = client.read().resource(Patient.class).withId("952975").execute();
-			patient = client.read().resource(Patient.class).withId("1234567").execute();
+			patient = client.read().resource(Patient.class).withId(id).execute();
 		} catch ( Exception e) {	//ResourceNotFoundException
 			System.out.println("Resource not found!");
 			return;
@@ -32,20 +31,20 @@ private FhirContext ctx = FhirContext.forR4();
 
 	}
 
-	public void search_for_patients_named_test() {
+	public void search_for_patients_named(String name) {
 		IGenericClient client = ctx.newRestfulGenericClient(serverBase);
 
 		org.hl7.fhir.r4.model.Bundle results = client
 			.search()
 			.forResource(Patient.class)
-			.where(Patient.NAME.matches().value("test"))
+			.where(Patient.NAME.matches().value(name))
 			.returnBundle(org.hl7.fhir.r4.model.Bundle.class)
 			.execute();
 
 		System.out.println("First page: ");
 		System.out.println(ctx.newXmlParser().encodeResourceToString(results));
 
-		// Load the next page
+		// Load the next page (???)
 		org.hl7.fhir.r4.model.Bundle nextPage = client
 			.loadPage()
 			.next(results)
@@ -64,8 +63,8 @@ public void create_patient() {
 	// Populate the patient with fake information
 	newPatient
 		.addName()
-			.setFamily("DevDays2015")
-			.addGiven("John")
+			.setFamily("Unibo")
+			.addGiven("BobBologna")
 			.addGiven("Q");
 	newPatient
 		.addIdentifier()
@@ -93,10 +92,12 @@ public void create_patient() {
 
 	public static void main(String[] args) {
 		TestOperations appl = new TestOperations();
-     		appl.read_a_resource();						//(1)
-// 		appl.search_for_patients_named_test();		//(2)
+ 		appl.create_patient();		 	//
+//      	appl.read_a_resource("1234567");	//1391823					 
+//  		appl.search_for_patients_named("BobBologna");	//test	 
+  		//BobBologna --> http://hapi.fhir.org/baseR4/Patient/1391883/_history/1
+  		//http://hapi.fhir.org/baseR4/Patient?name=BobBologna
 //		step2_search_for_patients_named_test();
-// 		appl.create_patient();		//(4)
 	}
 
 

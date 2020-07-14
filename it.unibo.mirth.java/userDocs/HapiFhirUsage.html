@@ -193,13 +193,14 @@ div.imagedesc{
 <li><a href="https://dev-itel.atlassian.net/wiki/spaces/NEXTAGORA/overview" target="web">Confluence space: Nextagora</a> </li>
 <li><a href="https://dev-itel.atlassian.net/wiki/spaces/UNIBO/overview" target="web">Confluence space: UNIBO</a> </li>
 <li><a href="https://bitbucket.org/itelunibo/workspace/projects/" target="web">Projects on bitbucket</a> </li>
+<li><a href="https://bitbucket.org/itelunibo/overviewrepo/src/master/it.unibo.itel/userDocs/3-LogicalArch/HDA_Disi.html" target="web">HDA_Disi.html (overviewrepo)</a> </li>
+<hr/>
 <!-- PROTECTED
 <li><a href="http://htmlpreview.github.io/?https://bitbucket.org/itelunibo/overviewrepo/src/master/it.unibo.itel/userDocs/3-LogicalArch/HDA_Disi.html" target="web"> 
 overviewrepo/src/master/it.unibo.itel/userDocs/3-LogicalArch/HDA_Disi.html</a></li>
 -->
 <li><a href="../../it.unibo.hapi2.2/userDocs/HapiUsage.html" target="web"> DISI - HapiUsage</a> (on <tt>.it.unibo.hapi2.2/userDocs/</tt>)</li>
 
-<li><a href="https://bitbucket.org/itelunibo/overviewrepo/src/master/it.unibo.itel/userDocs/3-LogicalArch/HDA_Disi.html" target="web">HDA_Disi.html (overviewrepo)</a> </li>
  
 <li><a href="../../../natMaterial/health/userDocs/HealthReferences.html" target="web"> 
 DISI - HealthReferences.html</a> (on natMaterial/health/userDocs/)</li>
@@ -230,7 +231,8 @@ Example: access health data in various HL7 formats (and others) in a uniform way
  <tr><td style="width:35%">HL7 FHIR Specification
 </td>
 <td><a href="https://www.hl7.org/fhir/" target="web">https://www.hl7.org/fhir/</a>  
-<em>Look here to find JavaDocs for the Messages, DataTypes</em>.<br/>
+<em>Look here to find JavaDocs for the Messages, DataTypes</em>. 
+See also <a href="../../../natmaterial/health/userDocs/HealthReferences.html#FHIRresources" target="web">FHIRresources</a><br/>
 <a href="https://wiki.hl7.org/Publicly_Available_FHIR_Servers_for_testing" target="web">Publicly Available FHIR Servers for testing</a>  
  </td>
 </tr>
@@ -268,8 +270,6 @@ compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-client', version: '5.0.2'
   <li><a href="https://hapifhir.io/hapi-fhir/docs/appendix/javadocs.html" target="web">HAPI - FHIR Javadocs</a></li>
   </ul>
  
-  C:\Progetti\fhir-example-channels\channels<br/>
- 
 </td>
 </tr>
 
@@ -296,7 +296,92 @@ compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-client', version: '5.0.2'
 
  </tbody>
 </table>
+
+<h2>Examples </h2> 
+<table style="width:98%">
+<tbody>	
+<tr>
+<td style="width:40%" >
+<a href="../src/it/unibo/usepublicserver/TestOperations.java" target="code">TestOperations.java</a><br/>
+Example taken from <a href="https://github.com/FirelyTeam/fhirstarters/tree/master/java/hapi-fhirstarters-client-skeleton/" target="web">
+GITHUB FirelyTeam/fhirstarters</a><br/> 
+</td>
+<td>
+<pre>
+read_a_resource()
+search_for_patients_named_test()
+create_patient()
+</pre>
+</td>
+</tr>
+<tr><td>
+</td>
+<td></td>
+</tr>
+ </tbody>
+</table>
+ <br/><br/>
  
+<h3>Examples using testing server <a href="https://hapi.fhir.org/" target="web">https://hapi.fhir.org/baseR4</a></h3> 
+<table style="width:98%">
+<tbody>	
+<tr>
+<td style="width:30%" >
+<a href="../src/it/unibo/usepublicserver/TestOperations.java" target="code">TestOperations.java</a><br/>
+</td>
+<td>
+<pre>
+read_a_resource()			ok
+search_for_patients_named_test()	ok
+create_patient()	<k>"bobBologna"</k> <kc>got ID: http://hapi.fhir.org/baseR4/Patient/1391883/_history/1</kc>, <kc>"id": "1391823"</kc>
+<a href="http://hapi.fhir.org/baseR4/Patient/1391883" target="testserver">http://hapi.fhir.org/baseR4/Patient/1391883</a> 
+<a href="http://hapi.fhir.org/baseR4/Patient?name=BobBologna" target="testserver">http://hapi.fhir.org/baseR4/Patient?name=BobBologna</a><br/>
+</pre>
+
+ 
+</td>
+</tr>
+<tr><td>
+</td>
+<td></td>
+</tr>
+ </tbody>
+</table>
+
+<h3>Examples using MHIR channel <a href="../channels/FHIR Listener.xml" target="web">FHIR Listener.xml</a></h3> 
+ <a href="../../../natmaterial/fhir-example-channels/channels" target="web">fhir-example-channels/channels</a> 
+ (in natmaterial: a repository of sample channels, code template libraries, and transformers that can be used with the 
+FHIR Connector Extension)<br/><br/>
+
+<table style="width:98%">
+<tbody>	
+<tr>
+<td style="width:30%" >
+<a href="../src/it/unibo/usepublicserver/TestOperations.java" target="code">TestOperations.java</a><br/>
+</td>
+<td>
+The channel requires 
+<ul>
+<li><a href="https://www.postgresql.org/" target="code"><ks>postgres</ks></a> (<tt>docker pull postgres</tt>
+on <a href="https://hub.docker.com/_/postgres" target="code">dockerhub postgres</a>).<br/> See 
+<a href="http://www.mirthcorp.com/community/wiki/display/mirth/Setting+Up+Mirth+Using+PostgreSQL" target="code">Setting Up Mirth Using PostgreSQL</a> and
+<a href="http://40.85.141.130/docs/Mirth%20and%20PostgreSQL%20-%20Installation%20and%20Configuration.htm" target="code">Mirth Connect and PostgreSQL</a><br/>
+</li>
+<li><a href="https://www.microsoft.com/en-us/sql-server/sql-server-downloads" target="code">sqlserver</a>
+(<tt>docker pull mcr.microsoft.com/mssql/server</tt>
+on <a href="https://hub.docker.com/_/microsoft-mssql-server" target="code">dockerhub Microsoft SQL Server</a> ) </li>
+</ul>
+ 
+
+
+</td>
+</tr>
+<tr><td>
+</td>
+<td></td>
+</tr>
+ </tbody>
+</table>
 
 <h3>Note</h3>
 
@@ -307,9 +392,7 @@ compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-client', version: '5.0.2'
 Example - FHIR Listener (3.9.0).xml</a> vanno fatti.<br/>
 http://localhost:9001/r4/metadata<br/>
 http://localhost:9001/r4/Patient/42a88258-2b0a-4203-8419-15b4921b7f41/_history/1<br/>
-http://www.mirthcorp.com/community/wiki/display/mirth/Setting+Up+Mirth+Using+PostgreSQL<br/>
-http://40.85.141.130/docs/Mirth%20and%20PostgreSQL%20-%20Installation%20and%20Configuration.htm<br/>
-
+ 
 # The type of database server (postgres, sqlserver).fhirDBDatabaseType = postgres# The JDBC Driver class to use whe
 
 http://javadocs.mirthcorp.com/connect/3.9.0/user-api/ <br/>

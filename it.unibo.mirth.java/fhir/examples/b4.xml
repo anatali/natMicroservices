@@ -1,0 +1,62 @@
+<Bundle xmlns="http://hl7.org/fhir">
+	<id value="7ba98130-f0b8-4333-bf84-c582be82e4b7"></id>
+	<meta>
+		<lastUpdated value="2020-07-14T08:00:43.124+00:00"></lastUpdated>
+	</meta>
+	<type value="searchset"></type>
+	<total value="1"></total>
+	<link>
+		<relation value="self"></relation>
+		<url value="http://hapi.fhir.org/baseR4/Patient?name=BobBologna"></url>
+	</link>
+	<entry>
+		<fullUrl value="http://hapi.fhir.org/baseR4/Patient/1391883"></fullUrl>
+		<resource>
+			<Patient xmlns="http://hl7.org/fhir">
+				<id value="1391883"></id>
+				<meta>
+					<versionId value="1"></versionId>
+					<lastUpdated value="2020-07-14T08:00:42.815+00:00"></lastUpdated>
+					<source value="#u42l7ogAkJNjOK7L"></source>
+				</meta>
+				<text>
+					<status value="generated"></status>
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div class="hapiHeaderText">
+							BobBologna Q
+							<b>UNIBO </b>
+						</div>
+						<table class="hapiPropertyTable">
+							<tbody>
+								<tr>
+									<td>Identifier</td>
+									<td>1234567</td>
+								</tr>
+								<tr>
+									<td>Date of birth</td>
+									<td>
+										<span>18 November 2015</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</text>
+				<identifier>
+					<system value="http://acme.org/mrn"></system>
+					<value value="1234567"></value>
+				</identifier>
+				<name>
+					<family value="Unibo"></family>
+					<given value="BobBologna"></given>
+					<given value="Q"></given>
+				</name>
+				<gender value="male"></gender>
+				<birthDate value="2015-11-18"></birthDate>
+			</Patient>
+		</resource>
+		<search>
+			<mode value="match"></mode>
+		</search>
+	</entry>
+</Bundle>
