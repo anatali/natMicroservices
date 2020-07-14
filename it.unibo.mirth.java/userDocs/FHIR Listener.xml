@@ -10,7 +10,7 @@
     fhirDBUsername: The username to use when connecting to the FHIR database.
     fhirDBPassword: The password to use when connecting to the FHIR database.
     fhirDBMaxRetries: The maximum amount of retry attempts when a database connection fails.</description>
-  <revision>6</revision>
+  <revision>1</revision>
   <sourceConnector version="3.9.0">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -831,626 +831,7 @@
       <resourceProperties>
         <disabledInteractions>
           <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>COVERAGE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>PLAN_DEFINITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>MEDIA</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>MEASURE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
             <com.mirth.connect.connectors.fhir.shared.FhirResource>ORGANIZATION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>TEST_REPORT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>LIBRARY</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>TEST_SCRIPT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>CHARGE_ITEM</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>PROVENANCE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>NUTRITION_ORDER</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>GROUP</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>VISION_PRESCRIPTION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>NAMING_SYSTEM</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>FLAG</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>OPERATION_OUTCOME</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>RISK_ASSESSMENT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>CARE_PLAN</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>ENROLLMENT_RESPONSE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>CLAIM_RESPONSE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>PROCESS_RESPONSE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>COMMUNICATION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>ACCOUNT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>DEVICE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>LINKAGE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>SPECIMEN</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>IMAGING_STUDY</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>RESEARCH_SUBJECT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>DEVICE_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>MESSAGE_HEADER</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>ADVERSE_EVENT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>LIST</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>GUIDANCE_RESPONSE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>HEALTHCARE_SERVICE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>IMPLEMENTATION_GUIDE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>SUPPLY_DELIVERY</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>RELATED_PERSON</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>CLINICAL_IMPRESSION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>FAMILY_MEMBER_HISTORY</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>PROCESS_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>GOAL</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>SEARCH_PARAMETER</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>BASIC</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>COMPARTMENT_DEFINITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>PROCEDURE_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>CLAIM</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>PROCEDURE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>DEVICE_USE_STATEMENT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>ALLERGY_INTOLERANCE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>REFERRAL_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>ELIGIBILITY_RESPONSE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>GRAPH_DEFINITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>CONDITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>OBSERVATION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>SEQUENCE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>SUPPLY_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>CARE_TEAM</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>PRACTITIONER</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>BUNDLE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_DELETE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_CREATE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_READ</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_VREAD</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_UPDATE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_SEARCH_TYPE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_HISTORY_TYPE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_HISTORY_INSTANCE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>DEVICE_COMPONENT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>MEDICATION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>ENROLLMENT_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>TASK</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>EXPLANATION_OF_BENEFIT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>EXPANSION_PROFILE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>ACTIVITY_DEFINITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>ELIGIBILITY_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>OPERATION_DEFINITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>BODY_SITE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>MEDICATION_ADMINISTRATION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>MEDICATION_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>PAYMENT_NOTICE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>CAPABILITY_STATEMENT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>DATA_ELEMENT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>AUDIT_EVENT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_DELETE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_UPDATE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>STRUCTURE_DEFINITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>ENDPOINT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>RESEARCH_STUDY</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>CONTRACT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>MEDICATION_DISPENSE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>SUBSCRIPTION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>IMMUNIZATION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>APPOINTMENT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>PAYMENT_RECONCILIATION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>IMAGING_MANIFEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>QUESTIONNAIRE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>MEASURE_REPORT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>COMMUNICATION_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>COMPOSITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>MESSAGE_DEFINITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>SLOT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>APPOINTMENT_RESPONSE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>SUBSTANCE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>STRUCTURE_MAP</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>CONCEPT_MAP</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>BINARY</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_SEARCH_TYPE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>DIAGNOSTIC_REPORT</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>EPISODE_OF_CARE</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>ENCOUNTER</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>PARAMETERS</com.mirth.connect.connectors.fhir.shared.FhirResource>
-            <set>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_DELETE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_CREATE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_READ</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_VREAD</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_UPDATE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_SEARCH_TYPE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_HISTORY_TYPE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_HISTORY_INSTANCE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
-            </set>
-          </entry>
-          <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>LOCATION</com.mirth.connect.connectors.fhir.shared.FhirResource>
             <set>
               <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
             </set>
@@ -1462,13 +843,151 @@
             </set>
           </entry>
           <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>SERVICE_DEFINITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>PAYMENT_NOTICE</com.mirth.connect.connectors.fhir.shared.FhirResource>
             <set>
               <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
             </set>
           </entry>
           <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>IMMUNIZATION_RECOMMENDATION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>APPOINTMENT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>BODY_SITE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>LINKAGE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>CONCEPT_MAP</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>PLAN_DEFINITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>COVERAGE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>DETECTED_ISSUE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>MEDICATION_DISPENSE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>RESEARCH_SUBJECT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>CLAIM_RESPONSE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>PROCEDURE_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>ADVERSE_EVENT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>ACCOUNT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>CODE_SYSTEM</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>GOAL</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>TASK</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>PAYMENT_RECONCILIATION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>QUESTIONNAIRE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>MEDICATION_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>COMPARTMENT_DEFINITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>DEVICE_COMPONENT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>SEARCH_PARAMETER</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>REFERRAL_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>BASIC</com.mirth.connect.connectors.fhir.shared.FhirResource>
             <set>
               <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
             </set>
@@ -1486,25 +1005,210 @@
             </set>
           </entry>
           <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>MEASURE_REPORT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>OPERATION_OUTCOME</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>PROCESS_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
             <com.mirth.connect.connectors.fhir.shared.FhirResource>REQUEST_GROUP</com.mirth.connect.connectors.fhir.shared.FhirResource>
             <set>
               <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
             </set>
           </entry>
           <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>DOCUMENT_REFERENCE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>PARAMETERS</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_UPDATE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_SEARCH_TYPE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_HISTORY_INSTANCE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_HISTORY_TYPE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_CREATE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_READ</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_DELETE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_VREAD</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>PRACTITIONER_ROLE</com.mirth.connect.connectors.fhir.shared.FhirResource>
             <set>
               <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
             </set>
           </entry>
           <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>SCHEDULE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>ELIGIBILITY_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
             <set>
               <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
             </set>
           </entry>
           <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>VALUE_SET</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>AUDIT_EVENT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_UPDATE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_DELETE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>APPOINTMENT_RESPONSE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>LIST</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>SLOT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>ENDPOINT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>DEVICE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>COMPOSITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>SUBSCRIPTION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>SUPPLY_DELIVERY</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>SPECIMEN</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>TEST_REPORT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>PRACTITIONER</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>CONTRACT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>HEALTHCARE_SERVICE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>BINARY</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_SEARCH_TYPE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>DEVICE_METRIC</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>IMAGING_STUDY</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>NAMING_SYSTEM</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>OPERATION_DEFINITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>GUIDANCE_RESPONSE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>LIBRARY</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>EXPANSION_PROFILE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>STRUCTURE_DEFINITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>OBSERVATION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>IMMUNIZATION_RECOMMENDATION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>RELATED_PERSON</com.mirth.connect.connectors.fhir.shared.FhirResource>
             <set>
               <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
             </set>
@@ -1516,19 +1220,49 @@
             </set>
           </entry>
           <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>DEVICE_METRIC</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>MEDICATION_ADMINISTRATION</com.mirth.connect.connectors.fhir.shared.FhirResource>
             <set>
               <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
             </set>
           </entry>
           <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>DETECTED_ISSUE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>COMMUNICATION_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
             <set>
               <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
             </set>
           </entry>
           <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>CODE_SYSTEM</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>EPISODE_OF_CARE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>DEVICE_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>DOCUMENT_REFERENCE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>CARE_PLAN</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>DATA_ELEMENT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>GROUP</com.mirth.connect.connectors.fhir.shared.FhirResource>
             <set>
               <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
             </set>
@@ -1540,15 +1274,281 @@
             </set>
           </entry>
           <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>TEST_SCRIPT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>ALLERGY_INTOLERANCE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>RISK_ASSESSMENT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>ENROLLMENT_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>RESEARCH_STUDY</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>PROVENANCE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>CLAIM</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>SUPPLY_REQUEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>PROCEDURE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>EXPLANATION_OF_BENEFIT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>DEVICE_USE_STATEMENT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>ELIGIBILITY_RESPONSE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>CLINICAL_IMPRESSION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>NUTRITION_ORDER</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>ACTIVITY_DEFINITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>FLAG</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>GRAPH_DEFINITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>IMPLEMENTATION_GUIDE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>CARE_TEAM</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>LOCATION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>MEDIA</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>ENCOUNTER</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>CHARGE_ITEM</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>IMAGING_MANIFEST</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>ENROLLMENT_RESPONSE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>VALUE_SET</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>STRUCTURE_MAP</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
             <com.mirth.connect.connectors.fhir.shared.FhirResource>QUESTIONNAIRE_RESPONSE</com.mirth.connect.connectors.fhir.shared.FhirResource>
             <set>
               <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
             </set>
           </entry>
           <entry>
-            <com.mirth.connect.connectors.fhir.shared.FhirResource>PRACTITIONER_ROLE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>VISION_PRESCRIPTION</com.mirth.connect.connectors.fhir.shared.FhirResource>
             <set>
               <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>MEDICATION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>MESSAGE_HEADER</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>MEASURE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>SEQUENCE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>MESSAGE_DEFINITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>SERVICE_DEFINITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>SUBSTANCE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>FAMILY_MEMBER_HISTORY</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>IMMUNIZATION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>CONDITION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>CAPABILITY_STATEMENT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>SCHEDULE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>COMMUNICATION</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>PROCESS_RESPONSE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>DIAGNOSTIC_REPORT</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+            </set>
+          </entry>
+          <entry>
+            <com.mirth.connect.connectors.fhir.shared.FhirResource>BUNDLE</com.mirth.connect.connectors.fhir.shared.FhirResource>
+            <set>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_UPDATE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_SEARCH_TYPE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_HISTORY_INSTANCE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_HISTORY_TYPE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_PATCH</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_CREATE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_READ</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_DELETE</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
+              <com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>FHIR_VREAD</com.mirth.connect.connectors.fhir.shared.FhirRestfulInteraction>
             </set>
           </entry>
         </disabledInteractions>
@@ -2876,7 +2876,7 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1594630609801</time>
+        <time>1594724327748</time>
         <timezone>Europe/Rome</timezone>
       </lastModified>
       <pruningSettings>
@@ -2887,9 +2887,9 @@ return;</undeployScript>
       <codeTemplateLibrary version="3.9.0">
         <id>1f350e29-158e-4645-8809-9e60d1a47854</id>
         <name>FHIR DB Operations</name>
-        <revision>2</revision>
+        <revision>1</revision>
         <lastModified>
-          <time>1594627242932</time>
+          <time>1594724318481</time>
           <timezone>Europe/Rome</timezone>
         </lastModified>
         <description>Functions used by the FHIR Listener channel to communicate with the database.
@@ -2909,15 +2909,15 @@ servers, feel free to add your own database-specific operations and queries.</de
             <name>FHIR DB - Execute Cached Query</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477052351</time>
+              <time>1594724319406</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
                 <contextType>CHANNEL_POSTPROCESSOR</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
                 <contextType>CHANNEL_ATTACHMENT</contextType>
@@ -2943,15 +2943,15 @@ function executeCachedQuery(expression, parameters, dbConn) {
             <name>FHIR DB - Execute Cached Query and Get Keys</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477053018</time>
+              <time>1594724319988</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
                 <contextType>CHANNEL_POSTPROCESSOR</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
                 <contextType>CHANNEL_ATTACHMENT</contextType>
@@ -2978,15 +2978,15 @@ function executeUpdateAndGetGeneratedKeys(expression, parameters, dbConn) {
             <name>FHIR DB - Execute Update</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477051860</time>
+              <time>1594724318781</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
                 <contextType>CHANNEL_POSTPROCESSOR</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
                 <contextType>CHANNEL_ATTACHMENT</contextType>
@@ -3012,15 +3012,15 @@ function executeUpdate(expression, parameters, dbConn) {
             <name>FHIR DB - Get Connection</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477051995</time>
+              <time>1594724318962</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
                 <contextType>CHANNEL_POSTPROCESSOR</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
                 <contextType>CHANNEL_ATTACHMENT</contextType>
@@ -3137,14 +3137,14 @@ function convertDateParameter(date) {
             <name>Get ResultSet Date</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477052754</time>
+              <time>1594724319712</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
               </delegate>
@@ -3175,14 +3175,14 @@ function getResultSetDate(resultSet, columnName) {
             <name>Get ResultSet String</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477052068</time>
+              <time>1594724319059</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
               </delegate>
@@ -3217,14 +3217,14 @@ function getResultSetString(resultSet, columnName) {
             <name>History Utility Methods</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477052404</time>
+              <time>1594724319486</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
               </delegate>
@@ -3263,14 +3263,14 @@ function getFhirHistorySinceWherePart() {
             <name>Insert Deleted Resource</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477052217</time>
+              <time>1594724319236</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
               </delegate>
@@ -3328,16 +3328,16 @@ function insertFhirDeletedResource(type, id, versionId, lastUpdated, method, url
           <codeTemplate version="3.9.0">
             <id>407c077f-579a-47af-bb78-1829cdd789c3</id>
             <name>Insert Resource</name>
-            <revision>8</revision>
+            <revision>1</revision>
             <lastModified>
-              <time>1594628409127</time>
+              <time>1594724319849</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
               </delegate>
@@ -3402,14 +3402,14 @@ function insertFhirResource(type, id, versionId, lastUpdated, data, contentType,
             <name>Search Utility Methods</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477051591</time>
+              <time>1594724318534</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
               </delegate>
@@ -3553,14 +3553,14 @@ function addLimit(query, limit) {
             <name>Select Resource Instance</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477052957</time>
+              <time>1594724319918</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
               </delegate>
@@ -3593,14 +3593,14 @@ function getResource(type, id) {
             <name>Select Resource Instance by Version</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477051781</time>
+              <time>1594724318673</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
               </delegate>
@@ -3634,14 +3634,14 @@ function getResourceVersion(type, id, versionId) {
             <name>Select Version</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477051931</time>
+              <time>1594724318872</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
               </delegate>
@@ -3680,14 +3680,14 @@ function getFhirVersion(type, id) {
             <name>Select Version and Deleted ResultSet</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477052140</time>
+              <time>1594724319154</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
               </delegate>
@@ -3719,9 +3719,9 @@ function getFhirVersionAndDeleted(type, id) {
       <codeTemplateLibrary version="3.9.0">
         <id>a084db27-49e0-4c67-893b-ffcc9f1d6e94</id>
         <name>FHIR Helper Functions</name>
-        <revision>2</revision>
+        <revision>1</revision>
         <lastModified>
-          <time>1594627242985</time>
+          <time>1594724318473</time>
           <timezone>Europe/Rome</timezone>
         </lastModified>
         <description>Other common helper functions used by the FHIR Listener channel.</description>
@@ -3739,14 +3739,14 @@ function getFhirVersionAndDeleted(type, id) {
             <name>Convert Date</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477052646</time>
+              <time>1594724319640</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
               </delegate>
@@ -3826,15 +3826,15 @@ function convertDate(date, outpattern) {
             <name>Create FHIR OperationOutcome</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477053087</time>
+              <time>1594724320064</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
                 <contextType>CHANNEL_POSTPROCESSOR</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
                 <contextType>CHANNEL_ATTACHMENT</contextType>
@@ -3908,15 +3908,15 @@ function createOperationOutcome(severity, code, details, fhirVersion, httpStatus
             <name>Get Prefer Header Value</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477052819</time>
+              <time>1594724319784</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
                 <contextType>CHANNEL_POSTPROCESSOR</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
                 <contextType>CHANNEL_ATTACHMENT</contextType>
@@ -3951,15 +3951,15 @@ function getPreferValue() {
             <name>Import Common Packages</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477052280</time>
+              <time>1594724319320</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
                 <contextType>CHANNEL_POSTPROCESSOR</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
                 <contextType>CHANNEL_ATTACHMENT</contextType>
@@ -3983,14 +3983,14 @@ importPackage(org.apache.commons.lang3.math);</code>
             <name>Update Resource Meta</name>
             <revision>1</revision>
             <lastModified>
-              <time>1594477052478</time>
+              <time>1594724319558</time>
               <timezone>Europe/Rome</timezone>
             </lastModified>
             <contextSet>
               <delegate>
+                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
-                <contextType>SOURCE_RECEIVER</contextType>
                 <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
                 <contextType>DESTINATION_DISPATCHER</contextType>
               </delegate>
