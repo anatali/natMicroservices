@@ -4,17 +4,17 @@ package it.unibo.usepublicserver;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.api.MethodOutcome;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
+
+import org.hl7.fhir.r4.elementmodel.Element;
+import org.hl7.fhir.r4.model.Base64BinaryType;
+import org.hl7.fhir.r4.model.BaseResource;
 import org.hl7.fhir.r4.model.DateType;
 import org.hl7.fhir.r4.model.Enumerations;
 import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.instance.model.api.IIdType;
 
 public class TestOperations {
-<<<<<<< HEAD
 private String serverBase = "http://localhost:9001/r4"; //"https://hapi.fhir.org/baseR4";  http://localhost:9001/r4
-=======
-private String serverBase = "https://hapi.fhir.org/baseR4"; //"http://localhost:9002/r4"; //
->>>>>>> 3bce765228bbf855b85b7ed64bc37ff76ab4bae3
 private FhirContext ctx = FhirContext.forR4();
 
 	public void read_a_resource(String id) {
@@ -24,13 +24,9 @@ private FhirContext ctx = FhirContext.forR4();
 		try { 
 			// Try changing the ID from 952975 to 999999999999
 //			patient = client.read().resource(Patient.class).withId("952975").execute();
-<<<<<<< HEAD
 			patient = client.read().resource(Patient.class).withId(id).execute();
-=======
-			patient = client.read().resource(Patient.class).withId("123456789").execute();
->>>>>>> 3bce765228bbf855b85b7ed64bc37ff76ab4bae3
 		} catch ( Exception e) {	//ResourceNotFoundException
-			System.out.println("Resource not found!");
+			System.out.println("Resource " + id + " not found!");
 			return;
 		}
 
@@ -45,11 +41,7 @@ private FhirContext ctx = FhirContext.forR4();
 		org.hl7.fhir.r4.model.Bundle results = client
 			.search()
 			.forResource(Patient.class)
-<<<<<<< HEAD
 			.where(Patient.NAME.matches().value(name))
-=======
-			.where(Patient.NAME.matches().value("test")) //
->>>>>>> 3bce765228bbf855b85b7ed64bc37ff76ab4bae3
 			.returnBundle(org.hl7.fhir.r4.model.Bundle.class)
 			.execute();
 
@@ -75,13 +67,8 @@ public void create_patient() {
 	// Populate the patient with fake information
 	newPatient
 		.addName()
-<<<<<<< HEAD
 			.setFamily("Unibo")
 			.addGiven("BobBologna")
-=======
-			.setFamily("DevDays2015")
-			.addGiven("JohnBologna")
->>>>>>> 3bce765228bbf855b85b7ed64bc37ff76ab4bae3
 			.addGiven("Q");
 	newPatient
 		.addIdentifier()
@@ -90,6 +77,11 @@ public void create_patient() {
 	newPatient.setGender(Enumerations.AdministrativeGender.MALE);
 	newPatient.setBirthDateElement(new DateType("2015-11-18"));
 
+	System.out.println("Created patient : " + newPatient.getBirthDateElement() );
+// 	System.out.println("Created patient : " + newPatient.castToXhtmlString( new Base64BinaryType() ));	//UNABLE
+	
+	
+ 	
 	// Create a client
  	IGenericClient client = ctx.newRestfulGenericClient(serverBase);
 
@@ -109,22 +101,34 @@ public void create_patient() {
 
 	public static void main(String[] args) {
 		TestOperations appl = new TestOperations();
-<<<<<<< HEAD
- 		appl.create_patient();		 	//
-//      	appl.read_a_resource("1234567");	//1391823					 
+//  		appl.create_patient();		 	//
+        	appl.read_a_resource("2468");	//1391823					 
 //  		appl.search_for_patients_named("BobBologna");	//test	 
   		//BobBologna --> http://hapi.fhir.org/baseR4/Patient/1391883/_history/1
   		//http://hapi.fhir.org/baseR4/Patient?name=BobBologna
 //		step2_search_for_patients_named_test();
-=======
-//       		appl.read_a_resource();						//(1)
-  		appl.search_for_patients_named_test();		//(2)
-//		step2_search_for_patients_named_test();
-//   		appl.create_patient();		//(4)
->>>>>>> 3bce765228bbf855b85b7ed64bc37ff76ab4bae3
 	}
 
 
 	
 	
 }
+
+/*
+ * INSERT INTO "resource" ("sequence_id", "name", "id", "version", "data", "mimetype", "last_modified", "deleted", "request_method", "request_url") VALUES
+(1,	'annaBologna',	'2468',	1,	'<birthDate value="2015-11-18"/>',	NULL,	'2020-07-15 08:40:13.903139+00',	NULL,	NULL,	NULL);
+
+
+sequence_id,name,id,version,data,mimetype,last_modified,deleted,request_method,request_url
+1,annaBologna,2468,1,"<birthDate value=""2015-11-18""/>",,2020-07-15 08:40:13.903139+00,,,
+
+
+
+SELECT version, data::TEXT, mimetype, last_modified, deleted FROM resource WHERE name = ? AND id = ? ORDER BY version DESC LIMIT 1
+
+{"resourceType":"OperationOutcome","issue":[{"severity":"error","code":"transient","details":{"text":"Error reading resource."}}]}
+
+if( debugAN ) return createOperationOutcome('debug', 'transient', 'searching resources 0', requestURL, 200, "ok");
+
+*
+*/
