@@ -3,7 +3,7 @@
   <nextMetaDataId>2</nextMetaDataId>
   <name>channelTcp1</name>
   <description></description>
-  <revision>1</revision>
+  <revision>3</revision>
   <sourceConnector version="3.9.0">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -18,29 +18,29 @@
         <respondAfterProcessing>true</respondAfterProcessing>
         <processBatch>false</processBatch>
         <firstResponse>false</firstResponse>
-        <processingThreads>0</processingThreads>
+        <processingThreads>1</processingThreads>
         <resourceIds class="linked-hash-map">
           <entry>
             <string>Default Resource</string>
             <string>[Default Resource]</string>
           </entry>
         </resourceIds>
-        <queueBufferSize>0</queueBufferSize>
+        <queueBufferSize>1000</queueBufferSize>
       </sourceConnectorProperties>
       <transmissionModeProperties class="com.mirth.connect.model.transmission.framemode.FrameModeProperties">
-        <pluginPointName>MLLP</pluginPointName>
-        <startOfMessageBytes>0B</startOfMessageBytes>
-        <endOfMessageBytes>1C0D</endOfMessageBytes>
+        <pluginPointName>Basic</pluginPointName>
+        <startOfMessageBytes></startOfMessageBytes>
+        <endOfMessageBytes></endOfMessageBytes>
       </transmissionModeProperties>
-      <serverMode>false</serverMode>
+      <serverMode>true</serverMode>
       <remoteAddress></remoteAddress>
       <remotePort></remotePort>
       <overrideLocalBinding>false</overrideLocalBinding>
-      <reconnectInterval></reconnectInterval>
-      <receiveTimeout></receiveTimeout>
-      <bufferSize></bufferSize>
-      <maxConnections></maxConnections>
-      <keepConnectionOpen>false</keepConnectionOpen>
+      <reconnectInterval>10</reconnectInterval>
+      <receiveTimeout>50</receiveTimeout>
+      <bufferSize>1024</bufferSize>
+      <maxConnections>10</maxConnections>
+      <keepConnectionOpen>true</keepConnectionOpen>
       <dataTypeBinary>false</dataTypeBinary>
       <charsetEncoding>DEFAULT_ENCODING</charsetEncoding>
       <respondOnNewConnection>0</respondOnNewConnection>
@@ -188,15 +188,14 @@ return;</undeployScript>
   </properties>
   <exportData>
     <metadata>
-      <enabled>true</enabled>
+      <enabled>false</enabled>
       <lastModified>
-        <time>1593616332491</time>
-        <timezone>Europe/Berlin</timezone>
+        <time>1594892148565</time>
+        <timezone>Europe/Rome</timezone>
       </lastModified>
       <pruningSettings>
         <archiveEnabled>true</archiveEnabled>
       </pruningSettings>
     </metadata>
-    <channelTags/>
   </exportData>
 </channel>

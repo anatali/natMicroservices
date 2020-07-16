@@ -6,8 +6,23 @@ import org.apache.commons.httpclient.params.HttpMethodParams;
 import java.io.*;
 
 public class HttpClientMirth {
-  private static String url = "http://localhost:8050";
+  private static String url     = "http://localhost:8002/api/channels/69c079fd-1cc3-469f-8f00-b4c51638fdde/messages";
+  private static String msgJson = "{\r\n" + 
+  		"    \"application_sending\" : \"EPICADT\",\r\n" + 
+  		"    \"sending_facility\" : \"DH\",\r\n" + 
+  		"    \"receiving_application\" : \"LABADT\",\r\n" + 
+  		"    \"receiving_facility\" : \"DH\",\r\n" + 
+  		"    \"time\": \"201301011226\",\r\n" + 
+  		"    \"message_type\" : \"ADT^A01\",\r\n" + 
+  		"    \"message_control_id\" : \"HL7MSG00001\",\r\n" + 
+  		"    \"process_id\" : \"P\",\r\n" + 
+  		"    \"version_id\": \"2.3\"\r\n" + 
+  		"}";
+/* 
+ * curl -H "Content-Type: application/json" --data @json_template.json http://127.0.0.1:8002/api/channels/69c079fd-1cc3-469f-8f00-b4c51638fdde/messages
 
+'{"application_sending" : "EPICADT","sending_facility" : "DH","receiving_application" : "LABADT","receiving_facility" : "DH","time": "201301011226","message_type" : "ADT^A01","message_control_id" : "HL7MSG00001","process_id" : "P","version_id": "2.3"}'
+ */
   public static void main(String[] args) {
     // Create an instance of HttpClient.
     HttpClient client = new HttpClient();
@@ -21,8 +36,8 @@ public class HttpClientMirth {
     method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, 
     		new DefaultHttpMethodRetryHandler(3, false));
      
-     System.out.println("get path :"+ method.getPath() );
-    System.out.println("get query:"+ method.getQueryString());
+     System.out.println("get path->"+ method.getPath() );
+    System.out.println("get query->"+ method.getQueryString());
     
     //methodp.getParams().
     try {

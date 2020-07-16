@@ -26,7 +26,7 @@ private FhirContext ctx = FhirContext.forR4();
 //			patient = client.read().resource(Patient.class).withId("952975").execute();
 			patient = client.read().resource(Patient.class).withId(id).execute();
 		} catch ( Exception e) {	//ResourceNotFoundException
-			System.out.println("Resource " + id + " not found!");
+			System.out.println("Resource " + id + " ERROR " + e.getMessage());
 			return;
 		}
 

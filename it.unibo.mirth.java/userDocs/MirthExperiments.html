@@ -355,7 +355,82 @@ The <k>Location header</k> contains a URL telling the client where to issue a 'v
  <li>You can also create and read Binary resources</li>
 </ul>
 
+<h2>SUCCESS!!</h2>
 
+<ol>
+<li>Tutto nasce da <tt>C:\Progetti\natmaterial\mirth-connect-channel-examples</tt> preso da
+<a href="https://github.com/nextgenhealthcare/connect-docker/tree/master/examples#mysql-with-volume.yml" target="web">nextgenhealthcare/connect-docker</a>
+</li>
+<li>Con riferimento a <a href="../workingok/compose-mysql-withvolume.yml" target="code">compose-mysql-withvolume.yml</a> si esegue
+<pre>docker-compose -f compose-mysql-withvolume.yml up
+</pre>
+</li>
+<li>si apre localhost:8018 
+<pre>
+Sistema: MySQL
+Server: db
+Utente: root
+Password: root_password
+Database: mirthdb
+</pre>
+Si consulta il db che è già popolato in quanto sosituisce derby. La tabella CHANNEL e' ancora  vuota.
+</li>
+<li>si importa l'esempio HL7 to <a href="../workingok/HLtoMySQLdatabase.xml" target="code">HLtoMySQLdatabase.xml</a>
+modificando Javascript in destination come segue:
+<pre>
+var dbConn;
+
+try {
+	dbConn = DatabaseConnectionFactory.createDatabaseConnection(
+		'com.mysql.jdbc.Driver',<k>'jdbc:mysql://db:3306/mirthdb','root','root_password'</k>);
+
+} finally {
+	if (dbConn) { 
+		dbConn.close();
+	}
+}
+</pre>
+Questo channel scrive periodicamente su DB il conteuto di tutti i file *.hl7 nella directory specificata in source.<br/>
+In source uso la directory <tt><k>/opt/connect/appdata</k></tt> che corrisponde alla directory su PC
+a <tt><k>C:\Progetti\natmaterial\mirth-connect-channel-examples\data\volumes\appdata</k></tt>
+ in cui inserisco il file <a href="../workingok/data1.hl7" target="code">data1.hl7</a>.
+ 
+ </li>
+
+<li></li>
+<li></li>
+<li></li>
+
+</ol>
+
+
+<pre>
+
+//ADMINER STAND ALONE
+docker-compose -f adminer.yml  up
+
+
+From <kc>C:\Progetti\natmaterial\mirth-connect-channel-examples</kc>
+docker-compose up
+
+From <a href="https://github.com/nextgenhealthcare/connect-docker/tree/master/examples#mysql-with-volume.yml" target="web">nextgenhealthcare/connect-docker</a>
+docker-compose -f compose-mysql-withvolume.yml up
+
+
+//channelTcp1                       d6b7c1b0-ac5e-4993-9570-45d8947ad76d
+//json_to_hl7_dest_channel_writer   69c079fd-1cc3-469f-8f00-b4c51638fdde
+//HL7 to MySQL database             7ef65bb8-203b-4a82-a312-33fb73cff9ed
+curl -H "Content-Type: application/json" --data @json_template.json http://127.0.0.1:7002/api/channels/69c079fd-1cc3-469f-8f00-b4c51638fdde/messages
+
+INSTALL FHIR
+docker-compose -f compose-mysql-withvolume.yml stop
+docker-compose -f compose-mysql-withvolume.yml start
+localhost:8080		/webadmin/Index.action  Launch Mirth Connect Administrator 
+save in C:\Progetti\natmaterial\mirth-connect-channel-examples\webstartmysql.jnlp and CLCK
+Extension FHIR Listener OK
+
+docker exec -it 99590a9ec384 bash
+</pre>
   <br/><br/>
 <table style="width:98%">
 <tbody>	
