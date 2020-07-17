@@ -5,6 +5,7 @@ bin/default
 .project
 build
 logs
+workingok/data/volumes/appdata/temp
 
 log4jInfo.log
 

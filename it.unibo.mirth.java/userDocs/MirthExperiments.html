@@ -371,11 +371,21 @@ che installa:
 <li>il servizio <ks>mc</ks> con dipendenza da <ks>db</ks>  e con immagine <k>nextgenhealthcare/connect</k>, 
 settando nell'environment variabili relative al database. Inoltre definisce in <ks>volumes</ks> il mapping tra una directory del PC 
 (<tt>C:\Progetti\natmaterial\mirth-connect-channel-examples\data\volumes\appdata</tt>) e una directory della VM
-(<tt>/opt/connect/appdata</tt>).  </li>
-</ul>
+(<tt>/opt/connect/appdata</tt>).
 
+<div class="remark">Includere nel file <a href="../.gitignore" target="code">.gitignore</a> la directory <k>workingok/data/volumes/appdata/temp</k> </div>
+  </li>
+</ul>
 </li>
-<li>si apre la GUI di <ks>adminer</ks> eseguendo <tt>localhost:8018</tt> e settando opportunamente i parametri: 
+
+<li>
+aprire <k>http://localhost:8080/</k>  e click on <tt>Launch Mirth Connect Administrator</tt> che scarica un file 
+<ks>webstart.jnlp</ks>. Click su questo file e si apre  <tt>Mirth Connect Administrator Launcher</tt> che propone
+<k>http://localhost:8080/webstart</k>. Premere il pulasante <k>Launch</k> per veder comparire <tt>Mirth Connect Login</tt>.
+Immettere <tt>Username=admin</tt> e <tt>Password=admin</tt> per fare comparire una form da compilare.<br/><br/>
+</li>
+
+<li>aprire la GUI di <ks>adminer</ks> eseguendo <tt>localhost:8018</tt> e settando opportunamente i parametri: 
 <pre>
 Sistema: MySQL
 Server: db
@@ -383,15 +393,21 @@ Utente: root
 Password: root_password
 Database: mirthdb
 </pre>
-Si consulta il db che è già popolato in quanto sosituisce <tt>derby</tt>. Si noti che la tabella <ks>CHANNEL</ks> e' vuota.
+Si consulta il db che è già popolato in quanto sosituisce <tt>derby</tt>. Si noti che la tabella <ks>CHANNEL</ks> e' vuota.<br/>
+La tabella <ks>PERSON</ks> contiene dati, esportando la quale si ottiene il file 
+ <a href="../workingok/PERSON.sql" target="code">PERSON.sql</a>.<br/><br/>
 </li>
 
 <li>carichiamo <i>user-defined Java code</i> secondo <a href="nextgen-connect-39-user-guide.pdf" target="code">nextgen-connect-39-user-guide.pdf (pag 157)</a>:
 in <em>Settings->Resources</em> selezionare <k>Add Resource</k> con nome <tt>unibo</tt> e directory <tt>/opt/connect/appdata/unibolibs</tt>.
 Premendo <k>refresh</k> si popola la finestra <i>Loaded Libraries</i> con tutti i file contenti nella dir specificata.
 <br/>
-<div class="remark">Now, restart the Mirth Connect server</div>
+<div class="remark">Now, restart the Mirth Connect server by clicking again on <ks>webstartmysql.jnlp</ks></div>
 </li>
+
+
+<li>carichiamo l'estensione FHIR Listner  predendo il file <k>fhir-3.9.0.b1285.zip</k> da una directory su PC.
+<div class="remark">Now, restart the Mirth Connect server by clicking again on <ks>webstartmysql.jnlp</ks></div>
 
  </ol>
  
@@ -409,19 +425,34 @@ Il codice-utente si trova in <a href="../src/it/unibo/mirth/java/MirthJava0.java
 <h4>Esempi di trasmissione</h4>
 
 <ul>
+<li>Un invio da programma: <a href="../it.unibo.mirth.java/TCPClientMirth.java" target="code">TCPClientMirth.java</a> 
+<m><pre>
+------------------- Messages -------------------
+MSH|^~\&|NES|NINTENDO|TESTSYSTEM| ...
+--------------------Mappings --------------------
+Response d1 : SENT: JavaScript evaluation successful.
+Response R1 : MirthJava0  received: MSH|^~\&|NES|NINTENDO|TESTSYSTEM| ... 
+</pre></m>
+
+</li>
+
+
 <li>Un invio con <a href="https://curl.haxx.se/docs/httpscripting.html" target="web"><k>curl</k></a> (a command line tool that allows to transfer data across the network):
 <m><pre>
 curl  http://127.0.0.1:7001
 curl -H "Content-Type: text/plain" http://127.0.0.1:7001
--------------------------------------------------------------------
+------------------- Messages -------------------
 Riceve:
 GET / HTTP/1.1
 Host: 127.0.0.1:7001
 User-Agent: curl/7.55.1
 Accept: */*
+--------------------Mappings --------------------
+Response d1 : SENT: JavaScript evaluation successful.
+Response R1 : MirthJava0  received: GET / HTTP/1.1Host: 127.0.0.1:7001User-Agent: curl/7.55.1Accept: */*
+
 </pre></m></li>
-<li>Un invio da programma: <a href="../it.unibo.mirth.java/TCPClientMirth.java" target="code">TCPClientMirth.java</a> </li>
-<li></li>
+
 </ul>
 
 
@@ -443,11 +474,11 @@ try { dbConn = DatabaseConnectionFactory.createDatabaseConnection(
  </li>
 
 <li>
-L'utente inserisce qualche file <kc>*.hl7</kc> (ad esempio <a href="../workingok/data1.hl7" target="code">data1.hl7</a>) nella
+L'utente inserisce qualche file <kc>*.hl7</kc> (ad esempio <a href="../workingok/data/volumes/appdata/data1.hl7" target="code">data1.hl7</a>) nella
 directory condivisa sul PC (<tt>C:\...\data\volumes\appdata</tt>) .
 </li>
 <li>Usando <ks>adminer</ks> si visualizzino i dati della tabella  <em>PERSON</em> </li>
- 
+<li>Fermare l'attivita' del canale con il comando <k>Stop</k>.</li> 
 
 </ol>
 
