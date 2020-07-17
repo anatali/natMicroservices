@@ -355,17 +355,27 @@ The <k>Location header</k> contains a URL telling the client where to issue a 'v
  <li>You can also create and read Binary resources</li>
 </ul>
 
-<h2>SUCCESS!!</h2>
+<h2>UN ESEMPIO CHE FUNZIONA</h2>
+Questo esempio nasce da <tt>C:\Progetti\natmaterial\mirth-connect-channel-examples</tt> preso da
+<a href="https://github.com/nextgenhealthcare/connect-docker/tree/master/examples#mysql-with-volume.yml" target="web">nextgenhealthcare/connect-docker</a>.
 
+<h3>Installazione</h3>
 <ol>
-<li>Tutto nasce da <tt>C:\Progetti\natmaterial\mirth-connect-channel-examples</tt> preso da
-<a href="https://github.com/nextgenhealthcare/connect-docker/tree/master/examples#mysql-with-volume.yml" target="web">nextgenhealthcare/connect-docker</a>
-</li>
 <li>Con riferimento a <a href="../workingok/compose-mysql-withvolume.yml" target="code">compose-mysql-withvolume.yml</a> si esegue
 <pre>docker-compose -f compose-mysql-withvolume.yml up
 </pre>
+che installa:
+<ul>
+<li>il servizio <ks>db</ks> con immagine <k>mysql</k> settando nell'environment variabili relative al nome del db e alla password ed sponendo la porta <tt>3306</tt>.;</li>
+<li>il servizio <ks>adminer</ks>  con immagine <k>adminer</k> con  porta <tt>8018/8080</tt> per la gestione dei db;</li>
+<li>il servizio <ks>mc</ks> con dipendenza da <ks>db</ks>  e con immagine <k>nextgenhealthcare/connect</k>, 
+settando nell'environment variabili relative al database. Inoltre definisce in <ks>volumes</ks> il mapping tra una directory del PC 
+(<tt>C:\Progetti\natmaterial\mirth-connect-channel-examples\data\volumes\appdata</tt>) e una directory della VM
+(<tt>/opt/connect/appdata</tt>).  </li>
+</ul>
+
 </li>
-<li>si apre localhost:8018 
+<li>si apre la GUI di <ks>adminer</ks> eseguendo <tt>localhost:8018</tt> e settando opportunamente i parametri: 
 <pre>
 Sistema: MySQL
 Server: db
@@ -373,36 +383,99 @@ Utente: root
 Password: root_password
 Database: mirthdb
 </pre>
-Si consulta il db che è già popolato in quanto sosituisce derby. La tabella CHANNEL e' ancora  vuota.
+Si consulta il db che è già popolato in quanto sosituisce <tt>derby</tt>. Si noti che la tabella <ks>CHANNEL</ks> e' vuota.
 </li>
-<li>si importa l'esempio HL7 to <a href="../workingok/HLtoMySQLdatabase.xml" target="code">HLtoMySQLdatabase.xml</a>
-modificando Javascript in destination come segue:
+
+<li>carichiamo <i>user-defined Java code</i> secondo <a href="nextgen-connect-39-user-guide.pdf" target="code">nextgen-connect-39-user-guide.pdf (pag 157)</a>:
+in <em>Settings->Resources</em> selezionare <k>Add Resource</k> con nome <tt>unibo</tt> e directory <tt>/opt/connect/appdata/unibolibs</tt>.
+Premendo <k>refresh</k> si popola la finestra <i>Loaded Libraries</i> con tutti i file contenti nella dir specificata.
+<br/>
+<div class="remark">Now, restart the Mirth Connect server</div>
+</li>
+
+ </ol>
+ 
+<h3>Esempio: uso di TCP</h3>
+ Si importa l'esempio HL7 to <a href="../workingok/channelTcpBase.xml" target="code">channelTcpBase.xml</a>.<br/><br/>
+Questo channel <em>BasicTcp</em> attende un messaggio (con datatype <em>raw</em>)  sulla porta TCP <tt>7001</tt> e 
+lo invia a un <tt>Destinations</tt> che lo visualizza con il seguente codice Javascript:
+<pre>
+var input = connectorMessage.getRawData();
+logger.info( input );
+var R1  = <k>Packages.</k>it.unibo.mirth.java.MirthJava0.getText(input);  <kc>//RESPONSE</kc>
+responseMap.put("R1", R1);
+</pre> 
+Il codice-utente si trova in <a href="../src/it/unibo/mirth/java/MirthJava0.java" target="code">MirthJava0.java</a>
+<h4>Esempi di trasmissione</h4>
+
+<ul>
+<li>Un invio con <a href="https://curl.haxx.se/docs/httpscripting.html" target="web"><k>curl</k></a> (a command line tool that allows to transfer data across the network):
+<m><pre>
+curl  http://127.0.0.1:7001
+curl -H "Content-Type: text/plain" http://127.0.0.1:7001
+-------------------------------------------------------------------
+Riceve:
+GET / HTTP/1.1
+Host: 127.0.0.1:7001
+User-Agent: curl/7.55.1
+Accept: */*
+</pre></m></li>
+<li>Un invio da programma: <a href="../it.unibo.mirth.java/TCPClientMirth.java" target="code">TCPClientMirth.java</a> </li>
+<li></li>
+</ul>
+
+
+<h3>Esempio: uso di db</h3>
+Si importa l'esempio <a href="../workingok/HLtoMySQLdatabase.xml" target="code">HLtoMySQLdatabase.xml</a>.<br/><br/>
+Questo channel scrive periodicamente su DB (ogni 30 minuti) il conteuto di tutti i file <kc>*.hl7</kc> nella directory specificata in <tt>Source</tt>
+nella ipotesi che questi file contegano dati con formato <ks>ADT-A01</ks> (<tt>Admit a patient</tt>).<br/><br/>
+
+<ol>
+<li>
+Il channel definisce in <tt>Destinations</tt>  un connector type di tipo <em>Database Writer</em> con il seguente codice Javascript:
 <pre>
 var dbConn;
-
-try {
-	dbConn = DatabaseConnectionFactory.createDatabaseConnection(
-		'com.mysql.jdbc.Driver',<k>'jdbc:mysql://db:3306/mirthdb','root','root_password'</k>);
-
-} finally {
-	if (dbConn) { 
-		dbConn.close();
-	}
+try { dbConn = DatabaseConnectionFactory.createDatabaseConnection(
+		<k>'com.mysql.jdbc.Driver'</k>,<k>'jdbc:mysql://db:3306/mirthdb','root','root_password'</k>);
+} finally { if (dbConn) {  dbConn.close(); }
 }
 </pre>
-Questo channel scrive periodicamente su DB il conteuto di tutti i file *.hl7 nella directory specificata in source.<br/>
-In source uso la directory <tt><k>/opt/connect/appdata</k></tt> che corrisponde alla directory su PC
-a <tt><k>C:\Progetti\natmaterial\mirth-connect-channel-examples\data\volumes\appdata</k></tt>
- in cui inserisco il file <a href="../workingok/data1.hl7" target="code">data1.hl7</a>.
- 
  </li>
 
-<li></li>
-<li></li>
-<li></li>
+<li>
+L'utente inserisce qualche file <kc>*.hl7</kc> (ad esempio <a href="../workingok/data1.hl7" target="code">data1.hl7</a>) nella
+directory condivisa sul PC (<tt>C:\...\data\volumes\appdata</tt>) .
+</li>
+<li>Usando <ks>adminer</ks> si visualizzino i dati della tabella  <em>PERSON</em> </li>
+ 
 
 </ol>
 
+
+<h3>Esempio: da richiesta HTTP a messaggio HL7</h3>
+Si importa l'esempio HL7 to <a href="../workingok/HLtoMySQLdatabase.xml" target="code">HLtoMySQLdatabase.xml</a>.<br/><br/>
+This channel receives a 'json' file over an 'HTTP' request, transforms it into an 'hl7' message, and sends it to another channel.<br/><br/>
+
+Questo esempio permette di accedere ai codici dei canali usando <em>Channel Writer Settings</em> in <ttDestinations</tt>.
+Ad esempio:
+<pre>
+channelTcpBase		d6b7c1b0-ac5e-4993-9570-45d8947ad76d
+HLtoMySQLdatabase	7ef65bb8-203b-4a82-a312-33fb73cff9ed  
+</pre>
+
+<ol>
+<li>
+Il channel definisce in <tt>Destinations</tt>   
+<pre>
+ </pre>
+ </li>
+
+<li>
+ </li>
+<li> </li>
+ 
+
+</ol>
 
 <pre>
 
@@ -417,9 +490,6 @@ From <a href="https://github.com/nextgenhealthcare/connect-docker/tree/master/ex
 docker-compose -f compose-mysql-withvolume.yml up
 
 
-//channelTcp1                       d6b7c1b0-ac5e-4993-9570-45d8947ad76d
-//json_to_hl7_dest_channel_writer   69c079fd-1cc3-469f-8f00-b4c51638fdde
-//HL7 to MySQL database             7ef65bb8-203b-4a82-a312-33fb73cff9ed
 curl -H "Content-Type: application/json" --data @json_template.json http://127.0.0.1:7002/api/channels/69c079fd-1cc3-469f-8f00-b4c51638fdde/messages
 
 INSTALL FHIR
