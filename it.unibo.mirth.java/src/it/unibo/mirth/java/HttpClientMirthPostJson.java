@@ -5,10 +5,10 @@ import org.apache.commons.httpclient.methods.*;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 import java.io.*;
 
-public class HttpClientMirth {
+public class HttpClientMirthPostJson {
   private static String url     = "http://localhost:7003/api/channels/69c079fd-1cc3-469f-8f00-b4c51638fdde/messages";
   private static String msgJson = "{\r\n" + 
-  		"    \"application_sending\" : \"EPICADT\",\r\n" + 
+  		"    \"application_sending\" : \"EPICADTBO\",\r\n" + 
   		"    \"sending_facility\" : \"DH\",\r\n" + 
   		"    \"receiving_application\" : \"LABADT\",\r\n" + 
   		"    \"receiving_facility\" : \"DH\",\r\n" + 
@@ -23,23 +23,27 @@ public class HttpClientMirth {
 
 '{"application_sending" : "EPICADT","sending_facility" : "DH","receiving_application" : "LABADT","receiving_facility" : "DH","time": "201301011226","message_type" : "ADT^A01","message_control_id" : "HL7MSG00001","process_id" : "P","version_id": "2.3"}'
  */
-  public static void main(String[] args) {
+  public static void main(String[] args) throws UnsupportedEncodingException {
     // Create an instance of HttpClient.
     HttpClient client = new HttpClient();
 
     // Create a method instance.
-    GetMethod method  = new GetMethod(url);
-//    PutMethod methodp = new PutMethod(url);
-//    PostMethod methodp = new PostMethod(url);
+    PostMethod method = new PostMethod( url );
+    RequestEntity entity = new StringRequestEntity(msgJson, "text/plain", "UTF-8");
+    method.setRequestEntity(entity);
+//    post.setRequestHeader("SOAPAction", "urn:getQuote");
+    HttpMethodParams params = new HttpMethodParams();
+    params.setVersion(HttpVersion.HTTP_1_1);
+    method.setParams(params);
     
     // Provide custom retry handler is necessary
-    method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, 
-    		new DefaultHttpMethodRetryHandler(3, false));
+//    method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, 
+//    		new DefaultHttpMethodRetryHandler(3, false));
      
-     System.out.println("get path->"+ method.getPath() );
+    System.out.println("get path->"+ method.getPath() );
     System.out.println("get query->"+ method.getQueryString());
     
-    //methodp.getParams().
+
     try {
       // Execute the method.
       int statusCode = client.executeMethod(method);

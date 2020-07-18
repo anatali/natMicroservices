@@ -516,16 +516,129 @@ Il channel definisce in <tt>Destinations</tt>:<k>Channel writer</k>. Noi selezio
 
 <li><h4>Esempi di trasmissione</h4>
 <ul>
-<li>Un invio da programma: <a href="../src/it/unibo/mirth/java/HttpClientMirth.java" target="code">HttpClientMirth.java</a> 
-<m><pre>
-------------------- Messages -------------------
---------------------Mappings --------------------
-</pre></m>
+<li>Un invio da programma: <a href="../src/it/unibo/mirth/java/HttpClientMirthPostJson.java" target="code">HttpClientMirthPostJson.java</a> 
 
+<table style="width:98%">
+<tbody>	
+<tr>
+<td style="width:50%" >
+<m><pre>
+------------------- Messages Raw -------------------
+{
+  "application_sending" : "EPICADTBO",
+  "sending_facility" : "DH",
+  "receiving_application" : "LABADT",
+  "receiving_facility" : "DH",
+  "time" : "201301011226",
+  "message_type" : "ADT^A01",
+  "message_control_id" : "HL7MSG00001",
+  "process_id" : "P",
+  "version_id" : "2.3"
+}
+
+
+
+------------------- Messages Encoded -------------------
+MSH|^~\&|EPICADTBO|DH|LABADT|DH|201301011226||ADT^A01|HL7MSG00001|P|2.3| 
+PID||||||||||||||||||||
+PD1|||||
+
+
+
+
+--------------------Mappings --------------------
+Response d2 : SENT: Message routed successfully 
+	to channel id: d6b7c1b0-ac5e-4993-9570-45d8947ad76d
+
+</td>
+<td><m><m><pre>
+------------------- Messages Transformed -------------------
+&lt;HL7Message>
+    &lt;MSH>
+        &lt;MSH.1>|&lt;/MSH.1>
+        &lt;MSH.2>^~\&amp;&lt;/MSH.2>
+        &lt;MSH.3>
+            &lt;MSH.3.1>EPICADTBO&lt;/MSH.3.1>
+        &lt;/MSH.3>
+        &lt;MSH.4>
+            &lt;MSH.4.1>DH&lt;/MSH.4.1>
+        &lt;/MSH.4>
+        &lt;MSH.5>
+            &lt;MSH.5.1>LABADT&lt;/MSH.5.1>
+        &lt;/MSH.5>
+        &lt;MSH.6>
+            &lt;MSH.6.1>DH&lt;/MSH.6.1>
+        &lt;/MSH.6>
+        &lt;MSH.7>
+            &lt;MSH.7.1>201301011226&lt;/MSH.7.1>
+        &lt;/MSH.7>
+        &lt;MSH.8/>
+        &lt;MSH.9>ADT^A01&lt;/MSH.9>
+        &lt;MSH.10>
+            &lt;MSH.10.1>HL7MSG00001&lt;/MSH.10.1>
+        &lt;/MSH.10>
+        &lt;MSH.11>
+            &lt;MSH.11.1>P&lt;/MSH.11.1>
+        &lt;/MSH.11>
+        &lt;MSH.12>
+            &lt;MSH.12.1>2.3&lt;/MSH.12.1>
+        &lt;/MSH.12>
+        &lt;MSH.13>
+            &lt;MSH.13.1/>
+        &lt;/MSH.13>
+    &lt;/MSH>
+    &lt;PID>
+        &lt;PID.1/>
+        &lt;PID.2/>
+        &lt;PID.3/>
+        &lt;PID.4/>
+        &lt;PID.5/>
+        &lt;PID.6/>
+        &lt;PID.7/>
+        &lt;PID.8/>
+        &lt;PID.9/>
+        &lt;PID.10/>
+        &lt;PID.11/>
+        &lt;PID.12/>
+        &lt;PID.13/>
+        &lt;PID.14/>
+        &lt;PID.15/>
+        &lt;PID.16/>
+        &lt;PID.17/>
+        &lt;PID.18/>
+        &lt;PID.19/>
+        &lt;PID.20/>
+    &lt;/PID>
+    &lt;PD1>
+        &lt;PD1.1/>
+        &lt;PD1.2/>
+        &lt;PD1.3/>
+        &lt;PD1.4/>
+        &lt;PD1.5/>
+    &lt;/PD1>
+&lt;/HL7Message>
+</pre></m></m>
+</td>
+</tr>
+
+<tr><td>
+</td>
+<td></td>
+</tr>
+
+ </tbody>
+</table>
+ 
+ 
+ 
 </li>
 </ul>
 
-<li>
+<li>Un invio medianet curl:
+<pre>
+curl -H "Content-Type: application/json" --data @json_template.json
+	http://127.0.0.1:7003/api/channels/69c079fd-1cc3-469f-8f00-b4c51638fdde/messages
+</pre>
  </li>
 <li> </li>
  
