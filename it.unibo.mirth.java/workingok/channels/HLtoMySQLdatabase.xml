@@ -3,7 +3,7 @@
   <nextMetaDataId>2</nextMetaDataId>
   <name>HL7 to MySQL database</name>
   <description></description>
-  <revision>2</revision>
+  <revision>1</revision>
   <sourceConnector version="3.9.0">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -204,7 +204,7 @@
 
 try {
 	dbConn = DatabaseConnectionFactory.createDatabaseConnection(&apos;com.mysql.jdbc.Driver&apos;,&apos;jdbc:mysql://db:3306/mirthdb&apos;,&apos;root&apos;,&apos;root_password&apos;);
-
+	var result = dbConn.executeUpdate(&quot;INSERT INTO PERSON (USERNAME, FIRSTNAME, LASTNAME, LOGGED_IN) VALUES (&apos;&quot;+$(&apos;Username&apos;)+&quot;&apos;, &apos;&quot;+$(&apos;FirstName&apos;)+&quot;&apos;, &apos;&quot;+$(&apos;LastName&apos;)+&quot;&apos;, 0)&quot;);
 } finally {
 	if (dbConn) { 
 		dbConn.close();
@@ -497,8 +497,8 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1594918178875</time>
-        <timezone>Europe/Berlin</timezone>
+        <time>1595055641012</time>
+        <timezone>Europe/Rome</timezone>
       </lastModified>
       <pruningSettings>
         <archiveEnabled>true</archiveEnabled>

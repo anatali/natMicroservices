@@ -412,7 +412,7 @@ Premendo <k>refresh</k> si popola la finestra <i>Loaded Libraries</i> con tutti 
  </ol>
  
 <h3>Esempio: uso di TCP</h3>
- Si importa l'esempio HL7 to <a href="../workingok/channelTcpBase.xml" target="code">channelTcpBase.xml</a>.<br/><br/>
+ Si importa l'esempio HL7 to <a href="../workingok/channels/channelTcpBase.xml" target="code">channelTcpBase.xml</a>.<br/><br/>
 Questo channel <em>BasicTcp</em> attende un messaggio (con datatype <em>raw</em>)  sulla porta TCP <tt>7001</tt> e 
 lo invia a un <tt>Destinations</tt> che lo visualizza con il seguente codice Javascript:
 <pre>
@@ -425,7 +425,7 @@ Il codice-utente si trova in <a href="../src/it/unibo/mirth/java/MirthJava0.java
 <h4>Esempi di trasmissione</h4>
 
 <ul>
-<li>Un invio da programma: <a href="../it.unibo.mirth.java/TCPClientMirth.java" target="code">TCPClientMirth.java</a> 
+<li>Un invio da programma: <a href="../src/it/unibo/mirth/java/TCPClientMirth.java" target="code">TCPClientMirth.java</a> 
 <m><pre>
 ------------------- Messages -------------------
 MSH|^~\&|NES|NINTENDO|TESTSYSTEM| ...
@@ -457,7 +457,7 @@ Response R1 : MirthJava0  received: GET / HTTP/1.1Host: 127.0.0.1:7001User-Agent
 
 
 <h3>Esempio: uso di db</h3>
-Si importa l'esempio <a href="../workingok/HLtoMySQLdatabase.xml" target="code">HLtoMySQLdatabase.xml</a>.<br/><br/>
+Si importa l'esempio <a href="../workingok/channels/HLtoMySQLdatabase.xml" target="code">HLtoMySQLdatabase.xml</a>.<br/><br/>
 Questo channel scrive periodicamente su DB (ogni 30 minuti) il conteuto di tutti i file <kc>*.hl7</kc> nella directory specificata in <tt>Source</tt>
 nella ipotesi che questi file contegano dati con formato <ks>ADT-A01</ks> (<tt>Admit a patient</tt>).<br/><br/>
 
@@ -467,39 +467,63 @@ Il channel definisce in <tt>Destinations</tt>  un connector type di tipo <em>Dat
 <pre>
 var dbConn;
 try { dbConn = DatabaseConnectionFactory.createDatabaseConnection(
-		<k>'com.mysql.jdbc.Driver'</k>,<k>'jdbc:mysql://db:3306/mirthdb','root','root_password'</k>);
+	<k>'com.mysql.jdbc.Driver'</k>,<k>'jdbc:mysql://db:3306/mirthdb','root','root_password'</k>);
+	var result = <ks>dbConn.executeUpdate</ks>("INSERT INTO PERSON (USERNAME, FIRSTNAME, LASTNAME, LOGGED_IN) 
+		VALUES ('"+$('Username')+"', '"+$('FirstName')+"', '"+$('LastName')+"', 0)");		
 } finally { if (dbConn) {  dbConn.close(); }
 }
 </pre>
  </li>
 
-<li>
+<li><h4>Esempi di trasmissione</h4>
 L'utente inserisce qualche file <kc>*.hl7</kc> (ad esempio <a href="../workingok/data/volumes/appdata/data1.hl7" target="code">data1.hl7</a>) nella
-directory condivisa sul PC (<tt>C:\...\data\volumes\appdata</tt>) .
-</li>
+directory condivisa sul PC (<tt>C:\...\data\volumes\appdata</tt>). Poi:
+<ul>
 <li>Usando <ks>adminer</ks> si visualizzino i dati della tabella  <em>PERSON</em> </li>
-<li>Fermare l'attivita' del canale con il comando <k>Stop</k>.</li> 
+<li>Fermare l'attivita' del canale con il comando <k>Stop</k>.</li>
+</ul>
 
+</li>
+ 
+<li><h4>Entrare nel sistema</h4>
+<m><pre>docker exec -it workingok_mc_1 bash
+pwd ->                      /opt/connect
+cd /home, ls ->             vuota
+cd /opt/connect, ls ->      
+<kc>appdata     custom-extensions  extensions  mcserver_base.vmoptions  mcservice.vmoptions        public_html          webapps
+client-lib  custom-lib         logs        mcserver.vmoptions       mirth-server-launcher.jar  server-launcher-lib
+conf        docs               mcserver    mcservice                public_api_html            server-lib</kc>
+</pre></m></li>
 </ol>
 
 
 <h3>Esempio: da richiesta HTTP a messaggio HL7</h3>
-Si importa l'esempio HL7 to <a href="../workingok/HLtoMySQLdatabase.xml" target="code">HLtoMySQLdatabase.xml</a>.<br/><br/>
+Si importa l'esempio HL7 to <a href="../workingok/channels/json_to_hl7_dest_channel_writer.xml" target="code">json_to_hl7_dest_channel_writer.xml</a>.<br/><br/>
 This channel receives a 'json' file over an 'HTTP' request, transforms it into an 'hl7' message, and sends it to another channel.<br/><br/>
 
 Questo esempio permette di accedere ai codici dei canali usando <em>Channel Writer Settings</em> in <ttDestinations</tt>.
 Ad esempio:
 <pre>
-channelTcpBase		d6b7c1b0-ac5e-4993-9570-45d8947ad76d
-HLtoMySQLdatabase	7ef65bb8-203b-4a82-a312-33fb73cff9ed  
+channelTcpBase		                    d6b7c1b0-ac5e-4993-9570-45d8947ad76d
+HLtoMySQLdatabase	                    7ef65bb8-203b-4a82-a312-33fb73cff9ed  
+json_to_hl7_dest_channel_writer.xml     69c079fd-1cc3-469f-8f00-b4c51638fdde
 </pre>
 
 <ol>
 <li>
-Il channel definisce in <tt>Destinations</tt>   
-<pre>
- </pre>
+Il channel definisce in <tt>Destinations</tt>:<k>Channel writer</k>. Noi selezioniamo <ks>channelTcpBase</ks>.
  </li>
+
+<li><h4>Esempi di trasmissione</h4>
+<ul>
+<li>Un invio da programma: <a href="../src/it/unibo/mirth/java/HttpClientMirth.java" target="code">HttpClientMirth.java</a> 
+<m><pre>
+------------------- Messages -------------------
+--------------------Mappings --------------------
+</pre></m>
+
+</li>
+</ul>
 
 <li>
  </li>
