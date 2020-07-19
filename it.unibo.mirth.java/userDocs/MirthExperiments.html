@@ -219,146 +219,6 @@ DISI - HapiFhirUsage.html</a> (on <tt>natMicroservices .... it.unibo.mirth.java/
  </tbody>
 </table>
 
-<h2>Channel TCP</h2>
-
-<table style="width:98%">
-<tbody>	
-<tr>
-<td style="width:25%" ><a href="../uniboChannels/channelTcp1.xml" target="code">channelTcp1</a>
-</td>
-<td>A TCP listener con data=<k>raw</k> on port=<tt>7001</tt>, Destination=<tt>JavaScrpt Writer</tt>:
-<pre>
-logger.info(connectorMessage.getRawData())
-</pre>
-A TCP sender: <a href="../src/it/unibo/mirth/java/TCPClientMirth.java" target="code">TCPClientMirth.java</a>.
-<br/><br/>
-</td>
-</tr>
-
-<tr>
-<td style="width:25%" ><a href="../uniboChannels/channelTcp1.xml" target="code">channelTcp1</a>
-</td>
-<td>A TCP listener con data=<k>raw</k> on port=<tt>7002</tt>, Destination=<tt>Channel Writer</tt>, Transformer:
-<pre>
-var input = connectorMessage.getRawData();
-logger.info( input );
-var R1  = <k>Packages.</k>it.unibo.mirth.java.MirthJava0.getText(input);  <kc>//RESPONSE</kc>
-responseMap.put("R1", R1);
-</pre>
-A user-defined Java library: <a href="../src/it/unibo/mirth/java/MirthJava0.java" target="code">MirthJava0.java</a>
-<br/><br/>
-<k>Problem</k>: not able to receive an answer sent by the TCP listener.
-<br/><br/>
-</td>
-</tr>
-
-<tr><td> 
-</td>
-<td> </td>
-</tr>
-
-<tr><td>
-</td>
-<td></td>
-</tr>
- </tbody>
-</table>
-
-<h2 id="fhir">FHIR</h2>
-See <a href="../../../natmaterial/fhir-example-channels/channels" target="web">fhir-example-channels/channels</a> 
- (in natmaterial: a repository of sample channels, code template libraries, and transformers that can be used with the 
-FHIR Connector Extension).<br/>
-
-<h3>Example</h3>
-<a href="https://nilkamaldp.wordpress.com/fhir-implementation-using-mirth/" target="code">FHIR Implementation Using Mirth</a>
-explains what is reported in 
-<a href="http://www.mirthcorp.com/community/wiki/pages/viewpage.action?pageId=38798957" target="code">Mirth Example Channel (R4)</a>.<br/>
-
-<ul>
-<li>This example channel depends on a database to store resource information. It is set up to support PostgreSQL or SQL Server, 
-though you can modify the code templates to support others.</li>
-<li>The example channel also relies on some configuration map properties to store database connection information. 
-If you don't already have configuration map properties set, you can just import this file:
-<pre>
-PostgreSQL:
- The type of database server (postgres, sqlserver).fhirDBDatabaseType = postgres
- # The JDBC Driver class to use when connecting to the FHIR database.fhirDBDriver = org.postgresql.Driver
- # The JDBC connection URL to use when connecting to the FHIR database.fhirDBUrl = jdbc:postgresql://localhost:5432/fhirdb
- # The username to use when connecting to the FHIR database.fhirDBUsername = postgres
- # The password to use when connecting to the FHIR database.fhirDBPassword = postgres
- # The maximum amount of retry attempts when a database connection fails.fhirDBMaxRetries = 3
-</pre>
-Otherwise, you can just add them to the configuration map table.
-</li>
-<li>certain interactions have been selectively enabled for certain resource types</li>
-<li>We use destination set filtering to decide in advance which destination to send a message to. 
-Each destination is named according to one of the possible FHIR interactions, like 'create' or 'update.'</li>
-
-<li>'create' destination: the JavaScript Writer takes a resource posted to the channel and stores it in the database.
-It uses <tt>FhirResponseFactory</tt> to create a <tt>FhirResponse</tt> object. <br/><br/>
-'read' destination: similar code to select resource data from the same database table and return the data in an appropriate 
-<tt>FhirResponse</tt> object. 
-<m><pre>
-try {
-    var fhirVersion = $('fhirVersion');
-    var type = $('fhirType').toLowerCase();
-    var id = $('fhirId');
-    
-    var result = getResource(type, id);
-    
-    if (result.next()) {
-        var version = new String(result.getInt('version'));
-        var data = getResultSetString(result, 'data');
-        var contentType = getResultSetString(result, 'mimetype');
-        var lastModified = getResultSetDate(result, 'last_modified');
-        var deleted = result.getBoolean('deleted');
-
-        if (deleted) {
-            return createOperationOutcome('error', 'processing', $('fhirType') + ' ID ' + id + ' has been deleted.', fhirVersion, 410);
-        } else {
-            var response = FhirResponseFactory.getReadResponse(data, version, lastModified, 200, contentType);
-            responseMap.put('response', response);
-            return response.getMessage();
-        }
-    } else {
-        return createOperationOutcome('error', 'processing', $('fhirType') + ' ID ' + id + ' not found.', fhirVersion, 404);
-    }
-} catch (e) {
-    return createOperationOutcome('error', 'transient', 'Error reading resource.', fhirVersion, 500, e);
-}
-</pre></m>
-
-</li>
-
-<li>request the home page at the URL <ks>http://localhost:9001/r4/</ks>, or the conformance statement at the URL 
-<ks>http://localhost:9001/r4/metadata</ks>. </li>
-
-<li>create a new Patient resource. POST a request to <tt>http://localhost:9001/r4/Patient</tt>.
-<br/>
-If you choose an XML-formatted resource, use  <tt>application/fhir+xml</tt>  for the Content-Type. <br/>
-If you choose JSON, use <tt>application/fhir+json</tt>.
-<h4>Create a patient resource</h4>
-See <a href="../fhir/examples/patient0.json" target="code">patient0.json</a> (general person)
-taken from <a href="https://www.hl7.org/fhir/patient-example.json.html" target="code">FHIR R4 - Patient-example.json</a>
-<br/><br/>
-See also
-<a href="https://hapifhir.io/hapi-fhir/docs/client/examples.html" target="web">HAPI FHIR Client Examples</a>
-and 
-<a href="http://hapi.fhir.org/" target="web">HAPI FHIR Public Server</a>
-<br/><br/>
-In whatever HTTP client you’re using, you should have received a 201 (Created) status code and also a Location header. <br/>
-The <k>Location header</k> contains a URL telling the client where to issue a 'vread' interaction to retrieve the same resource you just created.
- </li>
- 
- <li>copy that URL and issue a new GET request to it</li>
- 
- <li>You can also create and read Binary resources</li>
-</ul>
-
-<h2>UN ESEMPIO CHE FUNZIONA</h2>
-Questo esempio nasce da <tt>C:\Progetti\natmaterial\mirth-connect-channel-examples</tt> preso da
-<a href="https://github.com/nextgenhealthcare/connect-docker/tree/master/examples#mysql-with-volume.yml" target="web">nextgenhealthcare/connect-docker</a>.
-
 <h3>Installazione</h3>
 <ol>
 <li>Con riferimento a <a href="../workingok/compose-mysql-withvolume.yml" target="code">compose-mysql-withvolume.yml</a> si esegue
@@ -395,7 +255,11 @@ Database: mirthdb
 </pre>
 Si consulta il db che è già popolato in quanto sosituisce <tt>derby</tt>. Si noti che la tabella <ks>CHANNEL</ks> e' vuota.<br/>
 La tabella <ks>PERSON</ks> contiene dati, esportando la quale si ottiene il file 
- <a href="../workingok/PERSON.sql" target="code">PERSON.sql</a>.<br/><br/>
+ <a href="../workingok/PERSON.sql" target="code">PERSON.sql</a>.<br/> 
+ Per l'uso del db all'interno di un canale Mirth, si rammenti:
+ <pre>
+ DRIVER: com.mysql.jdbc.Driver
+ URL:    jdbc:mysql://db:3306/mirthdb</pre>
 </li>
 
 <li>carichiamo <i>user-defined Java code</i> secondo <a href="nextgen-connect-39-user-guide.pdf" target="code">nextgen-connect-39-user-guide.pdf (pag 157)</a>:
@@ -410,18 +274,28 @@ Premendo <k>refresh</k> si popola la finestra <i>Loaded Libraries</i> con tutti 
 <div class="remark">Now, restart the Mirth Connect server by clicking again on <ks>webstartmysql.jnlp</ks></div>
 
  </ol>
+
+<h2>ESEMPI DI USO DI CANALI</h2>
+Questi esempi nascono da <tt>C:\Progetti\natmaterial\mirth-connect-channel-examples</tt> preso da
+<a href="https://github.com/nextgenhealthcare/connect-docker/tree/master/examples#mysql-with-volume.yml" target="web">nextgenhealthcare/connect-docker</a>.
+
  
 <h3>Esempio: uso di TCP</h3>
- Si importa l'esempio HL7 to <a href="../workingok/channels/channelTcpBase.xml" target="code">channelTcpBase.xml</a>.<br/><br/>
-Questo channel <em>BasicTcp</em> attende un messaggio (con datatype <em>raw</em>)  sulla porta TCP <tt>7001</tt> e 
-lo invia a un <tt>Destinations</tt> che lo visualizza con il seguente codice Javascript:
-<pre>
+ Si importa l'esempio HL7 to <a href="../workingok/channels/channelTcpBase.xml" target="code">channelTcpBase.xml</a>.<br/>
+<hr/>Questo channel <em>BasicTcp</em> attende un messaggio (con datatype <em>raw</em>)  sulla porta TCP <tt>7001</tt> e 
+lo invia a un <tt>Destinations</tt>
+<hr/>
+Il canale  visualizza il messaggio con il seguente codice Javascript:
+<m><pre>
 var input = connectorMessage.getRawData();
 logger.info( input );
 var R1  = <k>Packages.</k>it.unibo.mirth.java.MirthJava0.getText(input);  <kc>//RESPONSE</kc>
 responseMap.put("R1", R1);
-</pre> 
+</pre></m> 
 Il codice-utente si trova in <a href="../src/it/unibo/mirth/java/MirthJava0.java" target="code">MirthJava0.java</a>
+
+
+
 <h4>Esempi di trasmissione</h4>
 
 <ul>
@@ -457,14 +331,14 @@ Response R1 : MirthJava0  received: GET / HTTP/1.1Host: 127.0.0.1:7001User-Agent
 
 
 <h3>Esempio: uso di db</h3>
-Si importa l'esempio <a href="../workingok/channels/HLtoMySQLdatabase.xml" target="code">HLtoMySQLdatabase.xml</a>.<br/><br/>
-Questo channel scrive periodicamente su DB (ogni 30 minuti) il conteuto di tutti i file <kc>*.hl7</kc> nella directory specificata in <tt>Source</tt>
-nella ipotesi che questi file contegano dati con formato <ks>ADT-A01</ks> (<tt>Admit a patient</tt>).<br/><br/>
-
+Si importa l'esempio <a href="../workingok/channels/HLtoMySQLdatabase.xml" target="code">HLtoMySQLdatabase.xml</a>.<br/> 
+<hr/>Questo canale scrive periodicamente su DB (ogni 30 minuti) il conteuto di tutti i file <kc>*.hl7</kc> nella directory specificata in <tt>Source</tt>
+nella ipotesi che questi file contegano dati con formato <ks>ADT-A01</ks> (<tt>Admit a patient</tt>).
+<hr/>
 <ol>
 <li>
 Il channel definisce in <tt>Destinations</tt>  un connector type di tipo <em>Database Writer</em> con il seguente codice Javascript:
-<pre>
+<m><pre>
 var dbConn;
 try { dbConn = DatabaseConnectionFactory.createDatabaseConnection(
 	<k>'com.mysql.jdbc.Driver'</k>,<k>'jdbc:mysql://db:3306/mirthdb','root','root_password'</k>);
@@ -472,7 +346,7 @@ try { dbConn = DatabaseConnectionFactory.createDatabaseConnection(
 		VALUES ('"+$('Username')+"', '"+$('FirstName')+"', '"+$('LastName')+"', 0)");		
 } finally { if (dbConn) {  dbConn.close(); }
 }
-</pre>
+</pre></m>
  </li>
 
 <li><h4>Esempi di trasmissione</h4>
@@ -498,16 +372,17 @@ conf        docs               mcserver    mcservice                public_api_h
 
 
 <h3>Esempio: da richiesta HTTP a messaggio HL7</h3>
-Si importa l'esempio HL7 to <a href="../workingok/channels/json_to_hl7_dest_channel_writer.xml" target="code">json_to_hl7_dest_channel_writer.xml</a>.<br/><br/>
-This channel receives a 'json' file over an 'HTTP' request, transforms it into an 'hl7' message, and sends it to another channel.<br/><br/>
-
+Si importa l'esempio HL7 to <a href="../workingok/channels/json_to_hl7_dest_channel_writer.xml" target="code">json_to_hl7_dest_channel_writer.xml</a>.<br/> 
+<hr/>
+This channel receives a 'json' file over an 'HTTP' request, transforms it into an 'hl7' message, and sends it to another channel. 
+<hr/>
 Questo esempio permette di accedere ai codici dei canali usando <em>Channel Writer Settings</em> in <ttDestinations</tt>.
 Ad esempio:
-<pre>
+<m><pre>
 channelTcpBase		                    d6b7c1b0-ac5e-4993-9570-45d8947ad76d
 HLtoMySQLdatabase	                    7ef65bb8-203b-4a82-a312-33fb73cff9ed  
 json_to_hl7_dest_channel_writer.xml     69c079fd-1cc3-469f-8f00-b4c51638fdde
-</pre>
+</pre></m>
 
 <ol>
 <li>
@@ -522,6 +397,24 @@ Il channel definisce in <tt>Destinations</tt>:<k>Channel writer</k>. Noi selezio
 <tbody>	
 <tr>
 <td style="width:50%" >
+Il programma invia con HTTP la seguente  stringa JSON:
+<m><pre>
+  private static String msgJson = "{\r\n" + 
+  		"    \"application_sending\" : \"EPICADTBO\",\r\n" + 
+  		"    \"sending_facility\" : \"DH\",\r\n" + 
+  		"    \"receiving_application\" : \"LABADT\",\r\n" + 
+  		"    \"receiving_facility\" : \"DH\",\r\n" + 
+  		"    \"time\": \"201301011226\",\r\n" + 
+  		"    \"message_type\" : \"ADT^A01\",\r\n" + 
+  		"    \"message_control_id\" : \"HL7MSG00001\",\r\n" + 
+  		"    \"process_id\" : \"P\",\r\n" + 
+  		"    \"version_id\": \"2.3\"\r\n" + 
+  		"}";
+</pre></m>
+
+Questo dato è anche nel file  <a href="../workingok/channels/templates/json_template.json" target="code">json_template.json</a> 
+<br/><br/>
+Il risultato su Mirth è riportato qui sotto e qui a fianco.
 <m><pre>
 ------------------- Messages Raw -------------------
 {
@@ -542,8 +435,6 @@ Il channel definisce in <tt>Destinations</tt>:<k>Channel writer</k>. Noi selezio
 MSH|^~\&|EPICADTBO|DH|LABADT|DH|201301011226||ADT^A01|HL7MSG00001|P|2.3| 
 PID||||||||||||||||||||
 PD1|||||
-
-
 
 
 --------------------Mappings --------------------
@@ -629,21 +520,147 @@ Response d2 : SENT: Message routed successfully
  </tbody>
 </table>
  
+<li>Un invio mediante curl del contenuto del file <a href="../workingok/channels/templates/json_template.json" target="code">json_template.json</a>:
+<pre>
+curl -H "Content-Type: application/json" <k>--data @json_template.json</k>
+	http://127.0.0.1:7003/api/channels/69c079fd-1cc3-469f-8f00-b4c51638fdde/messages
+</pre>
+ </li>
  
  
 </li>
 </ul>
+</ol>
 
-<li>Un invio medianet curl:
-<pre>
-curl -H "Content-Type: application/json" --data @json_template.json
-	http://127.0.0.1:7003/api/channels/69c079fd-1cc3-469f-8f00-b4c51638fdde/messages
-</pre>
- </li>
-<li> </li>
+
+<h2 id="fhir">ESEMPI FHIR</h2>
+
+Questi esempi nascono da  <a href="../../../natmaterial/fhir-example-channels/channels" target="web">fhir-example-channels/channels</a>  preso da
+<a href=https://github.com/nextgenhealthcare/fhir-example-channels" target="web">nextgenhealthcare/fhir-example-channels GIT</a>
+( a repository of sample channels, code template libraries, and transformers that can be used with the  FHIR Connector Extension).
+ <div class="remark">
+<a href="https://hapifhir.io/hapi-fhir/apidocs/hapi-fhir-structures-r4/" target="web">FHIR HAPI</a>
+</div>
+<h3>Esempio: FHIR Listener </h3>
+Si importa l'esempio <a href="../channels/FHIR Listener.xml" target="code">FHIR Listener.xml</a>.<br/> 
+<hr/>
+This sample channel is intended as a <k>starting point</k> to teach you the basics of  FHIR resources/interactions and how the FHIR Listener works with them. 
+<br/><m> 
+The trial-use standard basically just tells you what to do with resources (create them, update them, etc.), 
+and you can use Mirth Connect to customize the actual implementation however you wish.
+
+This channel is dependent on the following code template libraries:
+<ul>
+<li>FHIR Helper Functions</li>
+<li>FHIR DB Operations</li>
+</ul>
+</m> 
+<hr/>
+
  
 
-</ol>
+<h3>Esempio: Convert HL7 to FHIR Patient - 1 </h3>
+<hr/>
+This example channel uses the Iterator and FHIR Resource Builder transformer step types to take 
+an HL7 v2.x ADT and create a FHIR Patient resource that represents the demographic information present in the message.
+<hr/>
+
+<h3>Esempio: Convert HL7 to FHIR Patient - 2 </h3>
+<hr/>
+This example channel uses the FHIR Resource Builder code template type to take 
+an HL7 v2.x ADT and create a FHIR Patient resource that represents the demographic information present in the message. 
+It accomplishes the same thing as the "Example 1" channel, but in a different way. 
+By using code templates, you can keep your conversion logic separate from channels, 
+and include those code templates on multiple channels as you see fit.
+<hr/>
+
+
+<h3>Esempi ....</h3>
+<a href="https://nilkamaldp.wordpress.com/fhir-implementation-using-mirth/" target="code">FHIR Implementation Using Mirth</a>
+explains what is reported in 
+<a href="http://www.mirthcorp.com/community/wiki/pages/viewpage.action?pageId=38798957" target="code">Mirth Example Channel (R4)</a>.<br/>
+
+<ul>
+<li>This example channel depends on a database to store resource information. It is set up to support PostgreSQL or SQL Server, 
+though you can modify the code templates to support others.</li>
+<li>The example channel also relies on some configuration map properties to store database connection information. 
+If you don't already have configuration map properties set, you can just import this file:
+<pre>
+PostgreSQL:
+ The type of database server (postgres, sqlserver).fhirDBDatabaseType = postgres
+ # The JDBC Driver class to use when connecting to the FHIR database.fhirDBDriver = org.postgresql.Driver
+ # The JDBC connection URL to use when connecting to the FHIR database.fhirDBUrl = jdbc:postgresql://localhost:5432/fhirdb
+ # The username to use when connecting to the FHIR database.fhirDBUsername = postgres
+ # The password to use when connecting to the FHIR database.fhirDBPassword = postgres
+ # The maximum amount of retry attempts when a database connection fails.fhirDBMaxRetries = 3
+</pre>
+Otherwise, you can just add them to the configuration map table.
+</li>
+<li>certain interactions have been selectively enabled for certain resource types</li>
+<li>We use destination set filtering to decide in advance which destination to send a message to. 
+Each destination is named according to one of the possible FHIR interactions, like 'create' or 'update.'</li>
+
+<li>'create' destination: the JavaScript Writer takes a resource posted to the channel and stores it in the database.
+It uses <tt>FhirResponseFactory</tt> to create a <tt>FhirResponse</tt> object. <br/><br/>
+'read' destination: similar code to select resource data from the same database table and return the data in an appropriate 
+<tt>FhirResponse</tt> object. 
+<m><pre>
+try {
+    var fhirVersion = $('fhirVersion');
+    var type = $('fhirType').toLowerCase();
+    var id = $('fhirId');
+    
+    var result = getResource(type, id);
+    
+    if (result.next()) {
+        var version = new String(result.getInt('version'));
+        var data = getResultSetString(result, 'data');
+        var contentType = getResultSetString(result, 'mimetype');
+        var lastModified = getResultSetDate(result, 'last_modified');
+        var deleted = result.getBoolean('deleted');
+
+        if (deleted) {
+            return createOperationOutcome('error', 'processing', $('fhirType') + ' ID ' + id + ' has been deleted.', fhirVersion, 410);
+        } else {
+            var response = FhirResponseFactory.getReadResponse(data, version, lastModified, 200, contentType);
+            responseMap.put('response', response);
+            return response.getMessage();
+        }
+    } else {
+        return createOperationOutcome('error', 'processing', $('fhirType') + ' ID ' + id + ' not found.', fhirVersion, 404);
+    }
+} catch (e) {
+    return createOperationOutcome('error', 'transient', 'Error reading resource.', fhirVersion, 500, e);
+}
+</pre></m>
+
+</li>
+
+<li>request the home page at the URL <ks>http://localhost:9001/r4/</ks>, or the conformance statement at the URL 
+<ks>http://localhost:9001/r4/metadata</ks>. </li>
+
+<li>create a new Patient resource. POST a request to <tt>http://localhost:9001/r4/Patient</tt>.
+<br/>
+If you choose an XML-formatted resource, use  <tt>application/fhir+xml</tt>  for the Content-Type. <br/>
+If you choose JSON, use <tt>application/fhir+json</tt>.
+<h4>Create a patient resource</h4>
+See <a href="../fhir/examples/patient0.json" target="code">patient0.json</a> (general person)
+taken from <a href="https://www.hl7.org/fhir/patient-example.json.html" target="code">FHIR R4 - Patient-example.json</a>
+<br/><br/>
+See also
+<a href="https://hapifhir.io/hapi-fhir/docs/client/examples.html" target="web">HAPI FHIR Client Examples</a>
+and 
+<a href="http://hapi.fhir.org/" target="web">HAPI FHIR Public Server</a>
+<br/><br/>
+In whatever HTTP client you’re using, you should have received a 201 (Created) status code and also a Location header. <br/>
+The <k>Location header</k> contains a URL telling the client where to issue a 'vread' interaction to retrieve the same resource you just created.
+ </li>
+ 
+ <li>copy that URL and issue a new GET request to it</li>
+ 
+ <li>You can also create and read Binary resources</li>
+</ul>
+
 
 <pre>
 
@@ -689,6 +706,55 @@ docker exec -it 99590a9ec384 bash
  <br/><br/>
  </div>    
 
+
+<!--
+<h2>Channel TCP</h2>
+
+<table style="width:98%">
+<tbody>	
+<tr>
+<td style="width:25%" ><a href="../uniboChannels/channelTcp1.xml" target="code">channelTcp1</a>
+</td>
+<td>A TCP listener con data=<k>raw</k> on port=<tt>7001</tt>, Destination=<tt>JavaScrpt Writer</tt>:
+<pre>
+logger.info(connectorMessage.getRawData())
+</pre>
+A TCP sender: <a href="../src/it/unibo/mirth/java/TCPClientMirth.java" target="code">TCPClientMirth.java</a>.
+<br/><br/>
+</td>
+</tr>
+
+<tr>
+<td style="width:25%" ><a href="../uniboChannels/channelTcp1.xml" target="code">channelTcp1</a>
+</td>
+<td>A TCP listener con data=<k>raw</k> on port=<tt>7002</tt>, Destination=<tt>Channel Writer</tt>, Transformer:
+<pre>
+var input = connectorMessage.getRawData();
+logger.info( input );
+var R1  = <k>Packages.</k>it.unibo.mirth.java.MirthJava0.getText(input);  <kc>//RESPONSE</kc>
+responseMap.put("R1", R1);
+</pre>
+A user-defined Java library: <a href="../src/it/unibo/mirth/java/MirthJava0.java" target="code">MirthJava0.java</a>
+<br/><br/>
+<k>Problem</k>: not able to receive an answer sent by the TCP listener.
+<br/><br/>
+</td>
+</tr>
+
+<tr><td> 
+</td>
+<td> </td>
+</tr>
+
+<tr><td>
+</td>
+<td></td>
+</tr>
+ </tbody>
+</table>
+
+
+-->
  
 
 <div style="background-color:rgba(86, 56, 253, 0.9); width:100%;text-align:center;font-size:small;color:white">

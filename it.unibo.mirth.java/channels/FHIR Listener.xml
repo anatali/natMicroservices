@@ -2,14 +2,15 @@
   <id>1892f241-d643-4abb-b0af-b20b87e0cf12</id>
   <nextMetaDataId>8</nextMetaDataId>
   <name>FHIR Listener</name>
-  <description>NOTE: This channel depends on the following variables being declared in the configuration map:
-
-    fhirDBDatabaseType: The type of database server (postgres, sqlserver).
-    fhirDBDriver: The JDBC Driver class to use when connecting to the FHIR database.
-    fhirDBUrl: The JDBC connection URL to use when connecting to the FHIR database.
-    fhirDBUsername: The username to use when connecting to the FHIR database.
-    fhirDBPassword: The password to use when connecting to the FHIR database.
-    fhirDBMaxRetries: The maximum amount of retry attempts when a database connection fails.</description>
+  <description>
+  NOTE: This channel depends on the following variables being declared in the configuration map:
+    fhirDBDatabaseType= mysql                     The type of database server .
+    fhirDBDriver= org.mysql.Driver                The JDBC Driver class to use when connecting to the FHIR database.
+    fhirDBUrl= jdbc:mysql://db:3306/mirthdb       The JDBC connection URL to use when connecting to the FHIR database.
+    fhirDBUsername= root                          The username to use when connecting to the FHIR database.
+    fhirDBPassword=root_password                  The password to use when connecting to the FHIR database.
+    fhirDBMaxRetries=3                            The maximum amount of retry attempts when a database connection fails.
+  </description>
   <revision>1</revision>
   <sourceConnector version="3.9.0">
     <metaDataId>0</metaDataId>

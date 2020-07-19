@@ -6,8 +6,9 @@ import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.hl7.fhir.instance.model.api.IBaseBundle;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.instance.model.api.IIdType;
-//import org.hl7.fhir.r4.model.*;
-import ca.uhn.fhir.model.dstu2.resource.*;
+import org.hl7.fhir.r4.formats.IParser;
+import org.hl7.fhir.r4.model.*;
+//import ca.uhn.fhir.model.dstu2.resource.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -24,27 +25,30 @@ public class HttpFhirClientMirth {
 //  private static String url = "http://localhost:9001/r4";
   private HttpClient client = new HttpClient();
   //FhirContext is an expensive (thread-safe) object
-//  private FhirContext ctx = FhirContext.forR4();
+   private FhirContext ctx = FhirContext.forR4();
   
-  private FhirContext ctx = FhirContext.forDstu2();
-  private String serverBase = "http://localhost:9001/r4"; //"http://fhirtest.uhn.ca/baseDstu2";
+//  private FhirContext ctx = FhirContext.forDstu2();
+  private String serverBase = "http://localhost:7002/r4"; //"http://fhirtest.uhn.ca/baseDstu2";
 
   //From https://hapifhir.io/hapi-fhir/docs/client/generic_client.html  
-  public void search() {
+  
+//GET http://hapi.fhir.org/baseR4/Patient?address-city=bologna&_include=*&_pretty=true
+  public void search(String serverBase, String familyName) {
 //	  String serverBase = "http://fhirtest.uhn.ca/baseDstu2";
 	  IGenericClient client = ctx.newRestfulGenericClient(serverBase);
 	  System.out.println("client "+ client);
 	  Bundle results = client
 			   .search()
 			   .forResource(Patient.class)
-			   .where(Patient.FAMILY.matches().value("duck"))
+			   .where(Patient.FAMILY.matches().value(familyName))
 			   .returnBundle(Bundle.class)
 			   .execute();	
-	  System.out.println("Found " + results.getEntry().size() + " patients named 'duck'");
+	  System.out.println("Found " + results.getEntry().size() + " patients named " + familyName);
   }
   public void readData() {
 	    // Create a method instance.
-	    GetMethod method  = new GetMethod("http://localhost:9001/r4");
+	  String query = "";//"/?server=db&username=root&db=mirthdb&select=PERSON";
+	    GetMethod method  = new GetMethod( serverBase + query);
 	    method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, 
 	    		new DefaultHttpMethodRetryHandler(3, false));	     
 	    System.out.println("get path :"+ method.getPath() );
@@ -53,18 +57,34 @@ public class HttpFhirClientMirth {
 	    executeMethod(method);
   }
   
-  
+  //From https://hapifhir.io/hapi-fhir/docs/model/parsers.html
+  public void createPatientNat() {
+	  String input = "{" +
+			   "\"resourceType\" : \"Patient\"," +
+			   "  \"name\" : [{" +
+			   "    \"family\": \"Simpson\"" +
+			   "  }]" +
+			   "}";	  
+	  
+	// Instantiate a new parser
+	  ca.uhn.fhir.parser.IParser parser = ctx.newJsonParser();
+
+	  // Parse it
+	  Patient parsed = parser.parseResource(Patient.class, input);
+	  System.out.println(parsed.getName().get(0).getFamily());	  
+  }
   //From https://hapifhir.io/hapi-fhir/docs/client/generic_client.html  
   public void createPatient() {
-//	  PostMethod method = new PostMethod("http://localhost:9001/r4/Patient");
 	try {
 		  Patient patient = new Patient();
 		// ..populate the patient object..
 		patient.addIdentifier().setSystem("urn:system").setValue("12345");
-//		patient.addName().setFamily("Smith").addGiven("John");
-		patient.addName().addFamily("Smith").addGiven("John");
+ 		patient.addName().setFamily("Smith").addGiven("JohnBolognaR4");			//R4
+//		patient.addName().addFamily("Smith").addGiven("JohnBologna");	//DSTU2
 		
-		String serverBase = "http://fhirtest.uhn.ca/baseDstu2";
+ 		System.out.println("createPatient: " + patient.getText());
+ 		
+//		String serverBase = "http://fhirtest.uhn.ca/baseDstu2";
 		IGenericClient client = ctx.newRestfulGenericClient(serverBase);
 		// Invoke the server create method (and send pretty-printed JSON
 		// encoding to the server
@@ -74,7 +94,20 @@ public class HttpFhirClientMirth {
 		   .prettyPrint()
 		   .encodedJson()
 		   .execute();
-	
+//var params = [type, id, versionId, lastUpdated, data, contentType, method, url];			//postgres
+//var params = [sequenceId, type, id, versionId, lastUpdated, data, contentType, method, url]; //sqlserver
+/*
+ * <Patient><id value="fd5b7952-3733-4789-a188-40120017e4ef"/>
+ * <meta>
+ * <versionId value="1"/><lastUpdated value="2020-07-19T15:02:16.079+00:00"/>
+ * </meta>
+ * <identifier>
+ * <system value="urn:system"/>
+ * <value value="12345"/>
+ * </identifier>
+ * <name><family value="Smith"/><given value="JohnBolognaR4"/></name>
+ * </Patient>	
+ */
 		// The MethodOutcome object will contain information about the
 		// response from the server, including the ID of the created
 		// resource, the OperationOutcome response, etc. (assuming that
@@ -101,6 +134,7 @@ public class HttpFhirClientMirth {
 
 		      // Deal with the response.
 		      // Use caution: ensure correct character encoding and is not binary data
+		      System.out.println("---------------------------------------");
 		      System.out.println(new String(responseBody));
 
 		    } catch (HttpException e) {
@@ -205,7 +239,7 @@ public class HttpFhirClientMirth {
 	// Create a context and a client
 	  try {
 		  FhirContext ctx = FhirContext.forR4();
-		  String serverBase = "http://localhost:9001/r4"  ; // "http://hapi.fhr.org/baseR4"
+//		  String serverBase = "http://localhost:9001/r4"  ; // "http://hapi.fhr.org/baseR4"
 		  IGenericClient client = ctx.newRestfulGenericClient(serverBase);
 	
 		  // We'll populate this list
@@ -255,11 +289,11 @@ public class HttpFhirClientMirth {
  	}  
   public static void main(String[] args) {
 	  HttpFhirClientMirth appl = new HttpFhirClientMirth();
-//	  appl.readData();
+//  	  appl.readData();
 //	  appl.createPatient();
 //	  appl.xxx();
 //	  appl.yyy();
-	  appl.createPatient();
-//	  appl.search();
+//	 	  appl.createPatientNat();
+ 	  appl.search("http://hapi.fhir.org/baseR4","Verdi");	//Bianchi ce ne sono 10
   }
 }

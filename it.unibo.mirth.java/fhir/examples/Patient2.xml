@@ -1,0 +1,47 @@
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="1164483"/>
+   <meta>
+      <versionId value="1"/>
+      <lastUpdated value="2020-05-12T12:58:35.139+00:00"/>
+      <source value="#aE8D7piCmasNvQCt"/>
+      <profile value="http://hl7.org/fhir/StructureDefinition/custom-Patient-v1"/>
+   </meta>
+   <text>
+      <status value="generated"/>
+   </text>
+   <identifier>
+      <use value="usual"/>
+      <system value="http://my.fhir.client.system/fhir/client"/>
+      <value value="1234567890"/>
+   </identifier>
+   <identifier>
+      <use value="usual"/>
+      <system value="urn:oid:2.16.840.1.113883.2.4.6.3"/>
+   </identifier>
+   <active value="true"/>
+   <name>
+      <use value="usual"/>
+      <family value="Bianchi"/>
+      <given value="Marco"/>
+      <suffix value="Sig"/>
+   </name>
+   <telecom>
+      <system value="phone"/>
+      <value value="3331122333"/>
+      <use value="mobile"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="m.bianchi@email.net"/>
+      <use value="home"/>
+   </telecom>
+   <gender value="male"/>
+   <birthDate value="1944-11-17"/>
+   <address>
+      <use value="home"/>
+      <line value="Via dei Glicini"/>
+      <city value="Milano"/>
+      <postalCode value="00000"/>
+      <country value="IT"/>
+   </address>
+</Patient>
