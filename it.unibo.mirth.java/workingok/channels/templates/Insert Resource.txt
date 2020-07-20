@@ -1,0 +1,101 @@
+<codeTemplate version="3.9.0">
+  <id>407c077f-579a-47af-bb78-1829cdd789c3</id>
+  <name>Insert Resource</name>
+  <revision>25</revision>
+  <lastModified>
+    <time>1595238567878</time>
+    <timezone>Etc/UTC</timezone>
+  </lastModified>
+  <contextSet>
+    <delegate>
+      <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+      <contextType>DESTINATION_DISPATCHER</contextType>
+      <contextType>SOURCE_RECEIVER</contextType>
+      <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+      <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+    </delegate>
+  </contextSet>
+  <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+    <type>FUNCTION</type>
+    <code>/**
+	Inserts a new resource and returns its DB sequence ID.
+
+	@param {String} type - The FHIR resource type.
+	@param {String} id - The logical ID of the resource.
+	@param {Number} versionId - The version ID of the resource.
+	@param {Date} lastUpdated - The last updated time of the resource.
+	@param {String} data - The resource data.
+	@param {String} contentType - The MIME type of the resource data.
+	@param {String} method - The HTTP method used to create the resource.
+	@param {String} url - The HTTP URL used to create the resource.
+	@return {Number} The database sequence ID for the inserted resource.
+*/
+function insertFhirResource(type, id, versionId, lastUpdated, data, contentType, method, url) {
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+	if (dbType == &apos;MySQL&apos;) {
+		var params = [type, id, versionId, lastUpdated, data, contentType, method, url];			//postgres
+		//var params = [sequenceId, type, id, versionId, lastUpdated, data, contentType, method, url]; //sqlserver
+		var dbConn;
+		try { 
+/*			
+logger.info(&quot;&amp;&amp;&amp; insertFhirResource MySQL params[0]  &quot; + params[0]);
+logger.info(&quot;&amp;&amp;&amp; insertFhirResource MySQL params[1]  &quot; + params[1]);
+logger.info(&quot;&amp;&amp;&amp; insertFhirResource MySQL params[2]  &quot; + params[2]);
+logger.info(&quot;&amp;&amp;&amp; insertFhirResource MySQL params[3]  &quot; + params[3]);
+logger.info(&quot;&amp;&amp;&amp; insertFhirResource MySQL params[4]  &quot; + params[4]);
+logger.info(&quot;&amp;&amp;&amp; insertFhirResource MySQL params[5]  &quot; + params[5]);
+logger.info(&quot;&amp;&amp;&amp; insertFhirResource MySQL params[6]  &quot; + params[6]);
+logger.info(&quot;&amp;&amp;&amp; insertFhirResource MySQL params[7]  &quot; + params[7]);
+			//var result = dbConn.executeUpdate(&quot;INSERT INTO PERSON (USERNAME, FIRSTNAME, LASTNAME, LOGGED_IN) VALUES (&apos;Username&apos;, &apos;FirstName&apos;, &apos;LastName&apos;, 0)&quot;);		
+			//var result = dbConn.executeUpdate(&quot;INSERT INTO resource (name, id, version, last_modified, data, mimetype, request_method, request_url) VALUES (?, ?, ?, ?, ?::XML, ?, ?, ?)&quot;, params);
+var patientdata = params[4];
+logger.info(&quot;%%% patientdata=  &quot; + patientdata);
+	//var result = dbConn.executeUpdate(&quot;INSERT INTO PERSON (USERNAME, FIRSTNAME, LASTNAME, LOGGED_IN) VALUES (&apos;&quot;+$(&apos;Username&apos;)+&quot;&apos;, &apos;&quot;+$(&apos;FirstName&apos;)+&quot;&apos;, &apos;&quot;+$(&apos;LastName&apos;)+&quot;&apos;, 0)&quot;);		
+*/
+			dbConn = DatabaseConnectionFactory.createDatabaseConnection(
+			    &apos;com.mysql.jdbc.Driver&apos;,&apos;jdbc:mysql://db:3306/mirthdb&apos;,&apos;root&apos;,&apos;root_password&apos;);			
+			var patientxml = new XML( patientdata );	
+			var UserName  = patientxml.name.use.@value;
+			var LastName  = patientxml.name.family.@value;
+			var FirstName = patientxml.name.given.@value;			
+			logger.info(&quot;%%% patientdata xml LastName=  &quot; + LastName);
+			var result = dbConn.executeUpdate(
+	 		&quot;INSERT INTO PERSON (USERNAME, FIRSTNAME, LASTNAME, LOGGED_IN) VALUES (&apos;&quot;+ UserName +&quot;&apos;,&apos;&quot;+ FirstName +&quot;&apos;,&apos;&quot;+LastName +&quot;&apos;, 0)&quot;);			
+		}catch (e) { throw &apos;MySQL db ERROR: &apos; + e; }
+		finally { if (dbConn) {  dbConn.close(); } 
+		}		
+ 	} else
+	if (dbType == &apos;postgres&apos;) {
+		var params = [type, id, versionId, lastUpdated, data, contentType, method, url];
+ 		var result = executeUpdateAndGetGeneratedKeys(&quot;INSERT INTO resource (name, id, version, last_modified, data, mimetype, request_method, request_url) VALUES (?, ?, ?, ?, ?::XML, ?, ?, ?)&quot;, params);
+		result.next();
+		return result.getInt(1);
+	} else if (dbType == &apos;sqlserver&apos;) {
+		var dbConn = createFHIRDBConnection();
+		
+		try {
+			dbConn.setAutoCommit(false);
+			
+			var idResult = executeCachedQuery(&apos;SELECT id FROM resource_sequence WITH (UPDLOCK)&apos;, [], dbConn);
+			idResult.next();
+			var sequenceId = idResult.getInt(1);
+			executeUpdate(&apos;UPDATE resource_sequence SET ID = ID + 1&apos;, [], dbConn);
+			dbConn.commit();
+
+			var params = [sequenceId, type, id, versionId, lastUpdated, data, contentType, method, url];
+			executeUpdate(&quot;INSERT INTO resource (sequence_id, name, id, version, last_modified, data, mimetype, request_method, request_url) VALUES (?, ?, ?, ?, ?, CAST(? AS XML), ?, ?, ?)&quot;, params, dbConn);
+			dbConn.commit();
+			
+			return sequenceId;
+		} catch (e) {
+			try { dbConn.rollback() } catch (e2) {}
+			throw e;
+		} finally {
+			try { dbConn.close() } catch (e) {}
+		}
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}</code>
+  </properties>
+</codeTemplate>

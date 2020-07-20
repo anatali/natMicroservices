@@ -590,7 +590,7 @@ FHIR Mirth</a>
 </div>
 
 Questi esempi nascono da  <a href="../../../natmaterial/fhir-example-channels/channels" target="web">fhir-example-channels/channels</a>  preso da
-<a href=https://github.com/nextgenhealthcare/fhir-example-channels" target="web">nextgenhealthcare/fhir-example-channels GIT</a>
+<a href="https://github.com/nextgenhealthcare/fhir-example-channels" target="web">nextgenhealthcare/fhir-example-channels GIT</a>
 ( a repository of sample channels, code template libraries, and transformers that can be used with the  FHIR Connector Extension).
 
 <h3>Esempio: FHIR Listener </h3>
@@ -608,14 +608,30 @@ This channel is dependent on the following code template libraries:
 </ul>
 </m> 
 <hr/>
-
- 
+<h4>Esempi di trasmissione</h4>
+Un invio da programma: <a href="../src/it/unibo/mirth/java/HttpFhirClientMirth.java" target="code">HttpFhirClientMirth.java</a>   (TO BE REFACTORED)
+<br/>
+Si può verificare la inserzione nel db di un paziente. 
 
 <h3>Esempio: Convert HL7 to FHIR Patient - 1 </h3>
+L'esempio e' quello descritto in
+<a href="https://www.mirthcorp.com/community/wiki/display/mirth/HL7+v2.x+to+FHIR+Conversions+(R4)#HL7v2.xtoFHIRConversions(R4)-ConvertHL7toFHIRPatient-Example1" target="webcode">
+FHIR Mirth UserGuide | Convert HL7 to FHIR Patient - Example 1</a>
 <hr/>
 This example channel uses the Iterator and FHIR Resource Builder transformer step types to take 
 an HL7 v2.x ADT and create a FHIR Patient resource that represents the demographic information present in the message.
 <hr/>
+
+<h4>Esempi di trasmissione</h4>
+Inviare il messaggio:
+<pre>
+MSH|^~\&|ADT1|SHM|SHMADT|SHM|200812091126|SECURITY|ADT^A01^ADT_A01|MSG00001|P|2.5|
+EVN|A01|200812091126||
+PID|1|1001|1001^5^M11^ADT1^MR^SHM~123456789^^^USSSA^SS||OHALLAHAN^COLLEEN^^||19850704|F||2106-3|1200 N ELM STREET^^NEWPORT BEACH^CA^92660-1020^US^H|OC|(949) 555-1234|(949) 555-5678||S||PATID1001^2^M10^ADT1^AN^A|123456789|U1234567^CA|
+NK1|1|O'HALLAHAN^BRITTANY^M|SIS^SISTER||||N^NEXT-OF-KIN
+PV1|1|I|2000^2012^01||||001122^ZOIDBERG^JOHN^|||SUR||||1|A0|
+</pre>
+e poi osservare <tt>Source Encoded data</tt> or <tt>Destination Raw data</tt>.
 
 <h3>Esempio: Convert HL7 to FHIR Patient - 2 </h3>
 <hr/>
@@ -625,6 +641,7 @@ It accomplishes the same thing as the "Example 1" channel, but in a different wa
 By using code templates, you can keep your conversion logic separate from channels, 
 and include those code templates on multiple channels as you see fit.
 <hr/>
+
 
 
 <h3>Esempi ....</h3>
