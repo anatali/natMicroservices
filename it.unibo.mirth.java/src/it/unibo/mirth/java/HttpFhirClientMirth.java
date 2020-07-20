@@ -101,6 +101,7 @@ public class HttpFhirClientMirth {
   //From https://hapifhir.io/hapi-fhir/docs/client/generic_client.html  
   public void createPatient() {
 	try {
+		/*
 		  Patient patient = new Patient();
 		// ..populate the patient object..
 		patient.addIdentifier().setSystem("urn:system").setValue("12345");
@@ -108,7 +109,8 @@ public class HttpFhirClientMirth {
 //		patient.addName().addFamily("Smith").addGiven("JohnBologna");	//DSTU2
 		
  		System.out.println("createPatient: " + patient.getText());
- 		
+ 		*/
+		Patient patient = mypatients.createPatient_1(ctx);
 //		String serverBase = "http://fhirtest.uhn.ca/baseDstu2";
 		IGenericClient client = ctx.newRestfulGenericClient(serverBase);
 		// Invoke the server create method (and send pretty-printed JSON
@@ -121,18 +123,7 @@ public class HttpFhirClientMirth {
 		   .execute();
 //var params = [type, id, versionId, lastUpdated, data, contentType, method, url];			//postgres
 //var params = [sequenceId, type, id, versionId, lastUpdated, data, contentType, method, url]; //sqlserver
-/*
- * <Patient><id value="fd5b7952-3733-4789-a188-40120017e4ef"/>
- * <meta>
- * <versionId value="1"/><lastUpdated value="2020-07-19T15:02:16.079+00:00"/>
- * </meta>
- * <identifier>
- * <system value="urn:system"/>
- * <value value="12345"/>
- * </identifier>
- * <name><family value="Smith"/><given value="JohnBolognaR4"/></name>
- * </Patient>	
- */
+
 		// The MethodOutcome object will contain information about the
 		// response from the server, including the ID of the created
 		// resource, the OperationOutcome response, etc. (assuming that
@@ -144,6 +135,14 @@ public class HttpFhirClientMirth {
 		  System.out.println("createPatient ERROR:" + e.getMessage());
 	  }
   }  
+  
+  /* From https://stackoverflow.com/questions/55267648/iterating-and-extracting-data-from-xml-in-javascript-on-mirth
+     var myQuery = 'INSERT INTO adt.diagnosis (AcctNum, MRN, ICD10) VALUES (?, ?, ?)';
+
+    for each (var dg1 in xml.descendants('DG1')) {
+            dbConn.executeUpdate(myQuery, new java.util.ArrayList([$('AcctNum'), $('MedRecNum'), dg1['DG1.3']['DG1.3.1'].toString()]));
+    }
+   */
   
   public void executeMethod(HttpMethodBase method) {
 	    try {
@@ -315,10 +314,11 @@ public class HttpFhirClientMirth {
   public static void main(String[] args) throws Exception {
 	  HttpFhirClientMirth appl = new HttpFhirClientMirth();
 //  	  appl.readData();
-//	  appl.createPatient();
+ 	  appl.createPatient();
 //	  appl.xxx();
 //	  appl.yyy();
- 	 	  appl.createPatientNat();
+ 
+//	  appl.createPatientNat();
 	  
 	  //See http://hapi.fhir.org/
 // 	  appl.search("http://hapi.fhir.org/baseR4","Verdi");	//Bianchi ce ne sono 10
