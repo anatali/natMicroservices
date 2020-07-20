@@ -535,12 +535,52 @@ curl -H "Content-Type: application/json" <k>--data @json_template.json</k>
 
 <h2 id="fhir">ESEMPI FHIR</h2>
 
+ <h3>FHIR References</h3>
+ <div class="remark">
+<a href="https://hapifhir.io/hapi-fhir/apidocs/hapi-fhir-structures-r4/" target="webcode">FHIR HAPI</a><br/>
+<a href="https://fhir-drills.github.io/fhir-api.html" target="webcode">FHIR HAPI Tutorials</a><br/><br/> 
+
+<table style="width:98%">
+<tbody>	
+<tr>
+ <td>
+ <i>FhirContext</i><br/>
+ <br/> <br/>  
+ <hr/>
+ <a href="https://hapifhir.io/hapi-fhir/apidocs/hapi-fhir-base/ca/uhn/fhir/context/FhirContext.html" target="webcode">FHIR HAPI FhirContext</a><br/>
+ <br/> <br/>
+ 
+ </td>
+<td style="width:35%" >
+<i>Patient</i><br/>
+<a href="https://www.hl7.org/fhir/patient.html" target="webcode">FHIR Patient</a> (<k>Administration</k> module)<br/>
+<a href="https://fhir-drills.github.io/simple-patient.html" target="webcode">Patient resource Tutorial</a>
+<hr/>
+<a href="https://hapifhir.io/hapi-fhir/apidocs/hapi-fhir-structures-r4/org/hl7/fhir/r4/model/Patient.html" target="webcode">FHIR HAPI Patient</a><br/>
+<a href="https://fhir-drills.github.io/fhir-api.html" target="webcode">FHIR HAPI Patient example</a><br/>
+<a href="https://hapifhir.io/hapi-fhir/docs/client/examples.html" target="webcode">HAPI FHIR Client Examples</a><br/>
+</td>
+<td>
+ <i>Bundle</i> <br/>
+
+ <a href="https://www.hl7.org/fhir/bundle.html" target="webcode">FHIR Bundle</a>  (<k>Foundation</k> module)<br/>
+<a href="https://fhir-drills.github.io/bundle.html" target="webcode">Bundle Tutorial</a>
+<hr/>
+<a href="https://hapifhir.io/hapi-fhir/apidocs/hapi-fhir-structures-r4/undefined/org/hl7/fhir/r4/model/Bundle.html" target="webcode">FHIR HAPI Bundle</a><br/> 
+<a href="https://fhir-drills.github.io/bundle.html" target="webcode">FHIR HAPI Bundle example</a> <br/> 
+<a href="https://hapifhir.io/hapi-fhir/docs/client/examples.html" target="webcode">HAPI FHIR Client Examples</a><br/>
+</td>
+ 
+
+</tr>
+ </tbody>
+</table>
+</div>
+
 Questi esempi nascono da  <a href="../../../natmaterial/fhir-example-channels/channels" target="web">fhir-example-channels/channels</a>  preso da
 <a href=https://github.com/nextgenhealthcare/fhir-example-channels" target="web">nextgenhealthcare/fhir-example-channels GIT</a>
 ( a repository of sample channels, code template libraries, and transformers that can be used with the  FHIR Connector Extension).
- <div class="remark">
-<a href="https://hapifhir.io/hapi-fhir/apidocs/hapi-fhir-structures-r4/" target="web">FHIR HAPI</a>
-</div>
+
 <h3>Esempio: FHIR Listener </h3>
 Si importa l'esempio <a href="../channels/FHIR Listener.xml" target="code">FHIR Listener.xml</a>.<br/> 
 <hr/>

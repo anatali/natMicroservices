@@ -6,7 +6,6 @@ import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.hl7.fhir.instance.model.api.IBaseBundle;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.instance.model.api.IIdType;
-import org.hl7.fhir.r4.formats.IParser;
 import org.hl7.fhir.r4.model.*;
 //import ca.uhn.fhir.model.dstu2.resource.*;
 
@@ -15,10 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.uhn.fhir.context.FhirContext;
-
+import ca.uhn.fhir.parser.IParser;
 import ca.uhn.fhir.rest.api.MethodOutcome;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
 import ca.uhn.fhir.util.BundleUtil;
+import it.unibo.fhir.Patients;
 
 
 public class HttpFhirClientMirth {
@@ -26,6 +26,10 @@ public class HttpFhirClientMirth {
   private HttpClient client = new HttpClient();
   //FhirContext is an expensive (thread-safe) object
    private FhirContext ctx = FhirContext.forR4();
+//   private IParser parser = ctx.newXmlParser();
+   
+   private Patients mypatients = new Patients();
+   
   
 //  private FhirContext ctx = FhirContext.forDstu2();
   private String serverBase = "http://localhost:7002/r4"; //"http://fhirtest.uhn.ca/baseDstu2";
@@ -34,6 +38,8 @@ public class HttpFhirClientMirth {
   
 //GET http://hapi.fhir.org/baseR4/Patient?address-city=bologna&_include=*&_pretty=true
   public void search(String serverBase, String familyName) {
+	  
+	  
 //	  String serverBase = "http://fhirtest.uhn.ca/baseDstu2";
 	  IGenericClient client = ctx.newRestfulGenericClient(serverBase);
 	  System.out.println("client "+ client);
@@ -58,7 +64,10 @@ public class HttpFhirClientMirth {
   }
   
   //From https://hapifhir.io/hapi-fhir/docs/model/parsers.html
-  public void createPatientNat() {
+  //See https://hapifhir.io/hapi-fhir/apidocs/hapi-fhir-structures-r4/org/hl7/fhir/r4/model/Patient.html
+  //https://www.hl7.org/fhir/patient.html  https://www.hl7.org/fhir/patient-examples.html FHIR Specification
+  public void createPatientNat() throws IOException {
+/*	  
 	  String input = "{" +
 			   "\"resourceType\" : \"Patient\"," +
 			   "  \"name\" : [{" +
@@ -72,7 +81,23 @@ public class HttpFhirClientMirth {
 	  // Parse it
 	  Patient parsed = parser.parseResource(Patient.class, input);
 	  System.out.println(parsed.getName().get(0).getFamily());	  
+*/	  
+	  
+	  Patient patient = mypatients.createPatient_1(ctx);
+      System.out.println("Press Enter to serialise Resource to the console as XML.");
+      System.in.read();
+
+      // create a new XML parser and serialize our Patient object with it
+      String encoded = ctx.newXmlParser().setPrettyPrint(true)
+              .encodeResourceToString(patient);
+
+      System.out.println(encoded);
+
+//      System.out.println("Press Enter to end.");
+//      System.in.read();
+	  
   }
+  
   //From https://hapifhir.io/hapi-fhir/docs/client/generic_client.html  
   public void createPatient() {
 	try {
@@ -287,13 +312,17 @@ public class HttpFhirClientMirth {
 		Header cl = status.getFirstHeader(Constants.HEADER_CONTENT_LOCATION_LC);
 */		
  	}  
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
 	  HttpFhirClientMirth appl = new HttpFhirClientMirth();
 //  	  appl.readData();
 //	  appl.createPatient();
 //	  appl.xxx();
 //	  appl.yyy();
-//	 	  appl.createPatientNat();
- 	  appl.search("http://hapi.fhir.org/baseR4","Verdi");	//Bianchi ce ne sono 10
+ 	 	  appl.createPatientNat();
+	  
+	  //See http://hapi.fhir.org/
+// 	  appl.search("http://hapi.fhir.org/baseR4","Verdi");	//Bianchi ce ne sono 10
+	  
+//	  appl.createPatientTutorial();
   }
 }
