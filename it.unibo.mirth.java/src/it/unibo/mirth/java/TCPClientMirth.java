@@ -17,14 +17,19 @@ class TCPClientMirth {
 	"IN1|1|PAR^PARENT||||LUIGI\r\n" + 
 	"IN1|2|FRI^FRIEND||||PRINCESS";
 	
+	String sentence1 = "MSH|^~\\&|ADT1|SHM|SHMADT|SHM|200812091126|SECURITY|ADT^A01^ADT_A01|MSG00001|P|2.5|\r\n" + 
+			"EVN|A01|200812091126||\r\n" + 
+			"PID|1|1001|1001^5^M11^ADT1^MR^SHM~123456789^^^USSSA^SS||OHALLAHAN^COLLEENBOLOGNA^^||19850704|F||2106-3|1200 N ELM STREET^^NEWPORT BEACH^CA^92660-1020^US^H|OC|(949) 555-1234|(949) 555-5678||S||PATID1001^2^M10^ADT1^AN^A|123456789|U1234567^CA|\r\n" + 
+			"NK1|1|O'HALLAHAN^BRITTANY^M|SIS^SISTER||||N^NEXT-OF-KIN\r\n" + 
+			"PV1|1|I|2000^2012^01||||001122^ZOIDBERG^JOHN^|||SUR||||1|A0|"; 
 	
 	public void sendAMessage() {
 	try {
-	   System.out.println("sendAMessage: " + sentence );
+	   System.out.println("sendAMessage: " + sentence1 );
 	   clientSocket = new Socket("localhost", 7001); 
     //OUTPUT  
 	  DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
- 	  outToServer.writeBytes(sentence+'\n');  // + "\\n" 
+ 	  outToServer.writeBytes(sentence1 + '\n');  // + "\\n" 
 	  outToServer.flush();
 // 	  
 	}catch(Exception e) {
@@ -42,7 +47,6 @@ class TCPClientMirth {
 					    System.out.println("FROM SERVER: " + modifiedSentence);
 					} catch (Exception e) {
 						System.out.println("THREAD ERROR: " + e.getMessage() );
-//		 				e.printStackTrace();
 					}  		  
 			  }
 		  }.start();		

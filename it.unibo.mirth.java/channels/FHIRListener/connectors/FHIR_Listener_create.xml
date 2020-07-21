@@ -1,0 +1,143 @@
+<connector version="3.9.0">
+  <metaDataId>1</metaDataId>
+  <name>create</name>
+  <properties class="com.mirth.connect.connectors.js.JavaScriptDispatcherProperties" version="3.9.0">
+    <pluginProperties/>
+    <destinationConnectorProperties version="3.9.0">
+      <queueEnabled>false</queueEnabled>
+      <sendFirst>false</sendFirst>
+      <retryIntervalMillis>10000</retryIntervalMillis>
+      <regenerateTemplate>false</regenerateTemplate>
+      <retryCount>0</retryCount>
+      <rotate>false</rotate>
+      <includeFilterTransformer>false</includeFilterTransformer>
+      <threadCount>1</threadCount>
+      <threadAssignmentVariable></threadAssignmentVariable>
+      <validateResponse>false</validateResponse>
+      <resourceIds class="linked-hash-map">
+        <entry>
+          <string>Default Resource</string>
+          <string>[Default Resource]</string>
+        </entry>
+      </resourceIds>
+      <queueBufferSize>1000</queueBufferSize>
+      <reattachAttachments>true</reattachAttachments>
+    </destinationConnectorProperties>
+    <script>try {
+    var fhirVersion = $(&apos;fhirVersion&apos;);
+    var type = $(&apos;fhirType&apos;).toLowerCase();
+    var id = UUIDGenerator.getUUID();
+    var versionId = 1;
+    var data = AttachmentUtil.reAttachMessage(connectorMessage);
+    var contentType = FhirUtil.getMIMETypeXML();
+    var preferReturn = getPreferValue();
+
+    var resource = FhirUtil.fromXML(data, fhirVersion);
+    var resourceType = resource.getResourceType();
+
+    if (resourceType == null) {
+        return createOperationOutcome(&apos;error&apos;, &apos;invalid&apos;, &apos;Resource type unknown, cannot be created as a(n) &apos; + $(&apos;fhirType&apos;) + &apos; resource.&apos;, fhirVersion);
+    } else if (resourceType.toString().toLowerCase() != type) {
+        return createOperationOutcome(&apos;error&apos;, &apos;invalid&apos;, &apos;Resource type &apos; + resourceType + &apos; cannot be created as a(n) &apos; + $(&apos;fhirType&apos;) + &apos; resource.&apos;, fhirVersion);
+    }
+
+    var lastUpdated = updateResourceMeta(resource, id, versionId);
+
+    data = FhirUtil.toXML(resource, fhirVersion).replaceAll(&apos;\\s*xmlns:?[^=]*\\s*=\\s*&quot;http://hl7.org/fhir&quot;&apos;, &apos;&apos;);
+
+    insertFhirResource(type, id, versionId, lastUpdated, data, contentType, $(&apos;method&apos;), $(&apos;url&apos;));
+
+    var response;
+    if (preferReturn == &apos;minimal&apos; || (!preferReturn &amp;&amp; type == &apos;binary&apos;)) {
+        // If the Prefer header is set to minimal then don&apos;t send back the created resource
+        response = FhirResponseFactory.getCreateResponse(id, versionId, lastUpdated, 201);
+        if (preferReturn == &apos;minimal&apos;) {
+            response.addHeader(&apos;Preference-Applied&apos;, &apos;return=minimal&apos;);
+        }
+    } else {
+        response = FhirResponseFactory.getCreateResponse(data, id, versionId, lastUpdated, 201, contentType);
+        if (preferReturn == &apos;representation&apos;) {
+            response.addHeader(&apos;Preference-Applied&apos;, &apos;return=representation&apos;);
+        }
+    }
+    
+    responseMap.put(&apos;response&apos;, response);
+    return response.getMessage();
+} catch (e) {
+    return createOperationOutcome(&apos;error&apos;, &apos;transient&apos;, &apos;Error creating resource.&apos;, fhirVersion, 500, e);
+}</script>
+  </properties>
+  <transformer version="3.9.0">
+    <elements/>
+    <inboundTemplate encoding="base64"></inboundTemplate>
+    <outboundTemplate encoding="base64"></outboundTemplate>
+    <inboundDataType>FHIR</inboundDataType>
+    <outboundDataType>FHIR</outboundDataType>
+    <inboundProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirDataTypeProperties" version="3.9.0">
+      <serializationProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirSerializationProperties" version="3.9.0">
+        <serializationType>XML</serializationType>
+        <fhirVersion>R4</fhirVersion>
+      </serializationProperties>
+      <deserializationProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirDeserializationProperties" version="3.9.0">
+        <serializationType>JSON</serializationType>
+      </deserializationProperties>
+      <batchProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirBatchProperties" version="3.9.0">
+        <splitType>JavaScript</splitType>
+        <batchScript></batchScript>
+      </batchProperties>
+    </inboundProperties>
+    <outboundProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirDataTypeProperties" version="3.9.0">
+      <serializationProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirSerializationProperties" version="3.9.0">
+        <serializationType>XML</serializationType>
+        <fhirVersion>R4</fhirVersion>
+      </serializationProperties>
+      <deserializationProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirDeserializationProperties" version="3.9.0">
+        <serializationType>XML</serializationType>
+      </deserializationProperties>
+      <batchProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirBatchProperties" version="3.9.0">
+        <splitType>JavaScript</splitType>
+        <batchScript></batchScript>
+      </batchProperties>
+    </outboundProperties>
+  </transformer>
+  <responseTransformer version="3.9.0">
+    <elements/>
+    <inboundTemplate encoding="base64"></inboundTemplate>
+    <outboundTemplate encoding="base64"></outboundTemplate>
+    <inboundDataType>FHIR</inboundDataType>
+    <outboundDataType>FHIR</outboundDataType>
+    <inboundProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirDataTypeProperties" version="3.9.0">
+      <serializationProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirSerializationProperties" version="3.9.0">
+        <serializationType>RAW</serializationType>
+        <fhirVersion>R4</fhirVersion>
+      </serializationProperties>
+      <deserializationProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirDeserializationProperties" version="3.9.0">
+        <serializationType>JSON</serializationType>
+      </deserializationProperties>
+      <batchProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirBatchProperties" version="3.9.0">
+        <splitType>JavaScript</splitType>
+        <batchScript></batchScript>
+      </batchProperties>
+    </inboundProperties>
+    <outboundProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirDataTypeProperties" version="3.9.0">
+      <serializationProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirSerializationProperties" version="3.9.0">
+        <serializationType>RAW</serializationType>
+        <fhirVersion>R4</fhirVersion>
+      </serializationProperties>
+      <deserializationProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirDeserializationProperties" version="3.9.0">
+        <serializationType>RAW</serializationType>
+      </deserializationProperties>
+      <batchProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirBatchProperties" version="3.9.0">
+        <splitType>JavaScript</splitType>
+        <batchScript></batchScript>
+      </batchProperties>
+    </outboundProperties>
+  </responseTransformer>
+  <filter version="3.9.0">
+    <elements/>
+  </filter>
+  <transportName>JavaScript Writer</transportName>
+  <mode>DESTINATION</mode>
+  <enabled>true</enabled>
+  <waitForPrevious>true</waitForPrevious>
+</connector>

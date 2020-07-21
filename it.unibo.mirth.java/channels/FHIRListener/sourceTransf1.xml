@@ -1,0 +1,64 @@
+<transformer version="3.9.0">
+  <elements>
+    <com.mirth.connect.plugins.javascriptstep.JavaScriptStep version="3.9.0">
+      <name>Filter destinations by FHIR interaction</name>
+      <sequenceNumber>0</sequenceNumber>
+      <enabled>true</enabled>
+      <script>var interaction = sourceMap.get(&apos;fhirInteraction&apos;);
+
+if (interaction == &apos;operation&apos;) {
+	// Operation destinations will have a name of &quot;$name&quot;.
+	destinationSet.removeAllExcept([sourceMap.get(&apos;fhirOperationName&apos;)]);
+} else if (interaction.startsWith(&apos;history&apos;)) {
+	// This will match history-system, history-type, and history-instance
+	destinationSet.removeAllExcept([&apos;history&apos;]);
+} else if (interaction.startsWith(&apos;search&apos;)) {
+	// This will match search-system and search-type
+	destinationSet.removeAllExcept([&apos;search&apos;]);
+} else {
+	// All other destinations should have a name equal to the interaction
+	destinationSet.removeAllExcept([interaction]);
+}</script>
+    </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+    <com.mirth.connect.plugins.mapper.MapperStep version="3.9.0">
+      <name>fhirVersion</name>
+      <sequenceNumber>1</sequenceNumber>
+      <enabled>true</enabled>
+      <variable>fhirVersion</variable>
+      <mapping>&apos;R4&apos;</mapping>
+      <defaultValue></defaultValue>
+      <replacements/>
+      <scope>CHANNEL</scope>
+    </com.mirth.connect.plugins.mapper.MapperStep>
+  </elements>
+  <inboundTemplate encoding="base64"></inboundTemplate>
+  <outboundTemplate encoding="base64"></outboundTemplate>
+  <inboundDataType>FHIR</inboundDataType>
+  <outboundDataType>FHIR</outboundDataType>
+  <inboundProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirDataTypeProperties" version="3.9.0">
+    <serializationProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirSerializationProperties" version="3.9.0">
+      <serializationType>XML</serializationType>
+      <fhirVersion>R4</fhirVersion>
+    </serializationProperties>
+    <deserializationProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirDeserializationProperties" version="3.9.0">
+      <serializationType>JSON</serializationType>
+    </deserializationProperties>
+    <batchProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirBatchProperties" version="3.9.0">
+      <splitType>JavaScript</splitType>
+      <batchScript></batchScript>
+    </batchProperties>
+  </inboundProperties>
+  <outboundProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirDataTypeProperties" version="3.9.0">
+    <serializationProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirSerializationProperties" version="3.9.0">
+      <serializationType>XML</serializationType>
+      <fhirVersion>R4</fhirVersion>
+    </serializationProperties>
+    <deserializationProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirDeserializationProperties" version="3.9.0">
+      <serializationType>XML</serializationType>
+    </deserializationProperties>
+    <batchProperties class="com.mirth.connect.plugins.datatypes.fhir.shared.FhirBatchProperties" version="3.9.0">
+      <splitType>JavaScript</splitType>
+      <batchScript></batchScript>
+    </batchProperties>
+  </outboundProperties>
+</transformer>

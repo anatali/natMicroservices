@@ -280,7 +280,7 @@ Questi esempi nascono da <tt>C:\Progetti\natmaterial\mirth-connect-channel-examp
 <a href="https://github.com/nextgenhealthcare/connect-docker/tree/master/examples#mysql-with-volume.yml" target="web">nextgenhealthcare/connect-docker</a>.
 
  
-<h3>Esempio: uso di TCP</h3>
+<h3>Esempio: uso di TCP (port 7001)</h3>
  Si importa l'esempio HL7 to <a href="../workingok/channels/channelTcpBase.xml" target="code">channelTcpBase.xml</a>.<br/>
 <hr/>Questo channel <em>BasicTcp</em> attende un messaggio (con datatype <em>raw</em>)  sulla porta TCP <tt>7001</tt> e 
 lo invia a un <tt>Destinations</tt>
@@ -371,7 +371,7 @@ conf        docs               mcserver    mcservice                public_api_h
 </ol>
 
 
-<h3>Esempio: da richiesta HTTP a messaggio HL7</h3>
+<h3>Esempio: da richiesta HTTP a messaggio HL7 (port 7003)</h3>
 Si importa l'esempio HL7 to <a href="../workingok/channels/json_to_hl7_dest_channel_writer.xml" target="code">json_to_hl7_dest_channel_writer.xml</a>.<br/> 
 <hr/>
 This channel receives a 'json' file over an 'HTTP' request, transforms it into an 'hl7' message, and sends it to another channel. 
@@ -594,44 +594,177 @@ Questi esempi nascono da  <a href="../../../natmaterial/fhir-example-channels/ch
 ( a repository of sample channels, code template libraries, and transformers that can be used with the  FHIR Connector Extension).
 
 <h3>Esempio: FHIR Listener </h3>
-Si importa l'esempio <a href="../channels/FHIR Listener.xml" target="code">FHIR Listener.xml</a>.<br/> 
+L'esempio e' quello descritto in
+<a href="../../../natmaterial/fhir-example-channels/channels/Example%20FHIR%20Listener/" target="webcode">fhir-example-channels/channels FHIRListener</a>
+
+
+Si importa l'esempio <a href="../channels/FHIRListener/FHIR Listener.xml" target="code">FHIR Listener.xml</a>.<br/> 
 <hr/>
 This sample channel is intended as a <k>starting point</k> to teach you the basics of  FHIR resources/interactions and how the FHIR Listener works with them. 
-<br/><m> 
-The trial-use standard basically just tells you what to do with resources (create them, update them, etc.), 
-and you can use Mirth Connect to customize the actual implementation however you wish.
-
+<hr/>
+<table style="width:98%">
+<tbody>	
+<tr>
+<td style="width:50%" >
+<h4>Data Types</h4>
+<img src="./img/FHIRListnerData.png" alt="FHIRListnerData.png" width="100%"  />
+<br/><br/>
+<m> 
 This channel is dependent on the following code template libraries:
 <ul>
 <li>FHIR Helper Functions</li>
 <li>FHIR DB Operations</li>
 </ul>
 </m> 
-<hr/>
+</td>
+<td style="width:50%" ><h4>Dependencies</h4>
+<img src="./img/dependencies.png" alt="dependencies.png" width="40%"  />
+
+
+</td>
+</tr>
+
+<tr><td><h4>Code templates</h4>
+<img src="./img/codeTemplates.png" alt="codeTemplates.png" width="100%"  />
+
+</td>
+
+<td>
+<h4>Connectors (Destinations)</h4>
+<ul>
+<li><a href="../channels/FHIRListener/connectors/FHIR_Listener_create.xml" target="code">FHIR_Listener_create.xml</a></li>
+<li><a href="../channels/FHIRListener/connectors/FHIR Listener update.xml" target="code">FHIR Listener update.xml</a></li>
+<li><a href="../channels/FHIRListener/connectors/FHIR Listener delete.xml" target="code">FHIR Listener delete.xml</a></li>
+<li><a href="../channels/FHIRListener/connectors/FHIR Listener read.xml" target="code">FHIR Listener read.xml</a></li>
+<li><a href="../channels/FHIRListener/connectors/FHIR Listener vread.xml" target="code">FHIR Listener vread.xml</a></li>
+<li><a href="../channels/FHIRListener/connectors/FHIR Listener history.xml" target="code">FHIR Listener history.xml</a></li>
+<li><a href="../channels/FHIRListener/connectors/FHIR Listener search.xml" target="code">FHIR Listener search.xml</a></li>
+</ul>
+Il codice JavaScript e' riportato in
+<a href="../../../natmaterial/fhir-example-channels/channels/Example%20FHIR%20Listener/Destination%20Scripts/" target="webcode">
+fhir-example-channels/channels/Example FHIR Listener/Destination Scripts</a>
+
+</td>
+</tr>
+
+<tr><td>
+
+</td>
+<td>
+
+</td>
+</tr>
+ </tbody>
+</table>
+ <br/><br/>
+
+
+<table style="width:98%">
+<tbody>	
+<tr>
+<td style="width:30%" >
+<h3>insertFhirResource</h3>
+Il connector <a href="../channels/FHIRListener/connectors/FHIR_Listener_create.xml" target="code">FHIR_Listener_create.xml</a> 
+operation invoca l'operazione <m><ks>insertFhirResource</ks></m> definita in <m><ks>Insert Resource</ks></m>
+del code template <k>FHIR DB Operations</k>.
+<br/><br/>
+Questa operazione, predisposta per i db <tt>postgres</tt> e <tt>sqlserver</tt>, e' stata modificata come riportato a fianco in
+relazione all'uso di <k>MySQL</k>.
+<br/><br/>
+I dati ricevuti nel campo di indice 4 di <k>params</k> rappresentano un paziente i cui valori vengono inseriti  nel db
+(con <m><ks>executeUpdate</ks></m>).
+<div class ="remark">
+Codic troppo disperso? <br/>
+Meglio usare classi custom?
+</div>
+</td>
+
+<td><m><pre>
+function <ks>insertFhirResource</ks>(type, id, versionId, lastUpdated, data, contentType, method, url) {
+	var dbType = <k>$cfg('fhirDBDatabaseType')</k>; <kc>//fhirDBDatabaseType definito in <k>Configuration Map</k></kc>
+	if (<ks>dbType == 'MySQL'</ks>) {
+		var params = [type, id, versionId, lastUpdated, data, contentType, method, url]; <kc>//come postgres</kc>
+ 		var dbConn;
+		try { 
+			var patientdata = params[4];
+			logger.info("%%% patientdata=  " + patientdata);
+			dbConn = DatabaseConnectionFactory.createDatabaseConnection(
+			    <ks>'com.mysql.jdbc.Driver','jdbc:mysql://db:3306/mirthdb','root','root_password'</ks>);
+			
+			<ks>var patientxml = new XML( patientdata );</ks>	
+			
+			<kc>//Accesso ai campi del paziente</kc>
+			var UserName  = patientxml.name.use.@value;
+			var LastName  = patientxml.name.family.@value;
+			var FirstName = patientxml.name.given.@value;
+			logger.info("%%% patientdata xml LastName=  " + LastName);
+			
+			var result = <ks>dbConn.executeUpdate</ks>(
+				"INSERT INTO PERSON (USERNAME, FIRSTNAME, LASTNAME, LOGGED_IN)"+
+				" VALUES ('"+ UserName +"','"+ FirstName +"','"+LastName +"', 0)");			
+		}catch (e) { throw 'MySQL db ERROR: ' + e; }
+			finally { if (dbConn) {  dbConn.close(); } 
+		}		
+ 	} else
+	if (dbType == 'postgres') {
+	var params = [type, id, versionId, lastUpdated, data, contentType, method, url];
+	var result = executeUpdateAndGetGeneratedKeys(
+	"INSERT INTO resource(name,id,version,last_modified,data,mimetype,request_method,request_url)"+ 
+	"VALUES (?, ?, ?, ?, ?::XML, ?, ?, ?)", params);
+	result.next();
+	return result.getInt(1);
+	} else if (dbType == 'sqlserver') {
+		...
+	} else {
+		throw 'Unsupported DB type: ' + dbType;
+	}
+}
+</pre></m>
+</td>
+</tr>
+ </tbody>
+</table>
+
 <h4>Esempi di trasmissione</h4>
-Un invio da programma: <a href="../src/it/unibo/mirth/java/HttpFhirClientMirth.java" target="code">HttpFhirClientMirth.java</a>   (TO BE REFACTORED)
+Un invio da programma: <a href="../src/it/unibo/mirth/java/FhirlisternMirthClient.java" target="code">FhirlisternMirthClient.java</a>.  
 <br/>
-Si può verificare la inserzione nel db di un paziente. 
+Usando admin su <tt>localhost:8018</tt>, si può verificare la inserzione nel db di un paziente di nome <m><ks>BobBologna</ks></m> creato dalla
+operazione <tt>createPatient_1</tt> definita in <a href="../src/it/unibo/fhir/Patients.java" target="code">Patients.java</a>
+in accordo a 
+<a href="https://hapifhir.io/hapi-fhir/apidocs/hapi-fhir-structures-r4/org/hl7/fhir/r4/model/Patient.html" target="webcode">FHIR HAPI Patient</a>. 
 
 <h3>Esempio: Convert HL7 to FHIR Patient - 1 </h3>
 L'esempio e' quello descritto in
+<a href="../../../natmaterial/fhir-example-channels/channels/Convert%20HL7%20to%20FHIR%20Patient%20-%20Example%201/" target="webcode">
+fhir-example-channels/channels/Convert HL7 to FHIR Patient - Example 1</a>
+
+anche riportato in
 <a href="https://www.mirthcorp.com/community/wiki/display/mirth/HL7+v2.x+to+FHIR+Conversions+(R4)#HL7v2.xtoFHIRConversions(R4)-ConvertHL7toFHIRPatient-Example1" target="webcode">
 FHIR Mirth UserGuide | Convert HL7 to FHIR Patient - Example 1</a>
+
 <hr/>
 This example channel uses the Iterator and FHIR Resource Builder transformer step types to take 
 an HL7 v2.x ADT and create a FHIR Patient resource that represents the demographic information present in the message.
+<pre>
+             source=ChannelReader (1 transformer) --> destinations=ChannelWriter
+<ks>MODIFICATO:  source=TcpReaders</ks> ...
+Transformer: <a href="../channels/HL7ToFHIR/Convert HL7 v2.x to FHIR Patient.xml" target="code">Convert HL7 v2.x to FHIR Patient.xml</a>
+</pre>
 <hr/>
 
 <h4>Esempi di trasmissione</h4>
-Inviare il messaggio:
-<pre>
+<ul>
+<li>Un invio da programma: <a href="../src/it/unibo/mirth/java/TCPClientMirth.java" target="code">TCPClientMirth.java</a> sentence1:
+<m><pre>
 MSH|^~\&|ADT1|SHM|SHMADT|SHM|200812091126|SECURITY|ADT^A01^ADT_A01|MSG00001|P|2.5|
 EVN|A01|200812091126||
 PID|1|1001|1001^5^M11^ADT1^MR^SHM~123456789^^^USSSA^SS||OHALLAHAN^COLLEEN^^||19850704|F||2106-3|1200 N ELM STREET^^NEWPORT BEACH^CA^92660-1020^US^H|OC|(949) 555-1234|(949) 555-5678||S||PATID1001^2^M10^ADT1^AN^A|123456789|U1234567^CA|
 NK1|1|O'HALLAHAN^BRITTANY^M|SIS^SISTER||||N^NEXT-OF-KIN
 PV1|1|I|2000^2012^01||||001122^ZOIDBERG^JOHN^|||SUR||||1|A0|
-</pre>
-e poi osservare <tt>Source Encoded data</tt> or <tt>Destination Raw data</tt>.
+</pre></m>
+ e poi osservare <tt>Messages / Transformed</tt>.
+</li>
+
 
 <h3>Esempio: Convert HL7 to FHIR Patient - 2 </h3>
 <hr/>
@@ -642,7 +775,7 @@ By using code templates, you can keep your conversion logic separate from channe
 and include those code templates on multiple channels as you see fit.
 <hr/>
 
-
+<!--
 
 <h3>Esempi ....</h3>
 <a href="https://nilkamaldp.wordpress.com/fhir-implementation-using-mirth/" target="code">FHIR Implementation Using Mirth</a>
@@ -774,7 +907,7 @@ docker exec -it 99590a9ec384 bash
 </table>
  <br/><br/>
  </div>    
-
+-->
 
 <!--
 <h2>Channel TCP</h2>

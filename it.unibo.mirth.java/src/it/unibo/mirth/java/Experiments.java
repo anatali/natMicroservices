@@ -5,7 +5,7 @@ import org.apache.commons.httpclient.methods.*;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 import java.io.*;
 
-public class HttpClientMirth {
+public class Experiments {
   private static String url     = "http://localhost:7003/api/channels/69c079fd-1cc3-469f-8f00-b4c51638fdde/messages";
   private static String msgJson = "{\r\n" + 
   		"    \"application_sending\" : \"EPICADT\",\r\n" + 
