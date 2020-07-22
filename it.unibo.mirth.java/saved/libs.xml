@@ -1,0 +1,2994 @@
+<list>
+  <codeTemplateLibrary version="3.9.0">
+    <id>1f350e29-158e-4645-8809-9e60d1a47854</id>
+    <name>FHIR DB Operations</name>
+    <revision>3</revision>
+    <lastModified>
+      <time>1595322138226</time>
+      <timezone>Etc/UTC</timezone>
+    </lastModified>
+    <description>Functions used by the FHIR Listener channel to communicate with the database.
+PostgreSQL and SQL Server are supported. If you want to support other database
+servers, feel free to add your own database-specific operations and queries.</description>
+    <includeNewChannels>false</includeNewChannels>
+    <enabledChannelIds>
+      <string>1892f241-d643-4abb-b0af-b20b87e0cf12</string>
+    </enabledChannelIds>
+    <disabledChannelIds>
+      <string>7ef65bb8-203b-4a82-a312-33fb73cff9ed</string>
+      <string>69c079fd-1cc3-469f-8f00-b4c51638fdde</string>
+      <string>d6b7c1b0-ac5e-4993-9570-45d8947ad76d</string>
+      <string>e678dbf5-f021-43dc-84ae-967500d5c31a</string>
+    </disabledChannelIds>
+    <codeTemplates>
+      <codeTemplate version="3.9.0">
+        <id>13e82aac-df07-463e-b8ca-8f4b98243618</id>
+        <name>FHIR DB - Execute Cached Query</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149838223</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>CHANNEL_ATTACHMENT</contextType>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>CHANNEL_POSTPROCESSOR</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Executes a prepared query on the FHIR database and returns a CachedRowSet.
+
+	@param {String} expression - The prepared statement to be executed.
+	@param {Array} parameters - The parameters for the prepared statement.
+	@param {DatabaseConnection} dbConn - Optionally provide a specific connection object.
+	@return {CachedRowSet} The result of the query, as a CachedRowSet.
+*/
+function executeCachedQuery(expression, parameters, dbConn) {
+	return executeOperation(&apos;executeCachedQuery&apos;, expression, parameters, dbConn);
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>9ec9d96c-4ea4-4f1c-8520-b73782f36aed</id>
+        <name>FHIR DB - Execute Cached Query and Get Keys</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149838916</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>CHANNEL_ATTACHMENT</contextType>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>CHANNEL_POSTPROCESSOR</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Executes an INSERT/UPDATE statement on the database and returns a CachedRowSet containing any
+	generated keys.
+
+	@param {String} expression - The prepared statement to be executed.
+	@param {Array} parameters - The parameters for the prepared statement.
+	@param {DatabaseConnection} dbConn - Optionally provide a specific connection object.
+	@return {CachedRowSet} A CachedRowSet containing any generated keys.
+*/
+function executeUpdateAndGetGeneratedKeys(expression, parameters, dbConn) {
+	return executeOperation(&apos;executeUpdateAndGetGeneratedKeys&apos;, expression, parameters, dbConn);
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>8960e710-4870-49ea-b952-63d2b74b7bbc</id>
+        <name>FHIR DB - Execute Update</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149837656</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>CHANNEL_ATTACHMENT</contextType>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>CHANNEL_POSTPROCESSOR</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Executes a prepared INSERT/UPDATE statement on the database and returns the row count.
+
+	@param {String} expression - The prepared statement to be executed.
+	@param {Array} parameters - The parameters for the prepared statement.
+	@param {DatabaseConnection} dbConn - Optionally provide a specific connection object.
+	@return {int} A count of the number of updated rows.
+*/
+function executeUpdate(expression, parameters, dbConn) {
+	return executeOperation(&apos;executeUpdate&apos;, expression, parameters, dbConn);
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>23d0fa52-0d56-4e9a-82a5-56a6a3d55e43</id>
+        <name>FHIR DB - Get Connection</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149837816</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>CHANNEL_ATTACHMENT</contextType>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>CHANNEL_POSTPROCESSOR</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Retrieves the FHIR database connection from the global channel map, creating a new one if necessary.
+
+	@param {Boolean} recreate - If true, the connection will always be closed and created anew.
+	@return {DatabaseConnection} The database connection object.
+*/
+function getFHIRDBConnection(recreate) {
+	var dbConn = $gc(&apos;dbConn&apos;);
+
+	if (!dbConn || recreate) {
+		if (dbConn) {
+			try {
+				dbConn.close();
+			} catch (e) {}
+		}
+		dbConn = createFHIRDBConnection();
+		$gc(&apos;dbConn&apos;, dbConn);
+	}
+
+	return dbConn;
+}
+
+function createFHIRDBConnection() {
+	return DatabaseConnectionFactory.createDatabaseConnection($(&apos;fhirDBDriver&apos;), $(&apos;fhirDBUrl&apos;), $(&apos;fhirDBUsername&apos;), $(&apos;fhirDBPassword&apos;));
+}
+
+function executeOperation(operation, expression, parameters, dbConn) {
+	var createDbConn = typeof dbConn == &apos;undefined&apos;;
+	if (createDbConn) {
+		dbConn = getFHIRDBConnection();
+	}
+	var attempts = 0;
+	var maxAttempts = NumberUtils.toInt($(&apos;fhirDBMaxRetries&apos;) + &apos;&apos;, 0) + 1;
+
+	while (attempts &lt; maxAttempts) {
+		attempts++;
+
+		try {
+			if (parameters) {
+				for (var i in parameters) {
+					var param = parameters[i];
+					if (param instanceof Number) {
+						parameters[i] = new java.lang.Integer(param);
+					} else if (param instanceof java.util.Date) {
+						parameters[i] = convertDateParameter(param);
+					}
+				}
+				
+				return dbConn[operation](expression, java.util.Arrays.asList(parameters));
+			} else {
+				return dbConn[operation](expression);
+			}
+		} catch (e) {
+			logger.info(&apos;Error executing statement, checking if valid...&apos;);
+			var throwException = false;
+
+			try {
+				dbConn.executeCachedQuery(&apos;SELECT 1&apos;);
+			} catch (e2) {
+				if (createDbConn) {
+					logger.info(&apos;Connection invalid, recreating...&apos;);
+	
+					try {
+						dbConn = getFHIRDBConnection(true);
+					} catch (e3) {
+						throwException = true;
+					}
+				} else {
+					throwException = true;
+				}
+			}
+
+			if (attempts &gt;= maxAttempts) {
+				throwException = true;
+			}
+
+			if (throwException) {
+				var errorMessage = &apos;Unable to execute statement.\n&apos;;
+				errorMessage += &apos;Expression: &apos; + expression + &apos;\n&apos;;
+				if (parameters) {
+					errorMessage += &apos;Parameters: &apos; + java.util.Arrays.asList(parameters).toString();
+				}
+				logger.error(errorMessage, e.javaException);
+				throw e;
+			}
+
+			java.lang.Thread.sleep(1000);
+		}
+	}
+}
+
+function convertDateParameter(date) {
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+
+	if (dbType == &apos;postgres&apos;) {
+		return new java.sql.Timestamp(date.getTime());
+	} else if (dbType == &apos;sqlserver&apos;) {
+		return convertDate(date, &apos;yyyy-MM-dd HH:mm:ss.SSSZZ&apos;);
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>269ac003-07f8-4914-9572-b2433afa116a</id>
+        <name>Get ResultSet Date</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149838553</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Retrives the java.util.Date value for a particular column from a ResultSet. Handles cases where the
+	object returned from the ResultSet is a string.
+
+	@param {ResultSet} resultSet - The ResultSet object to retrieve from.
+	@param {String} columnName - The name or alias of the column to retrieve.
+	@return {Date} The java.util.Date value.
+*/
+function getResultSetDate(resultSet, columnName) {
+	var obj = resultSet.getObject(columnName);
+	if (obj != null) {
+		if (obj instanceof java.lang.String) {
+			obj = getDate(obj);
+		}
+	}
+	return obj;
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>278733a7-de15-4324-bfa0-2034ae868afd</id>
+        <name>Get ResultSet String</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149837910</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Retrives the string value for a particular column from a ResultSet. Handles instances of
+	java.sql.Clob and java.sql.Blob as well (with the JVM default charset).
+
+	@param {ResultSet} resultSet - The ResultSet object to retrieve from.
+	@param {String} columnName - The name or alias of the column to retrieve.
+	@return {String} The string value.
+*/
+function getResultSetString(resultSet, columnName) {
+	var obj = resultSet.getObject(columnName);
+	if (obj != null) {
+		if (obj instanceof java.sql.Clob) {
+			obj = org.apache.commons.io.IOUtils.toString(obj.getCharacterStream());
+		} else if (obj instanceof java.sql.Blob) {
+			obj = org.apache.commons.io.IOUtils.toString(obj.getBinaryStream());
+		} else {
+			obj = java.lang.String.valueOf(obj);
+		}
+	}
+	return obj;
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>62e254fc-a206-41b2-bf9f-e9c55cb49ef1</id>
+        <name>History Utility Methods</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149838293</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	These functions are used with the history interaction.
+*/
+function getFhirHistoryBaseQuery() {
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+	if (dbType == &apos;postgres&apos;) {
+		return &quot;SELECT name, id, version, data::TEXT, mimetype, deleted, request_method, request_url FROM resource&quot;;
+	} else if (dbType == &apos;sqlserver&apos;) {
+		return &quot;SELECT name, id, version, CAST(data AS NVARCHAR(MAX)) AS data, mimetype, deleted, request_method, request_url FROM resource&quot;;
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}
+
+function getFhirHistorySinceWherePart() {
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+	if (dbType == &apos;postgres&apos;) {
+		return &quot;last_modified &gt;= ?::TIMESTAMP WITH TIME ZONE&quot;;
+	} else if (dbType == &apos;sqlserver&apos;) {
+		return &quot;last_modified &gt;= CAST(? AS DATETIME)&quot;;
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}
+</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>a67e8be3-11a3-4403-aaa7-ea495a98af23</id>
+        <name>Insert Deleted Resource</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149838081</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Inserts a deleted entry for a resource and returns its DB sequence ID.
+
+	@param {String} type - The FHIR resource type.
+	@param {String} id - The logical ID of the resource.
+	@param {Number} versionId - The version ID of the resource.
+	@param {Date} lastUpdated - The last updated time of the resource.
+	@param {String} method - The HTTP method used to create the resource.
+	@param {String} url - The HTTP URL used to create the resource.
+	@return {Number} The database sequence ID for the inserted resource.
+*/
+function insertFhirDeletedResource(type, id, versionId, lastUpdated, method, url) {
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+
+	if (dbType == &apos;postgres&apos;) {
+		var params = [type, id, versionId, lastUpdated, $(&apos;method&apos;), $(&apos;url&apos;)];
+		var result = executeUpdateAndGetGeneratedKeys(&quot;INSERT INTO resource (name, id, version, last_modified, deleted, request_method, request_url) VALUES (?, ?, ?, ?, TRUE, ?, ?)&quot;, params);
+		result.next();
+		return result.getInt(1);
+	} else if (dbType == &apos;sqlserver&apos;) {
+		var dbConn = createFHIRDBConnection();
+		
+		try {
+			dbConn.setAutoCommit(false);
+			
+			var idResult = executeCachedQuery(&apos;SELECT id FROM resource_sequence WITH (UPDLOCK)&apos;, [], dbConn);
+			idResult.next();
+			var sequenceId = idResult.getInt(1);
+			executeUpdate(&apos;UPDATE resource_sequence SET ID = ID + 1&apos;, [], dbConn);
+			dbConn.commit();
+
+			var params = [sequenceId, type, id, versionId, lastUpdated, $(&apos;method&apos;), $(&apos;url&apos;)];
+			executeUpdate(&quot;INSERT INTO resource (sequence_id, name, id, version, last_modified, deleted, request_method, request_url) VALUES (?, ?, ?, ?, ?, 1, ?, ?)&quot;, params, dbConn);
+			dbConn.commit();
+			
+			return sequenceId;
+		} catch (e) {
+			try { dbConn.rollback() } catch (e2) {}
+			throw e;
+		} finally {
+			try { dbConn.close() } catch (e) {}
+		}
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>407c077f-579a-47af-bb78-1829cdd789c3</id>
+        <name>Insert Resource</name>
+        <revision>26</revision>
+        <lastModified>
+          <time>1595322138311</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Inserts a new resource and returns its DB sequence ID.
+
+	@param {String} type - The FHIR resource type.
+	@param {String} id - The logical ID of the resource.
+	@param {Number} versionId - The version ID of the resource.
+	@param {Date} lastUpdated - The last updated time of the resource.
+	@param {String} data - The resource data.
+	@param {String} contentType - The MIME type of the resource data.
+	@param {String} method - The HTTP method used to create the resource.
+	@param {String} url - The HTTP URL used to create the resource.
+	@return {Number} The database sequence ID for the inserted resource.
+*/
+function insertFhirResource(type, id, versionId, lastUpdated, data, contentType, method, url) {
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+	if (dbType == &apos;MySQL&apos;) {
+		var params = [type, id, versionId, lastUpdated, data, contentType, method, url];			//postgres
+		//var params = [sequenceId, type, id, versionId, lastUpdated, data, contentType, method, url]; //sqlserver
+		var dbConn;
+		try { 
+/*			
+logger.info(&quot;&amp;&amp;&amp; insertFhirResource MySQL params[0]  &quot; + params[0]);
+logger.info(&quot;&amp;&amp;&amp; insertFhirResource MySQL params[1]  &quot; + params[1]);
+logger.info(&quot;&amp;&amp;&amp; insertFhirResource MySQL params[2]  &quot; + params[2]);
+logger.info(&quot;&amp;&amp;&amp; insertFhirResource MySQL params[3]  &quot; + params[3]);
+logger.info(&quot;&amp;&amp;&amp; insertFhirResource MySQL params[4]  &quot; + params[4]);
+logger.info(&quot;&amp;&amp;&amp; insertFhirResource MySQL params[5]  &quot; + params[5]);
+logger.info(&quot;&amp;&amp;&amp; insertFhirResource MySQL params[6]  &quot; + params[6]);
+logger.info(&quot;&amp;&amp;&amp; insertFhirResource MySQL params[7]  &quot; + params[7]);
+			//var result = dbConn.executeUpdate(&quot;INSERT INTO PERSON (USERNAME, FIRSTNAME, LASTNAME, LOGGED_IN) VALUES (&apos;Username&apos;, &apos;FirstName&apos;, &apos;LastName&apos;, 0)&quot;);		
+			//var result = dbConn.executeUpdate(&quot;INSERT INTO resource (name, id, version, last_modified, data, mimetype, request_method, request_url) VALUES (?, ?, ?, ?, ?::XML, ?, ?, ?)&quot;, params);
+	//var result = dbConn.executeUpdate(&quot;INSERT INTO PERSON (USERNAME, FIRSTNAME, LASTNAME, LOGGED_IN) VALUES (&apos;&quot;+$(&apos;Username&apos;)+&quot;&apos;, &apos;&quot;+$(&apos;FirstName&apos;)+&quot;&apos;, &apos;&quot;+$(&apos;LastName&apos;)+&quot;&apos;, 0)&quot;);		
+*/
+			var patientdata = params[4];
+			logger.info(&quot;%%% patientdata=  &quot; + patientdata);
+			dbConn = DatabaseConnectionFactory.createDatabaseConnection(
+			    &apos;com.mysql.jdbc.Driver&apos;,&apos;jdbc:mysql://db:3306/mirthdb&apos;,&apos;root&apos;,&apos;root_password&apos;);			
+			var patientxml = new XML( patientdata );	
+			var UserName  = patientxml.name.use.@value;
+			var LastName  = patientxml.name.family.@value;
+			var FirstName = patientxml.name.given.@value;			
+			logger.info(&quot;%%% patientdata xml LastName=  &quot; + LastName);
+			var result = dbConn.executeUpdate(
+	 		&quot;INSERT INTO PERSON (USERNAME, FIRSTNAME, LASTNAME, LOGGED_IN) &quot;+
+	 		&quot;VALUES (&apos;&quot;+ UserName +&quot;&apos;,&apos;&quot;+ FirstName +&quot;&apos;,&apos;&quot;+LastName +&quot;&apos;, 0)&quot;);			
+		}catch (e) { throw &apos;MySQL db ERROR: &apos; + e; }
+		finally { if (dbConn) {  dbConn.close(); } 
+		}		
+ 	} else
+	if (dbType == &apos;postgres&apos;) {
+		var params = [type, id, versionId, lastUpdated, data, contentType, method, url];
+ 		var result = executeUpdateAndGetGeneratedKeys(&quot;INSERT INTO resource (name, id, version, last_modified, data, mimetype, request_method, request_url) VALUES (?, ?, ?, ?, ?::XML, ?, ?, ?)&quot;, params);
+		result.next();
+		return result.getInt(1);
+	} else if (dbType == &apos;sqlserver&apos;) {
+		var dbConn = createFHIRDBConnection();
+		
+		try {
+			dbConn.setAutoCommit(false);
+			
+			var idResult = executeCachedQuery(&apos;SELECT id FROM resource_sequence WITH (UPDLOCK)&apos;, [], dbConn);
+			idResult.next();
+			var sequenceId = idResult.getInt(1);
+			executeUpdate(&apos;UPDATE resource_sequence SET ID = ID + 1&apos;, [], dbConn);
+			dbConn.commit();
+
+			var params = [sequenceId, type, id, versionId, lastUpdated, data, contentType, method, url];
+			executeUpdate(&quot;INSERT INTO resource (sequence_id, name, id, version, last_modified, data, mimetype, request_method, request_url) VALUES (?, ?, ?, ?, ?, CAST(? AS XML), ?, ?, ?)&quot;, params, dbConn);
+			dbConn.commit();
+			
+			return sequenceId;
+		} catch (e) {
+			try { dbConn.rollback() } catch (e2) {}
+			throw e;
+		} finally {
+			try { dbConn.close() } catch (e) {}
+		}
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>f5c11e82-475f-4a53-a370-273a6027eba0</id>
+        <name>Search Utility Methods</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149837351</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	These functions are used with the search interaction.
+*/
+function getFhirSearchBaseQuery(usingLimit) {
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+	if (dbType == &apos;postgres&apos;) {
+		return &quot;SELECT name, id, version, data::TEXT, mimetype, request_method, request_url FROM resource r1 WHERE version = (SELECT MAX(version) FROM resource r2 WHERE r2.name = r1.name AND r2.id = r1.id) AND (deleted IS NULL OR deleted = FALSE)&quot;;
+	} else if (dbType == &apos;sqlserver&apos;) {
+		var query = &quot;SELECT name, id, version, CAST(data AS NVARCHAR(MAX)) AS data, mimetype, request_method, request_url&quot;;
+		if (usingLimit) {
+			query += &quot;, ROW_NUMBER() OVER (&quot; + getOrderClause() + &quot;) AS ROWNUM&quot;;
+		}
+		return query + &quot; FROM resource r1 WHERE version = (SELECT MAX(version) FROM resource r2 WHERE r2.name = r1.name AND r2.id = r1.id) AND (deleted IS NULL OR deleted = 0)&quot;;
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}
+
+function getFhirSearchContentWherePart() {
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+	if (dbType == &apos;postgres&apos;) {
+		return &quot;data::TEXT ILIKE ?&quot;;
+	} else if (dbType == &apos;sqlserver&apos;) {
+		return &quot;UPPER(CAST(data AS NVARCHAR(MAX))) LIKE UPPER(?)&quot;;
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}
+
+function getFhirSearchLastUpdatedWherePart(lastUpdatedOperator) {
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+	if (dbType == &apos;postgres&apos;) {
+		return &quot;last_modified &quot; + convertFhirParameterOperator(lastUpdatedOperator) + &quot; ?::TIMESTAMP WITH TIME ZONE&quot;;
+	} else if (dbType == &apos;sqlserver&apos;) {
+		return &quot;last_modified &quot; + convertFhirParameterOperator(lastUpdatedOperator) + &quot; CAST(? AS DATETIMEOFFSET)&quot;;
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}
+
+function convertFhirParameterOperator(operator) {
+	switch ((operator + &apos;&apos;).toLowerCase()) {
+		case &apos;eq&apos;: return &apos;=&apos;;
+		case &apos;ne&apos;: return &apos;!=&apos;;
+		case &apos;gt&apos;: return &apos;&gt;&apos;;
+		case &apos;lt&apos;: return &apos;&lt;&apos;;
+		case &apos;ge&apos;: return &apos;&gt;=&apos;;
+		case &apos;le&apos;: return &apos;&lt;=&apos;;
+		case &apos;sa&apos;: return &apos;&gt;&apos;;
+		case &apos;eb&apos;: return &apos;&lt;&apos;;
+		case &apos;ap&apos;: return &apos;=&apos;;
+		default: return &apos;=&apos;;
+	}
+}
+
+function convertXPathNodeSingleton(node) {
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+	if (dbType == &apos;postgres&apos;) {
+		return node;
+	} else if (dbType == &apos;sqlserver&apos;) {
+		return node.split(&apos;/&apos;).join(&apos;[1]/&apos;);
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}
+
+function xpathLowerCase(value) {
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+	if (dbType == &apos;postgres&apos;) {
+		return &quot;translate(&quot; + value + &quot;, &apos;ABCDEFGHIJKLMNOPQRSTUVWXYZ&apos;, &apos;abcdefghijklmnopqrstuvwxyz&apos;)&quot;;
+	} else if (dbType == &apos;sqlserver&apos;) {
+		return &quot;fn:lower-case(&quot; + value + &quot;)&quot;;
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}
+
+function getFhirSearchXPathWherePart() {
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+	if (dbType == &apos;postgres&apos;) {
+		return &quot;XPATH_EXISTS(?, data)&quot;;
+	} else if (dbType == &apos;sqlserver&apos;) {
+		return &quot;data.exist(?) = 1&quot;;
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}
+
+function addXPath(xpath, whereParts, params) {
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+	if (dbType == &apos;postgres&apos;) {
+		whereParts.push(getFhirSearchXPathWherePart());
+		params.push(xpath);
+	} else if (dbType == &apos;sqlserver&apos;) {
+		whereParts.push(getFhirSearchXPathWherePart().replace(&apos;?&apos;, &quot;&apos;&quot; + xpath.replace(/&apos;/g, &quot;&apos;&apos;&quot;) + &quot;&apos;&quot;));
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}
+
+function addOrder(query, usingLimit) {
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+	if (dbType == &apos;postgres&apos;) {
+		return query + &quot; &quot; + getOrderClause();
+	} else if (dbType == &apos;sqlserver&apos;) {
+		if (usingLimit) {
+			return query;
+		} else {
+			return query + &quot; &quot; + getOrderClause();
+		}
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}
+
+function getOrderClause() {
+	return &quot;ORDER BY name ASC, id ASC, version DESC&quot;;
+}
+
+function addLimit(query, limit) {
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+	if (dbType == &apos;postgres&apos;) {
+		return query + &quot; LIMIT &quot; + limit;
+	} else if (dbType == &apos;sqlserver&apos;) {
+		return &quot;SELECT A.* FROM (&quot; + query + &quot;) AS A WHERE A.ROWNUM &lt;= &quot; + limit;
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}
+</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>785079c4-fc60-4e5c-a4ec-645cb3741560</id>
+        <name>Select Resource Instance</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149838839</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Returns a ResultSet for a specific resource instance.
+
+	@param {String} type - The FHIR resource type.
+	@param {String} id - The logical ID of the resource.
+	@return {ResultSet} The ResultSet.
+*/
+function getResource(type, id) {
+	var params = [type, id];
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+
+	if (dbType == &apos;postgres&apos;) {
+		return executeCachedQuery(&quot;SELECT version, data::TEXT, mimetype, last_modified, deleted FROM resource WHERE name = ? AND id = ? ORDER BY version DESC LIMIT 1&quot;, params);
+	} else if (dbType == &apos;sqlserver&apos;) {
+		return executeCachedQuery(&quot;SELECT TOP 1 version, CAST(data AS NVARCHAR(MAX)) AS data, mimetype, last_modified, deleted FROM resource WHERE name = ? AND id = ? ORDER BY version DESC&quot;, params);
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>9411a28b-5f0d-4bc3-8acf-d892b5beb7db</id>
+        <name>Select Resource Instance by Version</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149837578</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Returns a ResultSet for a specific resource instance at a specific version.
+
+	@param {String} type - The FHIR resource type.
+	@param {String} id - The logical ID of the resource.
+	@param {Number} versionId - The version ID of the resource.
+	@return {ResultSet} The ResultSet.
+*/
+function getResourceVersion(type, id, versionId) {
+	var params = [type, id, parseInt(versionId, 10)];
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+
+	if (dbType == &apos;postgres&apos;) {
+		return executeCachedQuery(&quot;SELECT data::TEXT, mimetype, last_modified, deleted FROM resource WHERE name = ? AND id = ? AND version = ?&quot;, params);
+	} else if (dbType == &apos;sqlserver&apos;) {
+		return executeCachedQuery(&quot;SELECT CAST(data AS NVARCHAR(MAX)) AS data, mimetype, last_modified, deleted FROM resource WHERE name = ? AND id = ? AND version = ?&quot;, params);
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>afe40f10-efc5-4014-833a-e96be7a422d1</id>
+        <name>Select Version</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149837731</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Returns the version ID for a given resource, or 0 if it doesn&apos;t exist.
+
+	@param {String} type - The FHIR resource type.
+	@param {String} id - The logical ID of the resource.
+	@return {Number} The version ID, or 0 if the resource doesn&apos;t exist.
+*/
+function getFhirVersion(type, id) {
+	var params = [type, id];
+	var result;
+
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+	if (dbType == &apos;postgres&apos;) {
+		result = executeCachedQuery(&quot;SELECT version FROM resource WHERE name = ? AND id = ? ORDER BY version DESC LIMIT 1&quot;, params);
+	} else if (dbType == &apos;sqlserver&apos;) {
+		result = executeCachedQuery(&quot;SELECT TOP 1 version FROM resource WHERE name = ? AND id = ? ORDER BY version DESC&quot;, params);
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+	
+	if (result.next()) {
+		return result.getInt(1);
+	}
+	return 0;
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>2c822c38-30aa-4447-8e9e-9ea07e597c9d</id>
+        <name>Select Version and Deleted ResultSet</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149837989</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Returns a ResultSet with the version and deleted flag for a given resource.
+
+	@param {String} type - The FHIR resource type.
+	@param {String} id - The logical ID of the resource.
+	@return {ResultSet} The ResultSet.
+*/
+function getFhirVersionAndDeleted(type, id) {
+	var params = [type, id];
+	var dbType = $cfg(&apos;fhirDBDatabaseType&apos;);
+	if (dbType == &apos;postgres&apos;) {
+		return executeCachedQuery(&quot;SELECT version, deleted FROM resource WHERE name = ? AND id = ? ORDER BY version DESC LIMIT 1&quot;, params);
+	} else if (dbType == &apos;sqlserver&apos;) {
+		return executeCachedQuery(&quot;SELECT TOP 1 version, deleted FROM resource WHERE name = ? AND id = ? ORDER BY version DESC&quot;, params);
+	} else {
+		throw &apos;Unsupported DB type: &apos; + dbType;
+	}
+}</code>
+        </properties>
+      </codeTemplate>
+    </codeTemplates>
+  </codeTemplateLibrary>
+  <codeTemplateLibrary version="3.9.0">
+    <id>a084db27-49e0-4c67-893b-ffcc9f1d6e94</id>
+    <name>FHIR Helper Functions</name>
+    <revision>2</revision>
+    <lastModified>
+      <time>1595168629994</time>
+      <timezone>Etc/UTC</timezone>
+    </lastModified>
+    <description>Other common helper functions used by the FHIR Listener channel.</description>
+    <includeNewChannels>false</includeNewChannels>
+    <enabledChannelIds>
+      <string>1892f241-d643-4abb-b0af-b20b87e0cf12</string>
+    </enabledChannelIds>
+    <disabledChannelIds>
+      <string>42e730bb-0721-435e-8dcf-d25d6d5d1dc6</string>
+      <string>e678dbf5-f021-43dc-84ae-967500d5c31a</string>
+    </disabledChannelIds>
+    <codeTemplates>
+      <codeTemplate version="3.9.0">
+        <id>d8e6f7a5-aeec-4025-a6d2-e568eb48e647</id>
+        <name>Convert Date</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149838456</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Supports parsing date strings in a variety of formats and outputting the date in a specific format.
+*/
+var patterns = [
+	&quot;yyyy-MM-dd HH:mm:ss.SSSSSSS ZZ&quot;,
+	&quot;yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSZ&quot;,
+	&quot;yyyy-MM-dd&apos;T&apos;HH:mm:ssZ&quot;,
+	&quot;yyyy-MM-dd&apos;T&apos;HH:mm:ss&quot;,
+	&quot;yyyy-MM-dd&apos;T&apos;HH:mm&quot;,
+	&apos;yyyy-MM-dd&apos;,
+	&apos;yyyy-MM-dd HH:mm:ss:SSS&apos;,
+	&apos;yyyy-MM-dd HH:mm:ss.SSS&apos;,
+	&apos;yyyy-MM-dd HH:mm:ss&apos;,
+	&apos;yyyy-MM-dd HH:mm&apos;,
+	&apos;EEE MMM dd HH:mm:ss:SSS zzz yyyy&apos;,
+	&apos;EEE MMM dd HH:mm:ss.SSS zzz yyyy&apos;,
+	&apos;EEE MMM dd HH:mm:ss zzz yyyy&apos;,
+	&apos;EEE MMM dd zzz yyyy&apos;,
+	&apos;dd-MMM-yyyy HH:mm:ss:SSS&apos;,
+	&apos;dd-MMM-yyyy HH:mm:ss.SSS&apos;,
+	&apos;dd-MMM-yyyy HH:mm:ss&apos;,
+	&apos;yyyy MM dd&apos;,
+	&apos;yyyy.MM.dd&apos;,
+	&apos;MM-dd-yyyy&apos;,
+	&apos;MM dd yyyy&apos;,
+	&apos;MM.dd.yyyy&apos;,
+	&apos;HH:mm:ss:SSS&apos;,
+	&apos;HH:mm:ss.SSS&apos;,
+	&apos;HH:mm:ss&apos;,
+	&apos;yyyyMMddHHmmssSSS&apos;,
+	&apos;yyyyMMddHHmmss&apos;,
+	&apos;yyyyMMddHHmm&apos;,
+	&apos;hh:mm aa&apos;];
+
+var formatters = [];
+for each (pattern in patterns) {
+	formatters.push(org.joda.time.format.DateTimeFormat.forPattern(pattern));
+}
+
+function getMillis(date) {
+	var instant = 0;
+	if (typeof date == &apos;number&apos; || date instanceof java.lang.Number)
+		instant = new Number(date);
+	else if (date instanceof Date || date instanceof java.util.Date)
+		instant = date.getTime();
+	else if (date instanceof org.joda.time.ReadableInstant)
+		instant = date.getMillis();
+	else {
+		for each (formatter in formatters) {
+			try {
+				instant = formatter.parseMillis(new String(date));
+				break;
+			} catch(e) {}
+		}
+	}
+
+	return instant;
+}
+
+function getDate(date) {
+	return new java.util.Date(getMillis(date));
+}
+
+function convertDate(date, outpattern) {
+	return org.joda.time.format.DateTimeFormat.forPattern(outpattern).print(getMillis(date));
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>0e158aa1-77ee-465c-bb7a-13f4c8ecda13</id>
+        <name>Create FHIR OperationOutcome</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149839020</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>CHANNEL_ATTACHMENT</contextType>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>CHANNEL_POSTPROCESSOR</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+    Creates a FHIR OperationOutcome resource and adds it to the response map with the key &quot;response&quot;.
+
+    @param {String} severity - Indicates whether the issue indicates a variation from successful
+        processing. Values: fatal | error | warning | information
+    @param {String} code - Describes the type of the issue. The system that creates an
+        OperationOutcome SHALL choose the most applicable code from the IssueType value set, and may
+        additional provide its own code for the error in the details element. Values: invalid | security |
+        processing | transient | informational
+    @param {String} details - Additional details about the error. This may be a text description of
+        the error, or a system code that identifies the error.
+    @param {String} fhirVersion - The FHIR version of the OperationOutcome resource. Values: DSTU2 | DSTU2_1 | 
+    	   DSTU_HL7ORG | STU3 | R4 | R5
+    @param {int} httpStatusCode - The HTTP status code to send back with the response. Defaults to 400
+        if not specified.
+    @param {Error} e - If included, this will be used to build up the response status message and
+        error.
+    @param {Boolean} isFormatXML - If true, the resource will be formatted in XML. Otherwise, it will
+        be formatted in JSON. If not specified, it will attempt to find the _format parameter in the source
+        map, or return JSON.
+    @return {Response} The created Response object.
+*/
+function createOperationOutcome(severity, code, details, fhirVersion, httpStatusCode, e, isFormatXML) {
+    if (!httpStatusCode) {
+        httpStatusCode = 400;
+    }
+
+    if (!isFormatXML &amp;&amp; $s(&apos;parameters&apos;) &amp;&amp; $s(&apos;parameters&apos;).contains(&apos;_format&apos;)) {
+        isFormatXML = !FhirUtil.isJSON($s(&apos;parameters&apos;).getParameter(&apos;_format&apos;));
+    }
+
+    var outcome = FhirUtil.createOperationOutcome(severity, code, details, fhirVersion);
+    var message = isFormatXML ? FhirUtil.toXML(outcome, fhirVersion) : FhirUtil.toJSON(outcome, fhirVersion);
+    responseMap.put(&apos;response&apos;, FhirResponseFactory.getResponse(message, httpStatusCode, isFormatXML ? FhirUtil.getMIMETypeXML() : FhirUtil.getMIMETypeJSON()));
+    var response = new Response(message);
+    response.setStatusMessage(severity.toUpperCase() + &apos; OperationOutcome created with status &apos; + httpStatusCode + &apos;.&apos;);
+
+    if (httpStatusCode &gt;= 400) {
+        response.setStatus(Status.ERROR);
+
+        if (e) {
+            var customMessage = &apos;Channel &apos; + channelName + &apos;: &apos;;
+            if (e.rhinoException) {
+                customMessage += &apos;Error on line &apos; + e.rhinoException.lineNumber() + &apos;: &apos;;
+            }
+            customMessage += e.toString();
+    
+            var errorContent = com.mirth.connect.util.ErrorMessageBuilder.buildErrorMessage(&apos;FHIR Listener&apos;, customMessage, e.javaException || null);
+            if (e.javaException) {
+                logger.error(errorContent, e.javaException);    
+            } else {
+                logger.error(errorContent);
+            }
+            response.setError(errorContent);
+        }
+    }
+
+    return response;
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>a9691b6e-b455-4789-b4d7-89bcc095a163</id>
+        <name>Get Prefer Header Value</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149838665</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>CHANNEL_ATTACHMENT</contextType>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>CHANNEL_POSTPROCESSOR</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Returns the &quot;return&quot; element of the Prefer HTTP header if specified.
+
+	@return {String} The &quot;return&quot; element of the Prefer header, or undefined if not present
+*/
+function getPreferValue() {
+	var preferReturn;
+	var preferHeader = $(&apos;headers&apos;).getHeader(&apos;Prefer&apos;);
+	
+	if (preferHeader) {
+		for each (element in new org.apache.http.message.BasicHeader(&apos;Prefer&apos;, preferHeader).getElements()) {
+			if (element.getName() == &apos;return&apos;) {
+				preferReturn = element.getValue();
+				break;
+			}
+		}
+	}
+	
+	return preferReturn;
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>18c799ae-3553-40b0-b8cc-8898fbad5f7d</id>
+        <name>Import Common Packages</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149838148</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>CHANNEL_ATTACHMENT</contextType>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>CHANNEL_POSTPROCESSOR</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>COMPILED_CODE</type>
+          <code>/**
+	Imports HAPI FHIR packages commonly used in the FHIR Listener channel.
+*/
+importPackage(Packages.ca.uhn.fhir.model.api);
+importPackage(Packages.ca.uhn.fhir.model.base.resource);
+importPackage(Packages.ca.uhn.fhir.model.primitive);
+importPackage(Packages.org.hl7.fhir.r4.model);
+importPackage(org.apache.commons.lang3);
+importPackage(org.apache.commons.lang3.math);</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>ece0b77f-a9bc-43f1-ae57-96bb3a1b4143</id>
+        <name>Update Resource Meta</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595149838383</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Sets the resource ID, version ID, and last updated date/time.
+
+	@param {IBaseResource} resource - The FHIR resource object.
+	@param {String} id - The logical ID of the resource.
+	@param {Number} versionId - The version ID of the resource.
+	@return {Date} The last updated date/time.
+*/
+function updateResourceMeta(resource, id, versionId) {
+	resource.setId(id);
+	resource.getMeta().setVersionId(new String(versionId));
+	var lastUpdated = new java.util.Date();
+	resource.getMeta().getLastUpdatedElement().setTimeZone(java.util.TimeZone.getDefault());
+	resource.getMeta().setLastUpdated(lastUpdated);
+	return lastUpdated;
+}</code>
+        </properties>
+      </codeTemplate>
+    </codeTemplates>
+  </codeTemplateLibrary>
+  <codeTemplateLibrary version="3.9.0">
+    <id>4f1160ba-0cd5-4899-9329-03683147ccca</id>
+    <name>HL7 v2.x to FHIR Creation Functions</name>
+    <revision>1</revision>
+    <lastModified>
+      <time>1595399126094</time>
+      <timezone>Etc/UTC</timezone>
+    </lastModified>
+    <description>These code templates serve as an example of how to dynamically build
+FHIR resources and convert from other formats such as HL7 v2.x.
+
+Some of the code templates in this library are dependent on other
+code templates from the &quot;HL7 v2.x to FHIR Helper Functions&quot; library.</description>
+    <includeNewChannels>false</includeNewChannels>
+    <enabledChannelIds>
+      <string>42e730bb-0721-435e-8dcf-d25d6d5d1dc6</string>
+    </enabledChannelIds>
+    <disabledChannelIds>
+      <string>1892f241-d643-4abb-b0af-b20b87e0cf12</string>
+      <string>e678dbf5-f021-43dc-84ae-967500d5c31a</string>
+    </disabledChannelIds>
+    <codeTemplates>
+      <codeTemplate version="3.9.0">
+        <id>63476871-1ea1-4377-8998-0e2e0670e575</id>
+        <name>Create and Consolidate FHIR Patient</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595399126429</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Constructs a new FHIR Patient object from the PID and NK1 segments. Also consolidates and cleans up
+	empty fields.
+
+	@param {XML} msg - The E4X XML representation of the HL7 v2.x message.
+	@return {Object} The JavaScript Object representation of the FHIR Patient.
+*/
+function createAndConsolidateFhirPatient(msg) {
+	return consolidate(cleanupFhirPatient(createFhirPatient(msg)));
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>67f171ca-47bd-431c-b71b-4b032ee52e21</id>
+        <name>Create FHIR Patient</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595399126232</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.plugins.fhir.shared.FhirModelBuilderCodeTemplateProperties" version="3.9.0">
+          <type>FUNCTION</type>
+          <functionSignature>createFhirPatient(msg)</functionSignature>
+          <jsDoc>/**
+	Use the createAndConsolidateFhirPatient method instead, as it consolidates empty fields too.
+	Constructs a new FHIR Patient object from the PID and NK1 segments.
+
+	@param {XML} msg - The E4X XML representation of the HL7 v2.x message.
+	@return {Object} The JavaScript Object representation of the FHIR Patient.
+*/</jsDoc>
+          <resultReturnValue>true</resultReturnValue>
+          <resultMapType>CHANNEL</resultMapType>
+          <resultMapVariable></resultMapVariable>
+          <definition>Patient</definition>
+          <model class="com.mirth.connect.jsonbuilder.shared.models.ObjectModel">
+            <usingBuilder>true</usingBuilder>
+            <properties class="linked-hash-map">
+              <entry>
+                <string>resourceType</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>Patient</stringValue>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>identifier</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ArrayModel">
+                    <stringValue>createPatientIdentifiers(msg[&apos;PID&apos;])</stringValue>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>name</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ArrayModel">
+                    <stringValue>createPatientNames(msg[&apos;PID&apos;])</stringValue>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>telecom</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ArrayModel">
+                    <stringValue>createPatientTelecoms(msg[&apos;PID&apos;])</stringValue>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>gender</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>convertToFhirGender(msg[&apos;PID&apos;][&apos;PID.8&apos;][&apos;PID.8.1&apos;].toString())</stringValue>
+                    <scriptExpression>true</scriptExpression>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>birthDate</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>convertToFhirDate(msg[&apos;PID&apos;][&apos;PID.7&apos;][&apos;PID.7.1&apos;].toString())</stringValue>
+                    <scriptExpression>true</scriptExpression>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>deceasedBoolean</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.BooleanModel">
+                    <stringValue>convertYesNoIndicator(msg[&apos;PID&apos;][&apos;PID.30&apos;][&apos;PID.30.1&apos;].toString())</stringValue>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>deceasedDateTime</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>convertToFhirTimestamp(msg[&apos;PID&apos;][&apos;PID.29&apos;][&apos;PID.29.1&apos;].toString())</stringValue>
+                    <scriptExpression>true</scriptExpression>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>address</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ArrayModel">
+                    <stringValue>createPatientAddresses(msg[&apos;PID&apos;])</stringValue>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>maritalStatus</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ObjectModel">
+                    <usingBuilder>true</usingBuilder>
+                    <properties class="linked-hash-map">
+                      <entry>
+                        <string>text</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>msg[&apos;PID&apos;][&apos;PID.16&apos;][&apos;PID.16.1&apos;].toString()</stringValue>
+                            <scriptExpression>true</scriptExpression>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                    </properties>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>multipleBirthBoolean</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.BooleanModel">
+                    <stringValue>convertYesNoIndicator(msg[&apos;PID&apos;][&apos;PID.24&apos;][&apos;PID.24.1&apos;].toString())</stringValue>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>contact</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ArrayModel">
+                    <stringValue>createPatientContacts(msg[&apos;NK1&apos;])</stringValue>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>communication</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ArrayModel">
+                    <usingBuilder>true</usingBuilder>
+                    <elements>
+                      <com.mirth.connect.jsonbuilder.shared.models.ObjectModel>
+                        <usingBuilder>true</usingBuilder>
+                        <properties class="linked-hash-map">
+                          <entry>
+                            <string>language</string>
+                            <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                              <enabled>true</enabled>
+                              <properties class="com.mirth.connect.jsonbuilder.shared.models.ObjectModel">
+                                <usingBuilder>true</usingBuilder>
+                                <properties class="linked-hash-map">
+                                  <entry>
+                                    <string>id</string>
+                                    <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                                      <enabled>true</enabled>
+                                      <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                                        <stringValue>msg[&apos;PID&apos;][&apos;PID.15&apos;][&apos;PID.15.1&apos;].toString()</stringValue>
+                                        <scriptExpression>true</scriptExpression>
+                                      </properties>
+                                    </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                                  </entry>
+                                  <entry>
+                                    <string>text</string>
+                                    <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                                      <enabled>true</enabled>
+                                      <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                                        <stringValue>msg[&apos;PID&apos;][&apos;PID.15&apos;][&apos;PID.15.2&apos;].toString()</stringValue>
+                                        <scriptExpression>true</scriptExpression>
+                                      </properties>
+                                    </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                                  </entry>
+                                </properties>
+                              </properties>
+                            </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          </entry>
+                        </properties>
+                      </com.mirth.connect.jsonbuilder.shared.models.ObjectModel>
+                    </elements>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+            </properties>
+          </model>
+          <fhirVersion>R4</fhirVersion>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>767a5ea0-0510-4784-a651-770759f2c4ca</id>
+        <name>Create FHIR Patient Address</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595399126757</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.plugins.fhir.shared.FhirModelBuilderCodeTemplateProperties" version="3.9.0">
+          <type>FUNCTION</type>
+          <functionSignature>createPatientAddress(pid11)</functionSignature>
+          <jsDoc>/**
+	Creates a new FHIR Address object from the given PID.11 field.
+
+	@param {XML} pid11 - The E4X XML PID.11 node from the HL7 v2.x message.
+	@return {Object} The JavaScript Object representation of the FHIR Address.
+*/</jsDoc>
+          <resultReturnValue>true</resultReturnValue>
+          <resultMapType>CHANNEL</resultMapType>
+          <resultMapVariable></resultMapVariable>
+          <definition>Address</definition>
+          <model class="com.mirth.connect.jsonbuilder.shared.models.ObjectModel">
+            <usingBuilder>true</usingBuilder>
+            <properties class="linked-hash-map">
+              <entry>
+                <string>use</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>convertAddressUse(pid11[&apos;PID.11.7&apos;].toString())</stringValue>
+                    <scriptExpression>true</scriptExpression>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>type</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>false</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>postal</stringValue>
+                    <usingEnum>true</usingEnum>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>text</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>(pid11[&apos;PID.11.1&apos;].toString() + &apos; &apos; + pid11[&apos;PID.11.2&apos;].toString() + &apos; &apos; + pid11[&apos;PID.11.3&apos;].toString() + &apos; &apos; + pid11[&apos;PID.11.4&apos;].toString() + &apos; &apos; + pid11[&apos;PID.11.5&apos;].toString() + &apos; &apos; + pid11[&apos;PID.11.6&apos;].toString()).trim()</stringValue>
+                    <scriptExpression>true</scriptExpression>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>line</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ArrayModel">
+                    <usingBuilder>true</usingBuilder>
+                    <elements>
+                      <com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                        <stringValue>pid11[&apos;PID.11.1&apos;].toString()</stringValue>
+                        <scriptExpression>true</scriptExpression>
+                      </com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                      <com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                        <stringValue>pid11[&apos;PID.11.2&apos;].toString()</stringValue>
+                        <scriptExpression>true</scriptExpression>
+                      </com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                    </elements>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>city</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>pid11[&apos;PID.11.3&apos;].toString()</stringValue>
+                    <scriptExpression>true</scriptExpression>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>district</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>pid11[&apos;PID.11.9&apos;].toString()</stringValue>
+                    <scriptExpression>true</scriptExpression>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>state</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>pid11[&apos;PID.11.4&apos;].toString()</stringValue>
+                    <scriptExpression>true</scriptExpression>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>postalCode</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>pid11[&apos;PID.11.5&apos;].toString()</stringValue>
+                    <scriptExpression>true</scriptExpression>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>country</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>pid11[&apos;PID.11.6&apos;].toString()</stringValue>
+                    <scriptExpression>true</scriptExpression>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>period</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ObjectModel">
+                    <usingBuilder>true</usingBuilder>
+                    <properties class="linked-hash-map">
+                      <entry>
+                        <string>start</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>convertToFhirTimestamp(pid11[&apos;PID.11.13&apos;].toString())</stringValue>
+                            <scriptExpression>true</scriptExpression>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                      <entry>
+                        <string>end</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>convertToFhirTimestamp(pid11[&apos;PID.11.14&apos;].toString())</stringValue>
+                            <scriptExpression>true</scriptExpression>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                    </properties>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+            </properties>
+          </model>
+          <fhirVersion>R4</fhirVersion>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>815aeba2-099f-4f62-aae0-567aa9927a4b</id>
+        <name>Create FHIR Patient Addresses</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595399126831</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Creates a new array of FHIR Address objects from the given PID segment.
+
+	@param {XML} pid - The E4X XML PID node from the HL7 v2.x message.
+	@return {Array} The array of Address objects.
+*/
+function createPatientAddresses(pid) {
+	var addresses = Lists.list();
+	for (var i = 0; i &lt; pid[&apos;PID.11&apos;].length(); i++) {
+		addresses.add(createPatientAddress(pid[&apos;PID.11&apos;][i]));
+	}
+	return addresses.toArray();
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>b8ca268a-0fda-4445-95bc-27334ebcf97f</id>
+        <name>Create FHIR Patient Contact</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595399126154</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.plugins.fhir.shared.FhirModelBuilderCodeTemplateProperties" version="3.9.0">
+          <type>FUNCTION</type>
+          <functionSignature>createPatientContact(nk1)</functionSignature>
+          <jsDoc>/**
+	Creates a new FHIR Patient_Contact object from the given NK1 segment.
+
+	@param {XML} nk1 - The E4X XML NK1 segment from the HL7 v2.x message.
+	@return {Object} The JavaScript Object representation of the FHIR Patient_Contact.
+*/</jsDoc>
+          <resultReturnValue>true</resultReturnValue>
+          <resultMapType>CHANNEL</resultMapType>
+          <resultMapVariable></resultMapVariable>
+          <definition>Patient_Contact</definition>
+          <model class="com.mirth.connect.jsonbuilder.shared.models.ObjectModel">
+            <usingBuilder>true</usingBuilder>
+            <properties class="linked-hash-map">
+              <entry>
+                <string>relationship</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ArrayModel">
+                    <usingBuilder>true</usingBuilder>
+                    <elements>
+                      <com.mirth.connect.jsonbuilder.shared.models.ObjectModel>
+                        <usingBuilder>true</usingBuilder>
+                        <properties class="linked-hash-map">
+                          <entry>
+                            <string>id</string>
+                            <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                              <enabled>true</enabled>
+                              <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                                <stringValue>nk1[&apos;NK1.3&apos;][&apos;NK1.3.1&apos;].toString()</stringValue>
+                                <scriptExpression>true</scriptExpression>
+                              </properties>
+                            </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          </entry>
+                          <entry>
+                            <string>text</string>
+                            <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                              <enabled>true</enabled>
+                              <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                                <stringValue>nk1[&apos;NK1.3&apos;][&apos;NK1.3.2&apos;].toString()</stringValue>
+                                <scriptExpression>true</scriptExpression>
+                              </properties>
+                            </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          </entry>
+                        </properties>
+                      </com.mirth.connect.jsonbuilder.shared.models.ObjectModel>
+                      <com.mirth.connect.jsonbuilder.shared.models.ObjectModel>
+                        <usingBuilder>true</usingBuilder>
+                        <properties class="linked-hash-map">
+                          <entry>
+                            <string>id</string>
+                            <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                              <enabled>true</enabled>
+                              <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                                <stringValue>nk1[&apos;NK1.7&apos;][&apos;NK1.7.1&apos;].toString()</stringValue>
+                                <scriptExpression>true</scriptExpression>
+                              </properties>
+                            </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          </entry>
+                          <entry>
+                            <string>text</string>
+                            <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                              <enabled>true</enabled>
+                              <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                                <stringValue>nk1[&apos;NK1.7&apos;][&apos;NK1.7.2&apos;].toString()</stringValue>
+                                <scriptExpression>true</scriptExpression>
+                              </properties>
+                            </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          </entry>
+                        </properties>
+                      </com.mirth.connect.jsonbuilder.shared.models.ObjectModel>
+                    </elements>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>name</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ObjectModel">
+                    <usingBuilder>true</usingBuilder>
+                    <properties class="linked-hash-map">
+                      <entry>
+                        <string>use</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>usual</stringValue>
+                            <usingEnum>true</usingEnum>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                      <entry>
+                        <string>family</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>nk1[&apos;NK1.2&apos;][&apos;NK1.2.1&apos;].toString()</stringValue>
+                            <scriptExpression>true</scriptExpression>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                      <entry>
+                        <string>given</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.ArrayModel">
+                            <usingBuilder>true</usingBuilder>
+                            <elements>
+                              <com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                                <stringValue>nk1[&apos;NK1.2&apos;][&apos;NK1.2.2&apos;].toString()</stringValue>
+                                <scriptExpression>true</scriptExpression>
+                              </com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                              <com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                                <stringValue>nk1[&apos;NK1.2&apos;][&apos;NK1.2.3&apos;].toString()</stringValue>
+                                <scriptExpression>true</scriptExpression>
+                              </com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                            </elements>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                      <entry>
+                        <string>prefix</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.ArrayModel">
+                            <usingBuilder>true</usingBuilder>
+                            <elements>
+                              <com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                                <stringValue>nk1[&apos;NK1.2&apos;][&apos;NK1.2.5&apos;].toString()</stringValue>
+                                <scriptExpression>true</scriptExpression>
+                              </com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                            </elements>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                      <entry>
+                        <string>suffix</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.ArrayModel">
+                            <usingBuilder>true</usingBuilder>
+                            <elements>
+                              <com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                                <stringValue>nk1[&apos;NK1.2&apos;][&apos;NK1.2.4&apos;].toString()</stringValue>
+                                <scriptExpression>true</scriptExpression>
+                              </com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                            </elements>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                      <entry>
+                        <string>period</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.ObjectModel">
+                            <usingBuilder>true</usingBuilder>
+                            <properties class="linked-hash-map">
+                              <entry>
+                                <string>start</string>
+                                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                                  <enabled>true</enabled>
+                                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                                    <stringValue>convertToFhirTimestamp(nk1[&apos;NK1.2&apos;][&apos;NK1.2.12&apos;].toString())</stringValue>
+                                    <scriptExpression>true</scriptExpression>
+                                  </properties>
+                                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                              </entry>
+                              <entry>
+                                <string>end</string>
+                                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                                  <enabled>true</enabled>
+                                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                                    <stringValue>convertToFhirTimestamp(nk1[&apos;NK1.2&apos;][&apos;NK1.2.13&apos;].toString())</stringValue>
+                                    <scriptExpression>true</scriptExpression>
+                                  </properties>
+                                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                              </entry>
+                            </properties>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                    </properties>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>telecom</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ArrayModel">
+                    <stringValue>createPatientContactTelecoms(nk1)</stringValue>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>address</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ObjectModel">
+                    <usingBuilder>true</usingBuilder>
+                    <properties class="linked-hash-map">
+                      <entry>
+                        <string>use</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>convertAddressUse(nk1[&apos;NK1.4&apos;][&apos;NK1.4.7&apos;].toString())</stringValue>
+                            <scriptExpression>true</scriptExpression>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                      <entry>
+                        <string>type</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>false</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>postal</stringValue>
+                            <usingEnum>true</usingEnum>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                      <entry>
+                        <string>text</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>(nk1[&apos;NK1.4&apos;][&apos;NK1.4.1&apos;].toString() + &apos; &apos; + nk1[&apos;NK1.4&apos;][&apos;NK1.4.2&apos;].toString() + &apos; &apos; + nk1[&apos;NK1.4&apos;][&apos;NK1.4.3&apos;].toString() + &apos; &apos; + nk1[&apos;NK1.4&apos;][&apos;NK1.4.4&apos;].toString() + &apos; &apos; + nk1[&apos;NK1.4&apos;][&apos;NK1.4.5&apos;].toString() + &apos; &apos; + nk1[&apos;NK1.4&apos;][&apos;NK1.4.6&apos;].toString()).trim()</stringValue>
+                            <scriptExpression>true</scriptExpression>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                      <entry>
+                        <string>line</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.ArrayModel">
+                            <usingBuilder>true</usingBuilder>
+                            <elements>
+                              <com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                                <stringValue>nk1[&apos;NK1.4&apos;][&apos;NK1.4.1&apos;].toString()</stringValue>
+                                <scriptExpression>true</scriptExpression>
+                              </com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                              <com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                                <stringValue>nk1[&apos;NK1.4&apos;][&apos;NK1.4.2&apos;].toString()</stringValue>
+                                <scriptExpression>true</scriptExpression>
+                              </com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                            </elements>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                      <entry>
+                        <string>city</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>nk1[&apos;NK1.4&apos;][&apos;NK1.4.3&apos;].toString()</stringValue>
+                            <scriptExpression>true</scriptExpression>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                      <entry>
+                        <string>district</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>nk1[&apos;NK1.4&apos;][&apos;NK1.4.9&apos;].toString()</stringValue>
+                            <scriptExpression>true</scriptExpression>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                      <entry>
+                        <string>state</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>nk1[&apos;NK1.4&apos;][&apos;NK1.4.4&apos;].toString()</stringValue>
+                            <scriptExpression>true</scriptExpression>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                      <entry>
+                        <string>postalCode</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>nk1[&apos;NK1.4&apos;][&apos;NK1.4.5&apos;].toString()</stringValue>
+                            <scriptExpression>true</scriptExpression>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                      <entry>
+                        <string>country</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>nk1[&apos;NK1.4&apos;][&apos;NK1.4.6&apos;].toString()</stringValue>
+                            <scriptExpression>true</scriptExpression>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                      <entry>
+                        <string>period</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.ObjectModel">
+                            <usingBuilder>true</usingBuilder>
+                            <properties class="linked-hash-map">
+                              <entry>
+                                <string>start</string>
+                                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                                  <enabled>true</enabled>
+                                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                                    <scriptExpression>true</scriptExpression>
+                                  </properties>
+                                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                              </entry>
+                              <entry>
+                                <string>end</string>
+                                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                                  <enabled>true</enabled>
+                                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                                    <scriptExpression>true</scriptExpression>
+                                  </properties>
+                                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                              </entry>
+                            </properties>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                    </properties>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>gender</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>convertToFhirGender(nk1[&apos;NK1.15&apos;][&apos;NK1.15.1&apos;].toString())</stringValue>
+                    <scriptExpression>true</scriptExpression>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+            </properties>
+          </model>
+          <fhirVersion>R4</fhirVersion>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>f58ca0f3-f121-453d-ad59-b960300fa35f</id>
+        <name>Create FHIR Patient Contact Telecoms</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595399126383</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Creates a new array of FHIR ContactPoint objects from the given NK1 segment.
+
+	@param {XML} nk1 - The E4X XML NK1 segment from the HL7 v2.x message.
+	@return {Array} The array of ContactPoint objects.
+*/
+function createPatientContactTelecoms(nk1) {
+	var telecoms = Lists.list();
+	for (var i = 0; i &lt; nk1[&apos;NK1.5&apos;].length(); i++) {
+		telecoms.add(createPatientTelecom(nk1[&apos;NK1.5&apos;][i], &apos;home&apos;));
+	}
+	for (var i = 0; i &lt; nk1[&apos;NK1.6&apos;].length(); i++) {
+		telecoms.add(createPatientTelecom(nk1[&apos;NK1.6&apos;][i], &apos;work&apos;));
+	}
+	return telecoms.toArray();
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>d66442af-90e6-4e2b-813a-b287cdc05af6</id>
+        <name>Create FHIR Patient Contacts</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595399126573</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Creates a new array of FHIR Patient_Contact objects for all NK1 segments in the message.
+
+	@param {XML} nk1List - The E4X XML NK1 list from the HL7 v2.x message.
+	@return {Array} The array of Patient_Contact objects.
+*/
+function createPatientContacts(nk1List) {
+	var contacts = Lists.list();
+	for (var i = 0; i &lt; nk1List.length(); i++) {
+		contacts.add(createPatientContact(nk1List[i]));
+	}
+	return contacts.toArray();
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>1f5b9ac0-85c0-4602-a164-89b8e13256ae</id>
+        <name>Create FHIR Patient Identifier</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595399126899</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.plugins.fhir.shared.FhirModelBuilderCodeTemplateProperties" version="3.9.0">
+          <type>FUNCTION</type>
+          <functionSignature>createPatientIdentifier(pid3)</functionSignature>
+          <jsDoc>/**
+	Creates a new FHIR Identifier object from the given PID.3 field.
+
+	@param {XML} pid3 - The E4X XML PID.3 node of the HL7 v2.x message.
+	@return {Object} The JavaScript Object representation of the FHIR Identifier.
+*/</jsDoc>
+          <resultReturnValue>true</resultReturnValue>
+          <resultMapType>CHANNEL</resultMapType>
+          <resultMapVariable></resultMapVariable>
+          <definition>Identifier</definition>
+          <model class="com.mirth.connect.jsonbuilder.shared.models.ObjectModel">
+            <usingBuilder>true</usingBuilder>
+            <properties class="linked-hash-map">
+              <entry>
+                <string>use</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>false</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>usual</stringValue>
+                    <usingEnum>true</usingEnum>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>type</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ObjectModel">
+                    <usingBuilder>true</usingBuilder>
+                    <properties class="linked-hash-map">
+                      <entry>
+                        <string>text</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>pid3[&apos;PID.3.5&apos;].toString()</stringValue>
+                            <scriptExpression>true</scriptExpression>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                    </properties>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>system</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>pid3[&apos;PID.3.4&apos;].toString()</stringValue>
+                    <scriptExpression>true</scriptExpression>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>value</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>pid3[&apos;PID.3.1&apos;].toString()</stringValue>
+                    <scriptExpression>true</scriptExpression>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>period</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ObjectModel">
+                    <usingBuilder>true</usingBuilder>
+                    <properties class="linked-hash-map">
+                      <entry>
+                        <string>start</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>convertToFhirTimestamp(pid3[&apos;PID.3.7&apos;].toString())</stringValue>
+                            <scriptExpression>true</scriptExpression>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                      <entry>
+                        <string>end</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>convertToFhirTimestamp(pid3[&apos;PID.3.8&apos;].toString())</stringValue>
+                            <scriptExpression>true</scriptExpression>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                    </properties>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+            </properties>
+          </model>
+          <fhirVersion>R4</fhirVersion>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>1132126f-5bd3-4b2f-a11c-f7107114c8da</id>
+        <name>Create FHIR Patient Identifiers</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595399126627</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Creates a new array of FHIR Identifier objects from the given PID segment.
+
+	@param {XML} pid - The E4X XML PID node from the HL7 v2.x message.
+	@return {Array} The array of Identifier objects.
+*/
+function createPatientIdentifiers(pid) {
+	var identifiers = Lists.list();
+	for (var i = 0; i &lt; pid[&apos;PID.3&apos;].length(); i++) {
+		identifiers.add(createPatientIdentifier(pid[&apos;PID.3&apos;][i]));
+	}
+	return identifiers.toArray();
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>a446affe-ac81-4fea-8572-336ba63dfeae</id>
+        <name>Create FHIR Patient Name</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595399126488</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.plugins.fhir.shared.FhirModelBuilderCodeTemplateProperties" version="3.9.0">
+          <type>FUNCTION</type>
+          <functionSignature>createPatientName(node)</functionSignature>
+          <jsDoc>/**
+	Creates a new FHIR HumanName object from the given PID.5 or PID.9 field.
+
+	@param {XML} node - The E4X XML PID.5 or PID.9 field from the HL7 v2.x message.
+	@return {Object} The JavaScript Object representation of the FHIR HumanName.
+*/</jsDoc>
+          <resultReturnValue>true</resultReturnValue>
+          <resultMapType>CHANNEL</resultMapType>
+          <resultMapVariable></resultMapVariable>
+          <definition>HumanName</definition>
+          <model class="com.mirth.connect.jsonbuilder.shared.models.ObjectModel">
+            <usingBuilder>true</usingBuilder>
+            <properties class="linked-hash-map">
+              <entry>
+                <string>use</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>usual</stringValue>
+                    <usingEnum>true</usingEnum>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>family</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>node[&apos;PID.5.1&apos;].toString() || node[&apos;PID.9.1&apos;].toString()</stringValue>
+                    <scriptExpression>true</scriptExpression>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>given</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ArrayModel">
+                    <usingBuilder>true</usingBuilder>
+                    <elements>
+                      <com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                        <stringValue>node[&apos;PID.5.2&apos;].toString() || node[&apos;PID.9.2&apos;].toString()</stringValue>
+                        <scriptExpression>true</scriptExpression>
+                      </com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                      <com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                        <stringValue>node[&apos;PID.5.3&apos;].toString() || node[&apos;PID.9.3&apos;].toString()</stringValue>
+                        <scriptExpression>true</scriptExpression>
+                      </com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                    </elements>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>prefix</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ArrayModel">
+                    <usingBuilder>true</usingBuilder>
+                    <elements>
+                      <com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                        <stringValue>node[&apos;PID.5.5&apos;].toString() || node[&apos;PID.9.5&apos;].toString()</stringValue>
+                        <scriptExpression>true</scriptExpression>
+                      </com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                    </elements>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>suffix</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ArrayModel">
+                    <usingBuilder>true</usingBuilder>
+                    <elements>
+                      <com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                        <stringValue>node[&apos;PID.5.4&apos;].toString() || node[&apos;PID.9.4&apos;].toString()</stringValue>
+                        <scriptExpression>true</scriptExpression>
+                      </com.mirth.connect.jsonbuilder.shared.models.StringModel>
+                    </elements>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>period</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.ObjectModel">
+                    <usingBuilder>true</usingBuilder>
+                    <properties class="linked-hash-map">
+                      <entry>
+                        <string>start</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>node[&apos;PID.5.12&apos;].toString() || node[&apos;PID.9.12&apos;].toString()</stringValue>
+                            <scriptExpression>true</scriptExpression>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                      <entry>
+                        <string>end</string>
+                        <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                          <enabled>true</enabled>
+                          <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                            <stringValue>node[&apos;PID.5.13&apos;].toString() || node[&apos;PID.9.13&apos;].toString()</stringValue>
+                            <scriptExpression>true</scriptExpression>
+                          </properties>
+                        </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                      </entry>
+                    </properties>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+            </properties>
+          </model>
+          <fhirVersion>R4</fhirVersion>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>d73cd539-ab3c-4e82-bd24-81a6025e7ed4</id>
+        <name>Create FHIR Patient Names</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595399126296</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Creates a new array of FHIR HumanName objects from the given PID segment.
+
+	@param {XML} pid - The E4X XML PID node from the HL7 v2.x message.
+	@return {Array} The array of HumanName objects.
+*/
+function createPatientNames(pid) {
+	var names = Lists.list();
+	for (var i = 0; i &lt; pid[&apos;PID.5&apos;].length(); i++) {
+		names.add(createPatientName(pid[&apos;PID.5&apos;][i]));
+	}
+	for (var i = 0; i &lt; pid[&apos;PID.9&apos;].length(); i++) {
+		names.add(createPatientName(pid[&apos;PID.9&apos;][i]));
+	}
+	return names.toArray();
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>ab382e75-1993-4d31-b9b8-6295b8d241ca</id>
+        <name>Create FHIR Patient Telecom</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595399126968</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.plugins.fhir.shared.FhirModelBuilderCodeTemplateProperties" version="3.9.0">
+          <type>FUNCTION</type>
+          <functionSignature>createPatientTelecom(node, use)</functionSignature>
+          <jsDoc>/**
+	Creates a new FHIR ContactPoint object from the given PID.13, PID.14, NK1.5, or NK1.6 field.
+
+	@param {XML} node - The E4X XML PID.13, PID.14, NK1.5, or NK1.6 field from the HL7 v2.x message.
+	@param {String} use - The FHIR telecom use value: home/work/temp/old/mobile
+	@return {Object} The JavaScript Object representation of the FHIR ContactPoint.
+*/</jsDoc>
+          <resultReturnValue>true</resultReturnValue>
+          <resultMapType>CHANNEL</resultMapType>
+          <resultMapVariable></resultMapVariable>
+          <definition>ContactPoint</definition>
+          <model class="com.mirth.connect.jsonbuilder.shared.models.ObjectModel">
+            <usingBuilder>true</usingBuilder>
+            <properties class="linked-hash-map">
+              <entry>
+                <string>system</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>phone</stringValue>
+                    <usingEnum>true</usingEnum>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>value</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>node[&apos;PID.13.1&apos;].toString() || node[&apos;PID.14.1&apos;].toString() || node[&apos;NK1.5.1&apos;].toString() || node[&apos;NK1.6.1&apos;].toString()</stringValue>
+                    <scriptExpression>true</scriptExpression>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+              <entry>
+                <string>use</string>
+                <com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+                  <enabled>true</enabled>
+                  <properties class="com.mirth.connect.jsonbuilder.shared.models.StringModel">
+                    <stringValue>use</stringValue>
+                    <scriptExpression>true</scriptExpression>
+                  </properties>
+                </com.mirth.connect.jsonbuilder.shared.models.ObjectProperty>
+              </entry>
+            </properties>
+          </model>
+          <fhirVersion>R4</fhirVersion>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>2b99377c-f3c3-422e-ab55-3b0d3b344107</id>
+        <name>Create FHIR Patient Telecoms</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1595399126689</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Creates a new array of FHIR ContactPoint objects from the given PID segment.
+
+	@param {XML} pid - The E4X XML PID node from the HL7 v2.x message.
+	@return {Array} The array of ContactPoint objects.
+*/
+function createPatientTelecoms(pid) {
+	var telecoms = Lists.list();
+	for (var i = 0; i &lt; pid[&apos;PID.13&apos;].length(); i++) {
+		telecoms.add(createPatientTelecom(pid[&apos;PID.13&apos;][i], &apos;home&apos;));
+	}
+	for (var i = 0; i &lt; pid[&apos;PID.14&apos;].length(); i++) {
+		telecoms.add(createPatientTelecom(pid[&apos;PID.14&apos;][i], &apos;work&apos;));
+	}
+	return telecoms.toArray();
+}</code>
+        </properties>
+      </codeTemplate>
+    </codeTemplates>
+  </codeTemplateLibrary>
+  <codeTemplateLibrary version="3.9.0">
+    <id>9025896a-65d0-458c-92ac-335fe985a232</id>
+    <name>HL7 v2.x to FHIR Helper Functions</name>
+    <revision>3</revision>
+    <lastModified>
+      <time>1595347811780</time>
+      <timezone>Etc/UTC</timezone>
+    </lastModified>
+    <description>General functions to help convert HL7 v2.x to FHIR resources.
+
+These are used by the example HL7 to FHIR transformer, as well as
+the &quot;HL7 v2.x to FHIR Creation Functions&quot; code template library.</description>
+    <includeNewChannels>false</includeNewChannels>
+    <enabledChannelIds>
+      <string>42e730bb-0721-435e-8dcf-d25d6d5d1dc6</string>
+      <string>e678dbf5-f021-43dc-84ae-967500d5c31a</string>
+    </enabledChannelIds>
+    <disabledChannelIds>
+      <string>1892f241-d643-4abb-b0af-b20b87e0cf12</string>
+    </disabledChannelIds>
+    <codeTemplates>
+      <codeTemplate version="3.9.0">
+        <id>2cc062f8-aac9-48e1-947e-0567d4497e07</id>
+        <name>Cleanup FHIR Patient</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1586904074718</time>
+          <timezone>America/Los_Angeles</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Removes name / telecom / address entries with no actual value.
+
+	@param {Object} patient - The JavaScript Object representing the FHIR Patient.
+	@return {Object} The same Object passed in, cleaned up.
+*/
+function cleanupFhirPatient(patient) {
+	// Remove names with no value
+	cleanupFhirNames(patient, &apos;name&apos;);
+	
+	// Remove telecom entries with no value
+	cleanupFhirTelecoms(patient, &apos;telecom&apos;);
+
+	// Remove address entries with no value
+	cleanupFhirAddresses(patient, &apos;address&apos;);
+
+	if (patient.contact) {
+		for each (contact in patient.contact) {
+			if (!isFhirNameValid(contact.name)) {
+				delete contact.name;
+			}
+			
+			cleanupFhirTelecoms(contact, &apos;telecom&apos;);
+
+			if (!isFhirAddressValid(contact.address)) {
+				delete contact.address;
+			}
+		}
+	}
+
+	return patient;
+}
+
+function cleanupFhirNames(parent, property) {
+	cleanupArray(parent, property, isFhirNameValid);
+}
+
+function isFhirNameValid(name) {
+	return name &amp;&amp; (!isValueEmpty(name.text) || !isValueEmpty(name.family) || !isValueEmpty(name.given) || !isValueEmpty(name.prefix) || !isValueEmpty(name.suffix));
+}
+
+function cleanupFhirTelecoms(parent, property) {
+	cleanupArray(parent, property, function(telecom) {
+		return !isValueEmpty(telecom.value);
+	});
+}
+
+function cleanupFhirAddresses(parent, property) {
+	cleanupArray(parent, property, isFhirAddressValid);
+}
+
+function isFhirAddressValid(address) {
+	return address &amp;&amp; (!isValueEmpty(address.text) || !isValueEmpty(address.line) || !isValueEmpty(address.city) || !isValueEmpty(address.state) || !isValueEmpty(address.postalCode) || !isValueEmpty(address.country));
+}
+
+function cleanupArray(parent, property, handleFunction) {
+	var arr = parent[property];
+
+	if (arr) {
+		var length = arr.length;
+		for (var i = length - 1; i &gt;= 0; i--) {
+			if (!handleFunction(arr[i])) {
+				delete arr[i];
+				length--;
+			}
+		}
+		arr.length = length;
+
+		// Handle Java arrays
+		if (arr.length != length) {
+			parent[property] = org.apache.commons.lang3.ArrayUtils.subarray(arr, 0, length);
+		}
+	}
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>2e62489a-423d-4471-a919-ed3f71827199</id>
+        <name>Combine Arrays</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1586904074664</time>
+          <timezone>America/Los_Angeles</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Combines two arrays into one. Works with both Java and JavaScript arrays.
+
+	@param {Array} array1 - The first array.
+	@param {Array} array2 - The second array.
+	@return {Array} The combined array.
+*/
+function combineArrays(array1, array2) {
+	var isJavaArray1 = Object.prototype.toString.call(array1) == &apos;[object JavaArray]&apos;;
+	var isJavaArray2 = Object.prototype.toString.call(array2) == &apos;[object JavaArray]&apos;;
+
+	if (isJavaArray1 &amp;&amp; isJavaArray2) {
+		return org.apache.commons.lang3.ArrayUtils.addAll(array1, array2);
+	} else if (isJavaArray1) {
+		for (var i = array1.length - 1; i &gt;= 0; i--) {
+			array2.unshift(array1[i]);
+		}
+		return array2;
+	} else {
+		for each (value in array2) {
+			array1.push(value);
+		}
+		return array1;
+	}
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>6faf1e4b-d159-4d34-a07a-2fe0a3bde4cf</id>
+        <name>Consolidate Empty Properties</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1586904074791</time>
+          <timezone>America/Los_Angeles</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Removes empty strings, objects and arrays from a JavaScript object.
+
+	@param {Object/Array} obj - The object or array to consolidate.
+	@return {Object/Array} The consolidates object or array.
+*/
+function consolidate(obj) {
+	if (typeof obj != &apos;undefined&apos; &amp;&amp; obj != null) {
+		var protoToString = Object.prototype.toString.call(obj);
+		
+		if (obj instanceof Array || protoToString == &apos;[object Array]&apos; || protoToString == &apos;[object JavaArray]&apos;) {
+			var length = obj.length;
+			
+			for (var i = obj.length - 1; i &gt;= 0; i--) {
+				if (!doConsolidate(obj, i)) {
+					length--;
+				}
+			}
+			obj.length = length;
+
+			// Handle Java Arrays
+			if (length != obj.length) {
+				obj = org.apache.commons.lang3.ArrayUtils.subarray(obj, 0, length);
+			}
+		} else if (protoToString == &apos;[object Object]&apos;) {
+			for (var property in obj) {
+				doConsolidate(obj, property);
+			}
+		}
+	}
+	return obj;
+}
+
+function doConsolidate(obj, property) {
+	var value = obj[property] = consolidate(obj[property]);
+	var empty = isValueEmpty(value);
+	if (empty) {
+		delete obj[property];
+	}
+	return !empty;
+}
+
+function isValueEmpty(value) {
+	var protoToString = Object.prototype.toString.call(value);
+
+	if (typeof value == &apos;undefined&apos; || value == null) {
+		return true;
+	} else if (value instanceof Array || protoToString == &apos;[object Array]&apos; || protoToString == &apos;[object JavaArray]&apos;) {
+		if (value.length &gt; 0) {
+			for each (element in value) {
+				if (!isValueEmpty(element)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	} else if (typeof value == &apos;string&apos; || protoToString == &apos;[object String]&apos;) {
+		return value.length == 0;
+	} else if (value instanceof java.lang.String) {
+		return org.apache.commons.lang3.StringUtils.isEmpty(value);
+	} else if (protoToString == &apos;[object Object]&apos;) {
+		for (var property in value) {
+			if (!isValueEmpty(value[property])) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	return false;
+}
+</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>b7bffbe4-9da5-40a8-8a35-7e3ad5a9bebf</id>
+        <name>Convert Address Use</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1586904074561</time>
+          <timezone>America/Los_Angeles</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Converts an HL7 v2.x address type code to the corresponding FHIR address use.
+
+	@param {String} code - The HL7 address type (Table 0190)
+	@return {String} The FHIR address use code
+*/
+function convertAddressUse(code) {
+	var fhirCode;
+	
+	switch ((code + &apos;&apos;).toUpperCase()) {
+		case &apos;H&apos;:
+		case &apos;L&apos;:
+		case &apos;M&apos;:
+		case &apos;P&apos;:
+		case &apos;SH&apos;:
+			fhirCode = org.hl7.fhir.r4.model.codesystems.AddressUse.HOME;
+			break;
+		case &apos;B&apos;:
+		case &apos;O&apos;:
+		case &apos;BI&apos;:
+			fhirCode = org.hl7.fhir.r4.model.codesystems.AddressUse.WORK;
+			break;
+		case &apos;C&apos;:
+		case &apos;V&apos;:
+			fhirCode = org.hl7.fhir.r4.model.codesystems.AddressUse.TEMP;
+			break;
+		default:
+			fhirCode = org.hl7.fhir.r4.model.codesystems.AddressUse.OLD;
+	}
+
+	return fhirCode.toCode();
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>687a3eef-3155-47c8-bb12-de158d0055ac</id>
+        <name>Convert Date</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1586904074352</time>
+          <timezone>America/Los_Angeles</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Converts an HL7 v2.x formatted date into the correct format for FHIR date.
+	
+	HL7 format expected: yyyyMMdd
+	FHIR format: yyyy-MM-dd
+
+	@param {String} date - The HL7 v2.x date string
+	@return {String} The converted FHIR date string
+*/
+function convertToFhirDate(date) {
+	return convertToFhirTimestamp(date, &quot;yyyy-MM-dd&quot;);
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>f338c38c-477a-4dca-8714-2e96c382716e</id>
+        <name>Convert Gender</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1586904074610</time>
+          <timezone>America/Los_Angeles</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Converts an HL7 v2.x gender code to the corresponding FHIR code.
+
+	@param {String} code - The HL7 gender code (Table 0001)
+	@return {String} The FHIR administrative gender code
+*/
+function convertToFhirGender(code) {
+	var fhirCode;
+	
+	switch ((code + &apos;&apos;).toUpperCase()) {
+		case &apos;F&apos;:
+			fhirCode = org.hl7.fhir.r4.model.codesystems.AdministrativeGender.FEMALE;
+			break;
+		case &apos;M&apos;:
+			fhirCode = org.hl7.fhir.r4.model.codesystems.AdministrativeGender.MALE;
+			break;
+		case &apos;O&apos;:
+		case &apos;A&apos;:
+		case &apos;N&apos;:
+			fhirCode = org.hl7.fhir.r4.model.codesystems.AdministrativeGender.OTHER;
+			break;
+		case &apos;U&apos;:
+		default:
+			fhirCode = org.hl7.fhir.r4.model.codesystems.AdministrativeGender.UNKNOWN;
+	}
+
+	return fhirCode.toCode();
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>0061fef8-39be-48c1-b81e-60719c97c149</id>
+        <name>Convert Timestamp</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1586904074482</time>
+          <timezone>America/Los_Angeles</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Converts an HL7 v2.x formatted timestamp into the correct format for FHIR dateTime.
+	
+	HL7 format expected: yyyyMMddHHmmssZZ
+	FHIR format: yyyy-MM-dd&apos;T&apos;HH:mm:ssZZ
+
+	@param {String} date - The HL7 v2.x timestamp string
+	@return {String} The converted FHIR timestamp string
+*/
+function convertToFhirTimestamp(date) {
+	if (!date) {
+		return &apos;&apos;;
+	}
+
+	var patterns = [
+		&quot;yyyyMMddHHmmss.SSSZZ&quot;,
+		&quot;yyyyMMddHHmmss.SSSZ&quot;,
+		&quot;yyyyMMddHHmmss.SSS&quot;,
+		&quot;yyyyMMddHHmmssZZ&quot;,
+		&quot;yyyyMMddHHmmssZ&quot;,
+		&quot;yyyyMMddHHmmss&quot;,
+		&quot;yyyyMMddHHmm&quot;,
+		&quot;yyyyMMddHH&quot;,
+		&quot;yyyyMMdd&quot;
+	];
+
+	var instant;
+	for each (pattern in patterns) {
+		try {
+			instant = org.joda.time.format.DateTimeFormat.forPattern(pattern).parseMillis(new String(date));
+			break;
+		} catch(e) {}
+	}
+
+	if (instant) {
+		var outpattern = arguments.length &gt;= 2 ? arguments[1] : &quot;yyyy-MM-dd&apos;T&apos;HH:mm:ssZZ&quot;;
+		try {
+			return org.joda.time.format.DateTimeFormat.forPattern(outpattern).print(instant);
+		} catch (e) {}
+	}
+	
+	return date;
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.9.0">
+        <id>760658e4-f24f-4a57-bbb9-9ae847f6daf8</id>
+        <name>Convert Yes/No Indicator</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1586904074755</time>
+          <timezone>America/Los_Angeles</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Converts an HL7 v2.x yes/no indicator code to a boolean value. If the code is null or an empty string,
+	false will be returned.
+
+	@param {String} code - The HL7 yes/no indicator (Table 0136)
+	@return {Boolean} True/false
+*/
+function convertYesNoIndicator(code) {
+	return code == &apos;Y&apos;;
+}</code>
+        </properties>
+      </codeTemplate>
+    </codeTemplates>
+  </codeTemplateLibrary>
+</list>
