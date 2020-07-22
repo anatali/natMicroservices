@@ -577,6 +577,9 @@ curl -H "Content-Type: application/json" <k>--data @json_template.json</k>
  <div class="remark">
 <a href="https://hapifhir.io/hapi-fhir/apidocs/hapi-fhir-structures-r4/" target="webcode">FHIR HAPI</a><br/>
 <a href="https://fhir-drills.github.io/fhir-api.html" target="webcode">FHIR HAPI Tutorials</a><br/> 
+<a href="https://github.com/microsoft/FHIR-Converter" target="webcode">FHIR Converter</a> 
+(released to open source : <ks>HL7 v2 to FHIR</ks> on Thursday March 6th, <ks>C-CDA to FHIR</ks> June 12th, 2020)<br/> 
+<a href="https://www.hl7tofhir.com/HL7/mapping" target="webcode">Redix Converter</a> <br/> <br/> 
 <k>MIRTH</k>: &nbsp; &nbsp; 
 <a href="http://www.mirthcorp.com/community/wiki/pages/viewpage.action?pageId=38798961" target="webcode">FHIR Mirth UserGuide</a>
 &nbsp; &nbsp; &nbsp; &nbsp;
@@ -816,12 +819,53 @@ and include those code templates on multiple channels as you see fit.
 
 <h2>DISI channels</h2>
 <ol>
-<li>Preparo libreria DISI di template JavaScript che chiamano codice Java Mirth o HAPI </li>
-<li>Uso JavaScript nei canali come caller di libreria DISI</li>
-<li></li>
-<li></li>
+<li>Preparo template-library JavaScript di nome <k>uniboLib</k>. I JavaScript di questa libreria
+possono chiamare codice  Java-Mirth o codice Java user defined (che potrebbe usare HAPI o 
+<a href="https://github.com/microsoft/FHIR-Converter" target="webcode">FHIR Converter</a>). <br/>
+Ad esempio: <a href="../disiLibForMirth/disiUpdateMsglist.js" target="code">disiUpdateMsglist.js</a>:  memorizza input 
+trasformato dalla classe user-defined
+<a href="../src/it/unibo/mirth/java/MirthJava0.java" target="code">MirthJava0.java</a> in una lista salvata in <k>globalMap</k> con chiave 
+<tt>'L1'</tt>.
+</li>
+<li>Creo dipendenza di un canale dalla libreria <k>uniboLib</k>. Ad esempio: 
+
+<a href="../uniboChannels\useLibs.xml" target="code">useLibs.xml</a> (il risultato di una <k>ExportChannel</k>: si noti che include la libreria).
+</li>
+<li>Uso JavaScript nei canali come caller di libreria DISI. Ad esempio, si veda <tt>Desinations/Destination2</tt> di 
+<a href="../uniboChannels/useLibs.xml" target="code">useLibs.xml</a>:
+<pre>
+disiUpdateMsglist(); 
+</pre>
+</li>
+
 </ol>
 
+<h2>HL7v2 to FHIR conversion</h2>
+From
+<a href="https://stackoverflow.com/questions/20327053/can-i-convert-hl7-v2-message-to-a-fhir-resource-directly" target="webcode">
+On HL7v2 FHIR Convertion</a> we read:
+<div class="remark">
+HL7v2 segments are not naturally identified, and resources must be (that's the core of the RESTful part). <br/>
+And identifying segments usefully is a business problem - it must be done based on the contents of the segment, 
+it's context in the message, and local identification etc practices applicable to the source of the message.
+<hr/>
+Si fornisce come esempio il file:
+<a href="../fhir/test/A31ToPerson.js" target="code">A31ToPerson.js</a>.
+</div>
+Tuttavia troviamo anche:
+<hr/>
+<a href="https://github.com/microsoft/FHIR-Converter" target="webcode">FHIR Converter</a> 
+(released to open source : <ks>HL7 v2 to FHIR</ks> on Thursday March 6th, <ks>C-CDA to FHIR</ks> June 12th, 2020)<br/> 
+The FHIR Converter transforms HL7 v2 messages and CDA documents into 
+FHIR bundles using templates that define the mappings between the two data formats.<br/>
+Leveraging the FHIR Converter, organizations can <k>customize or create their own mapping templates</k>.
+<br/> <br/> 
+<hr/>
+<a href="https://www.hl7tofhir.com/HL7/mapping" target="webcode">Redix Converter</a> <br/> 
+Select an HL7 2.x file from your system and convert it to FHIR STU3 resource(s).<br/>
+Supported HL7 messages are: <tt>ADT, ORU, MFN, PPP, REF, SIU, and VXU</tt>.
+<br/> <br/> 
+<hr/>
 <!--
 
 <h3>Esempi ....</h3>

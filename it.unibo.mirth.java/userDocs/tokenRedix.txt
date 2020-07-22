@@ -1,0 +1,3 @@
+61a301f0ccd80ecc9e5f17a996833d9e2e2c2d28
+
+curl --verbose  https://www.hl7tofhir.com/api/v1/hl7ToFhirStu3 -H "Authorization: oAuth:61a301f0ccd80ecc9e5f17a996833d9e2e2c2d28" -F "file=@C:/Progetti/Evolution/it.unibo.mirth.java/uniboChannels/angelo/hl7-ex1" --output C:/Progetti/Evolution/it.unibo.mirth.java/uniboChannels/angelo/xxx.txt
