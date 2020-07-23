@@ -575,11 +575,19 @@ curl -H "Content-Type: application/json" <k>--data @json_template.json</k>
 
  <h3>FHIR References</h3>
  <div class="remark">
-<a href="https://hapifhir.io/hapi-fhir/apidocs/hapi-fhir-structures-r4/" target="webcode">FHIR HAPI</a><br/>
-<a href="https://fhir-drills.github.io/fhir-api.html" target="webcode">FHIR HAPI Tutorials</a><br/> 
+ <a href="http://hl7.org/fhir/R4/index.html" target="webcode">FHIR</a> <br/><br/>
+
+ 
+<a href="https://hapifhir.io/hapi-fhir/apidocs/hapi-fhir-structures-r4/" target="webcode">FHIR HAPI</a> &nbsp; &nbsp; &nbsp; &nbsp; 
+<a href="http://hl7.org/fhir/R4/documentation.html" target="webcode">Documentation Index </a>&nbsp; &nbsp; 
+<a href="http://hl7.org/fhir/R4/comparison-v2.html" target="webcode">HL7 v2 Similarities and Differences </a>&nbsp; &nbsp; 
+
+<br/>
+<a href="https://fhir-drills.github.io/fhir-api.html" target="webcode">FHIR HAPI Tutorials</a> 
+<!--
 <a href="https://github.com/microsoft/FHIR-Converter" target="webcode">FHIR Converter</a> 
 (released to open source : <ks>HL7 v2 to FHIR</ks> on Thursday March 6th, <ks>C-CDA to FHIR</ks> June 12th, 2020)<br/> 
-<a href="https://www.hl7tofhir.com/HL7/mapping" target="webcode">Redix Converter</a> <br/> <br/> 
+<a href="https://www.hl7tofhir.com/HL7/mapping" target="webcode">Redix Converter</a> --> <br/> <br/> 
 <k>MIRTH</k>: &nbsp; &nbsp; 
 <a href="http://www.mirthcorp.com/community/wiki/pages/viewpage.action?pageId=38798961" target="webcode">FHIR Mirth UserGuide</a>
 &nbsp; &nbsp; &nbsp; &nbsp;
@@ -590,7 +598,8 @@ FHIR Mirth</a>
 &nbsp; &nbsp; &nbsp; &nbsp;
 <a href="https://localhost:8443/api/" target="webcode">client API</a>
 &nbsp; &nbsp; &nbsp; &nbsp;
-<a href="https://web.archive.org/web/20181120184304/https://wso2.com/project/mashup/0.2/docs/e4xquickstart.html" target="webcode">E4X Quick Start Guide</a>
+<a href="https://web.archive.org/web/20181120184304/https://wso2.com/project/mashup/0.2/docs/e4xquickstart.html" target="webcode">
+E4X Quick Start Guide</a>
 <br/><br/> 
 
 <table style="width:98%">
@@ -778,7 +787,6 @@ in accordo a
 L'esempio e' quello descritto in
 <a href="../../../natmaterial/fhir-example-channels/channels/Convert%20HL7%20to%20FHIR%20Patient%20-%20Example%201/" target="webcode">
 fhir-example-channels/channels/Convert HL7 to FHIR Patient - Example 1</a>
-
 anche riportato in
 <a href="https://www.mirthcorp.com/community/wiki/display/mirth/HL7+v2.x+to+FHIR+Conversions+(R4)#HL7v2.xtoFHIRConversions(R4)-ConvertHL7toFHIRPatient-Example1" target="webcode">
 FHIR Mirth UserGuide | Convert HL7 to FHIR Patient - Example 1</a>
@@ -808,16 +816,61 @@ PV1|1|I|2000^2012^01||||001122^ZOIDBERG^JOHN^|||SUR||||1|A0|
 
 
 <h3>Esempio: Convert HL7 to FHIR Patient - 2 </h3>
+L'esempio e' quello descritto in
+<a href="https://www.mirthcorp.com/community/wiki/display/mirth/HL7+v2.x+to+FHIR+Conversions+(R4)#HL7v2.xtoFHIRConversions(R4)-ConvertHL7toFHIRPatient-Example2" target="webcode">
+FHIR Mirth UserGuide | Convert HL7 to FHIR Patient - Example 2</a>: the advantage to using <k>code templates</k> is that you can re-use the same code/builder across multiple 
+transformers, connectors, and channels.<br/>
+This channel includes both the "HL7 v2.x to FHIR Helper Functions" and "HL7 v2.x to FHIR Creation Functions" code template libraries..
+
 <hr/>
 This example channel uses the FHIR Resource Builder code template type to take 
 an HL7 v2.x ADT and create a FHIR Patient resource that represents the demographic information present in the message. 
-It accomplishes the same thing as the "Example 1" channel, but in a different way. 
-By using code templates, you can keep your <i>conversion logic separate from channels</i>, 
-and include those code templates on multiple channels as you see fit.
 <hr/>
 
+<div class="remark">
+As with the FHIR Listener Example Channel, these sample code templates and channels are only meant to be a starting point. <br/>
+You will likely need to tweak them in order to fit your <k>specific use-cases</k>. <br/>
+The <a href="http://hl7.org/fhir/R4/documentation.html" target="webcode">FHIR documentation</a>  pages 
+are a great starting place to see how the HL7 to FHIR mapping should take place. <br/>
+Perhaps try building on these examples to also create an associated <i>Encounter resource</i> from the ADT!
+</div>
 
-<h2>DISI channels</h2>
+
+<h2>HL7v2 to FHIR conversion</h2>
+From
+<a href="https://stackoverflow.com/questions/20327053/can-i-convert-hl7-v2-message-to-a-fhir-resource-directly" target="webcode">
+On HL7v2 FHIR Convertion</a> we read:
+<div class="remark">
+HL7v2 segments are not naturally identified, and resources must be (that's the core of the RESTful part). <br/>
+And identifying segments usefully is a business problem - it must be done based on the contents of the segment, 
+it's context in the message, and local identification etc practices applicable to the source of the message.
+<hr/>
+Si fornisce come esempio il file:
+<a href="../fhir/test/A31ToPerson.js" target="code">A31ToPerson.js</a>.
+</div>
+Tuttavia troviamo anche:
+<ul>
+<li><a href="http://www.mirthcorp.com/community/wiki/pages/viewpage.action?pageId=38798959" target="webcode">
+Mirth:HL7 v2.x to FHIR Conversions (R4)</a> 
+
+<br/> <br/> 
+</li>
+<li><a href="https://github.com/microsoft/FHIR-Converter" target="webcode">FHIR Converter</a> 
+(released to open source : <ks>HL7 v2 to FHIR</ks> on Thursday March 6th, <ks>C-CDA to FHIR</ks> June 12th, 2020)<br/> 
+The FHIR Converter transforms HL7 v2 messages and CDA documents into 
+FHIR bundles using templates that define the mappings between the two data formats.<br/>
+Leveraging the FHIR Converter, organizations can <k>customize or create their own mapping templates</k>.
+<br/> <br/> 
+</li>
+<li><a href="https://www.hl7tofhir.com/HL7/mapping" target="webcode">Redix Converter</a> <br/> 
+Select an HL7 2.x file from your system and convert it to FHIR STU3 resource(s).<br/>
+Supported HL7 messages are: <tt>ADT, ORU, MFN, PPP, REF, SIU, and VXU</tt>.
+<br/> <br/> 
+</li>
+
+</ul>
+ 
+ <h2>DISI channels</h2>
 <ol>
 <li>Preparo template-library JavaScript di nome <k>uniboLib</k>. I JavaScript di questa libreria
 possono chiamare codice  Java-Mirth o codice Java user defined (che potrebbe usare HAPI o 
@@ -839,33 +892,6 @@ disiUpdateMsglist();
 </li>
 
 </ol>
-
-<h2>HL7v2 to FHIR conversion</h2>
-From
-<a href="https://stackoverflow.com/questions/20327053/can-i-convert-hl7-v2-message-to-a-fhir-resource-directly" target="webcode">
-On HL7v2 FHIR Convertion</a> we read:
-<div class="remark">
-HL7v2 segments are not naturally identified, and resources must be (that's the core of the RESTful part). <br/>
-And identifying segments usefully is a business problem - it must be done based on the contents of the segment, 
-it's context in the message, and local identification etc practices applicable to the source of the message.
-<hr/>
-Si fornisce come esempio il file:
-<a href="../fhir/test/A31ToPerson.js" target="code">A31ToPerson.js</a>.
-</div>
-Tuttavia troviamo anche:
-<hr/>
-<a href="https://github.com/microsoft/FHIR-Converter" target="webcode">FHIR Converter</a> 
-(released to open source : <ks>HL7 v2 to FHIR</ks> on Thursday March 6th, <ks>C-CDA to FHIR</ks> June 12th, 2020)<br/> 
-The FHIR Converter transforms HL7 v2 messages and CDA documents into 
-FHIR bundles using templates that define the mappings between the two data formats.<br/>
-Leveraging the FHIR Converter, organizations can <k>customize or create their own mapping templates</k>.
-<br/> <br/> 
-<hr/>
-<a href="https://www.hl7tofhir.com/HL7/mapping" target="webcode">Redix Converter</a> <br/> 
-Select an HL7 2.x file from your system and convert it to FHIR STU3 resource(s).<br/>
-Supported HL7 messages are: <tt>ADT, ORU, MFN, PPP, REF, SIU, and VXU</tt>.
-<br/> <br/> 
-<hr/>
 <!--
 
 <h3>Esempi ....</h3>
