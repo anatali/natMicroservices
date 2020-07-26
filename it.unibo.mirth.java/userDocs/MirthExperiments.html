@@ -575,19 +575,24 @@ curl -H "Content-Type: application/json" <k>--data @json_template.json</k>
 
  <h3>FHIR References</h3>
  <div class="remark">
- <a href="http://hl7.org/fhir/R4/index.html" target="webcode">FHIR</a> <br/><br/>
+<a href="http://hl7.org/fhir/R4/index.html" target="webcode">FHIR</a>: &nbsp; &nbsp; &nbsp; 
+ <a href="http://hl7.org/fhir/R4/documentation.html" target="webcode">Documentation Index </a>&nbsp; &nbsp; 
+<a href="http://hl7.org/fhir/R4/comparison-v2.html" target="webcode">HL7 v2 Similarities and Differences </a><br/><br/>
+HAPI: &nbsp; &nbsp; &nbsp; 
+<a href="https://github.com/jamesagnew/hapi-fhir" target="webcode">jamesagnew hapi-fhir GIT (<k>JTel</k>)</a> &nbsp; &nbsp; 
+<a href="https://hapifhir.io/hapi-fhir/apidocs/hapi-fhir-structures-r4/" target="webcode">HAPI FHIR Structures</a> 
+&nbsp; &nbsp; 
+<a href="https://smilecdr.com/hapi-fhir/apidocs/hapi-fhir-base/index.html" target="webcode">HAPI FHIR - Core Library 5.1.0</a> &nbsp; &nbsp; 
+<a href="https://hapifhir.io/hapi-fhir/docs/" target="webcode">HAPI FHIR docs (<k>JTel</k>)</a> 
+&nbsp; &nbsp; 
+<a href="https://fhir-drills.github.io/fhir-api.html" target="webcode">HAPI FHIR Tutorials</a>  
+<pre>compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-base', version: '5.0.2'</pre>
 
- 
-<a href="https://hapifhir.io/hapi-fhir/apidocs/hapi-fhir-structures-r4/" target="webcode">FHIR HAPI</a> &nbsp; &nbsp; &nbsp; &nbsp; 
-<a href="http://hl7.org/fhir/R4/documentation.html" target="webcode">Documentation Index </a>&nbsp; &nbsp; 
-<a href="http://hl7.org/fhir/R4/comparison-v2.html" target="webcode">HL7 v2 Similarities and Differences </a>&nbsp; &nbsp; 
 
-<br/>
-<a href="https://fhir-drills.github.io/fhir-api.html" target="webcode">FHIR HAPI Tutorials</a> 
 <!--
 <a href="https://github.com/microsoft/FHIR-Converter" target="webcode">FHIR Converter</a> 
 (released to open source : <ks>HL7 v2 to FHIR</ks> on Thursday March 6th, <ks>C-CDA to FHIR</ks> June 12th, 2020)<br/> 
-<a href="https://www.hl7tofhir.com/HL7/mapping" target="webcode">Redix Converter</a> --> <br/> <br/> 
+<a href="https://www.hl7tofhir.com/HL7/mapping" target="webcode">Redix Converter</a> -->  
 <k>MIRTH</k>: &nbsp; &nbsp; 
 <a href="http://www.mirthcorp.com/community/wiki/pages/viewpage.action?pageId=38798961" target="webcode">FHIR Mirth UserGuide</a>
 &nbsp; &nbsp; &nbsp; &nbsp;
@@ -605,7 +610,7 @@ E4X Quick Start Guide</a>
 <table style="width:98%">
 <tbody>	
 <tr>
- <td>
+ <td style="width:25%">
  <i>FhirContext</i><br/>
  <br/> <br/>  
  <hr/>
@@ -613,26 +618,37 @@ E4X Quick Start Guide</a>
  <br/> <br/>
  
  </td>
-<td style="width:35%" >
+<td style="width:25%" >
 <i>Patient</i><br/>
-<a href="https://www.hl7.org/fhir/patient.html" target="webcode">FHIR Patient</a> (<k>Administration</k> module)<br/>
+<a href="https://www.hl7.org/fhir/patient.html" target="webcode">FHIR Patient</a> (<m><ks>Administration</ks></m>, <k>JTel</k>)<br/>
 <a href="https://fhir-drills.github.io/simple-patient.html" target="webcode">Patient resource Tutorial</a>
 <hr/>
-<a href="https://hapifhir.io/hapi-fhir/apidocs/hapi-fhir-structures-r4/org/hl7/fhir/r4/model/Patient.html" target="webcode">FHIR HAPI Patient</a><br/>
+<a href="https://hapifhir.io/hapi-fhir/apidocs/hapi-fhir-structures-r4/org/hl7/fhir/r4/model/Patient.html" target="webcode">
+FHIR Structures - Patient</a> <br/>
+<a href="https://www.hl7.org/fhir/patient.html" target="webcode">FHIR HAPI patient</a> (<k>JTel</k>)
+<br/>
 <a href="https://fhir-drills.github.io/fhir-api.html" target="webcode">FHIR HAPI Patient example</a><br/>
-<a href="https://hapifhir.io/hapi-fhir/docs/client/examples.html" target="webcode">HAPI FHIR Client Examples</a><br/>
+<a href="https://hapifhir.io/hapi-fhir/docs/client/examples.html" target="webcode">HAPI FHIR Client Examples</a>
+<br/>
 </td>
-<td>
+<td style="width:25%">
  <i>Bundle</i> <br/>
 
- <a href="https://www.hl7.org/fhir/bundle.html" target="webcode">FHIR Bundle</a>  (<k>Foundation</k> module)<br/>
+ <a href="https://www.hl7.org/fhir/bundle.html" target="webcode">FHIR Bundle</a>  (<ks><m>Foundation</ks></m>)<br/>
 <a href="https://fhir-drills.github.io/bundle.html" target="webcode">Bundle Tutorial</a>
 <hr/>
 <a href="https://hapifhir.io/hapi-fhir/apidocs/hapi-fhir-structures-r4/undefined/org/hl7/fhir/r4/model/Bundle.html" target="webcode">FHIR HAPI Bundle</a><br/> 
 <a href="https://fhir-drills.github.io/bundle.html" target="webcode">FHIR HAPI Bundle example</a> <br/> 
 <a href="https://hapifhir.io/hapi-fhir/docs/client/examples.html" target="webcode">HAPI FHIR Client Examples</a><br/>
+<br/>
 </td>
  
+<td><i>Careplan</i><br/>
+<a href="https://www.hl7.org/fhir/careplan.html" target="webcode">FHIR careplan(<ks><m>Clinical</ks></m>, <k>JTel</k>)</a> <br/> 
+<br>
+<hr/>
+<br/><br/><br/><br/>
+</td>
 
 </tr>
  </tbody>

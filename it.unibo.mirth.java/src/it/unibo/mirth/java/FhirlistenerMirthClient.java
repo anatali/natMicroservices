@@ -1,6 +1,6 @@
 package it.unibo.mirth.java;
 
-import org.apache.commons.httpclient.*;
+ 
 import org.hl7.fhir.instance.model.api.IIdType;
 import org.hl7.fhir.r4.model.*;
 import ca.uhn.fhir.context.FhirContext;
@@ -9,11 +9,11 @@ import ca.uhn.fhir.rest.client.api.IGenericClient;
 import it.unibo.fhir.Patients;
 
 
-public class FhirlisternMirthClient {
+public class FhirlistenerMirthClient {
    //FhirContext is an expensive (thread-safe) object
-   private FhirContext ctx = FhirContext.forR4();
+   private FhirContext ctx     = FhirContext.forR4();
    private Patients mypatients = new Patients();
-   private String serverBase = "http://localhost:7002/r4";  
+   private String serverBase   = "http://localhost:7002/r4";  
     
   //From https://hapifhir.io/hapi-fhir/docs/client/generic_client.html  
   public void createPatient() {
@@ -43,7 +43,7 @@ public class FhirlisternMirthClient {
   
  	  
   public static void main(String[] args) throws Exception {
-	  FhirlisternMirthClient appl = new FhirlisternMirthClient();
+	  FhirlistenerMirthClient appl = new FhirlistenerMirthClient();
 //  	  appl.readData();
  	  appl.createPatient();
    }
